@@ -1,14 +1,9 @@
 const mongoose = require("mongoose");
-require("dotenv").config(); 
-
-const dbURI = process.env.MONGO_URI;
+const dbURI = "mongodb+srv://Affaq:affaq1940351@fyp-automation-system.5uoeq.mongodb.net/?retryWrites=true&w=majority&appName=FYP-Automation-System";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(dbURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(dbURI);
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("MongoDB connection error:", error.message);
