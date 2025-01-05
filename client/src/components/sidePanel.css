@@ -1,0 +1,18 @@
+.side-panel {
+    width: 250px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ccc;
+  }
+  
+  .logo {
+    width: 100px;
+    display: block;
+    margin: 0 auto 20px;
+  }
+  
+  .side-panel p {
+    font-size: 16px;
+    color: #333;
+  }
+  
