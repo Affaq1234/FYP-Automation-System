@@ -1,18 +1,46 @@
 .side-panel {
-    width: 250px;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-right: 1px solid #ccc;
+  width: 250px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-right: 1px solid #ccc;
+  transition: transform 0.3s ease-in-out;
+}
+
+.side-panel.closed {
+  transform: translateX(-100%);
+}
+
+.side-panel.open {
+  transform: translateX(0);
+}
+
+.logo {
+  width: 100px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.side-panel p {
+  font-size: 16px;
+  color: #333;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 10px;
+  right: -40px;
+  background-color: #260244;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .side-panel {
+    position: absolute;
+    height: 100vh;
+    z-index: 1000;
   }
-  
-  .logo {
-    width: 100px;
-    display: block;
-    margin: 0 auto 20px;
-  }
-  
-  .side-panel p {
-    font-size: 16px;
-    color: #333;
-  }
-  
+}

@@ -1,54 +1,114 @@
-/* Style for the login container */
+/* General Styles */
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f9;
-    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, rgba(135, 182, 255, 0.8), rgba(255, 195, 255, 0.8)),
+                url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
   }
   
-  /* Style for the role selection section */
+  /* Role Selection */
   .role-selection {
     text-align: center;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
   
   .role-selection h2 {
     font-size: 2rem;
+    color: #3b0650;
     margin-bottom: 20px;
+    font-weight: bold;
   }
   
   .role-buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: 15px;
   }
   
   .role-buttons button {
-    padding: 10px 20px;
+    flex: 1; /* Equal size for buttons */
+    padding: 15px;
     font-size: 1rem;
-    margin: 10px;
+    background-color: #8c00ff;
+    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
   
   .role-buttons button:hover {
-    background-color: #007bff;
-    color: white;
+    background-color: #a826ff;
+    transform: translateY(-5px);
+  }
+
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #8c00ff;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
   }
   
-  /* Style for the login form section */
+  .back-button:hover {
+    color: #a826ff;
+    transform: scale(1.2);
+  }
+  
+  
+  /* Login Form */
+
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #8c00ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #a826ff;
+    transform: scale(1.05);
+  }
+
   .login-form {
     text-align: center;
     background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%; /* Fits small screens */
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   .login-form h2 {
@@ -56,71 +116,128 @@
     font-size: 1.5rem;
   }
   
-  .login-form input {
+  .input-container {
+    position: relative;
     width: 100%;
-    padding: 10px;
+  }
+  
+  .input-container input {
+    width: calc(100% - 20px);
+    padding: 10px 10px 10px 35px;
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-form button {
-    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     font-size: 1rem;
-    background-color: hsl(207, 80%, 54%);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #f9f9f9;
   }
   
-  .login-form button:hover {
-    background-color: hsl(207, 80%, 54%);
+  .input-container input:focus {
+    outline: none;
+    border: 1px solid #8c00ff;
+    box-shadow: 0 0 5px rgba(140, 0, 255, 0.5);
   }
-
-  /* Styling for Google Login Button */
-/* Styling for Google Login Button */
-/* Styling for Google Login Button */
-.google-login {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.google-button {
+  
+  .input-container i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #8c00ff;
+  }
+  
+  /* Google Login */
+  .google-login {
+    margin-top: 20px;
+  }
+  
+  .google-button {
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff; /* White background */
-  border: 1px solid #d9d9d9;
-  border-radius: 5px;
-  padding: 10px 15px;
-  font-size: 16px;
+  padding: 12px ;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%; /* To make the button full-width */
-  max-width: 300px; /* Limit the button width */
-  margin: 0 auto; /* Center the button */
+  transition: all 0.3s ease;
+} 
+.google-button img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 
 .google-button:hover {
-  background-color: #f5f5f5; /* Hover effect */
+  background-color: #e6e6e6;
+  border-color: #ccc;
 }
 
-.google-text {
-  font-size: 16px;
-  font-weight: bold;
-  color: #000000; /* Black color for Google text */
-  margin-right: 10px; /* Space between text and logo */
-}
-
-.google-logo {
-  width: 20px; /* Adjust the size of the logo */
-  height: 20px;
-}
-
-/* Google Login button specific styles */
-.google-button img {
-  width: 20px;
-  height: 20px;
-}
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .role-buttons {
+      flex-direction: column;
+    }
+  
+    .role-buttons button {
+      margin-bottom: 10px;
+    }
+  
+    .login-form h2 {
+      font-size: 1.2rem;
+    }
+  
+    .input-container input {
+      font-size: 0.9rem;
+    }
+  
+    .google-button {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 10px;
+    }
+  
+    .login-form {
+      padding: 20px;
+    }
+  
+    .input-container input {
+      padding: 8px 8px 8px 30px;
+    }
+  }
+  .sign-up-option {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .sign-up-option p {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .sign-up-option a {
+    color: #8c00ff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .sign-up-option a:hover {
+    color: #a826ff;
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    .login-button,
+    .google-button {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  }
+  

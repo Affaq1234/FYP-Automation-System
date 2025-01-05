@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
-import Navbar from "../components/navbar";
 import './loginPage.css'; // Your CSS file for styling
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const [step, setStep] = useState(1); // Track which step the user is on
-  const [role, setRole] = useState(''); // Track the selected role
+  const [step, setStep] = useState(1);
+  const [role, setRole] = useState('');
+  const navigate = useNavigate(); // Hook for navigation
 
-  // Handle role selection
   const handleRoleSelect = (role) => {
     setRole(role);
-    setStep(2); // Go to step 2 (login form)
-  };
-
-  // Handle sign up (You can extend this function later for actual sign up functionality)
-  const handleSignUp = () => {
-    alert('Sign Up functionality will be implemented here.');
+    setStep(2);
   };
 
   return (
     <div className="login-container">
-      {/*<Navbar /> {/* Your Navbar component */}
-      
+      {step === 2 && (
+        <button className="back-button" onClick={() => navigate("/")}>
+          <i className="fas fa-times"></i>
+        </button>
+      )}
+
       {step === 1 && (
         <div className="role-selection">
           <h2>Who are you?</h2>
@@ -36,33 +35,27 @@ const LoginPage = () => {
         <div className="login-form">
           <h2>Login as {role}</h2>
           <form>
-            <div>
-              <label htmlFor="email">Email:</label>
+            <div className="input-container">
+              <i className="fas fa-envelope"></i>
               <input type="email" id="email" placeholder="Enter your email" required />
             </div>
-            <div>
-              <label htmlFor="password">Password:</label>
+            <div className="input-container">
+              <i className="fas fa-lock"></i>
               <input type="password" id="password" placeholder="Enter your password" required />
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" className="login-button">Login</button>
           </form>
 
-          
           <div className="google-login">
-          <p>Or, continue with:</p>
+            <p>Or, continue with:</p>
             <button className="google-button">
-              <img
-                src="/images/googleLogo.png"  alt="Google logo"
-                className="google-logo"
-              />
-               Google
+              <img src="/images/googleLogo.png" alt="Google logo" className="google-logo" />
+              Google
             </button>
           </div>
-          
-          {/* Sign Up Option */}
+
           <div className="sign-up-option">
-            <p>Or, don't have an account?</p>
-            <button onClick={handleSignUp}>Sign Up</button>
+            <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
           </div>
         </div>
       )}
