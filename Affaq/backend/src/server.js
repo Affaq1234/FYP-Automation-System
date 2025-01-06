@@ -4,6 +4,7 @@ const userRoutes=require('./routes/UserRoutes')
 const taskRoutes=require('./routes/TaskRoutes')
 const studentRoutes=require('./routes/StudentRoutes')
 const reminderRoutes=require('./routes/ReminderRoutes');
+const proposalRoutes=require('./routes/ProposalRoutes');
 
 const app = express();
 const PORT = 5000;
@@ -14,6 +15,7 @@ app.use('/api/user',userRoutes);
 app.use('/api/task',taskRoutes);
 app.use('/api/student',studentRoutes);
 app.use('/api/reminder',reminderRoutes);
+app.use('/api/proposal',proposalRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running...");

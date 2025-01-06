@@ -1,5 +1,4 @@
 const Reminder=require('../models/Reminder');
-const { findOne } = require('../models/User');
 const createReminder = async (req, res) => {
     try {
         const newReminder = new Reminder(req.body);
