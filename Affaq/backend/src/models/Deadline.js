@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const deadlineSchema = new mongoose.Schema({
-  projectld: {
+  projectId: {
     type: String,
     required: true,
   },
