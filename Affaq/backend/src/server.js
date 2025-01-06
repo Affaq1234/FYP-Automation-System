@@ -12,6 +12,7 @@ const milestoneRoutes=require('./routes/MilestoneRoutes');
 const meetingRoutes=require('./routes/MeetingRoutes');
 const groupRoutes=require('./routes/GroupRoutes');
 const feedbackRoutes=require('./routes/FeedbackRoutes');
+const facultyAdvisorRoutes=require('./routes/FacultyAdvisorRoutes');
 
 
 const app = express();
@@ -30,6 +31,7 @@ app.use('/api/milestone',milestoneRoutes);
 app.use('/api/meeting',meetingRoutes);
 app.use('/api/group',groupRoutes);
 app.use('/api/feedback',feedbackRoutes);
+app.use('/api/facultyAdvisor',facultyAdvisorRoutes);
 
 
 app.get("/", (req, res) => {
