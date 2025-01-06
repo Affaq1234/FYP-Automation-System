@@ -20,7 +20,7 @@ const deleteUser = async (req, res) => {
     try {
       const { id } = req.params;
       await User.findByIdAndDelete(id);
-      res.status(204).send();
+      res.status(204).send("Success");
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
