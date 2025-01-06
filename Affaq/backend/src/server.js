@@ -15,6 +15,7 @@ const feedbackRoutes=require('./routes/FeedbackRoutes');
 const facultyAdvisorRoutes=require('./routes/FacultyAdvisorRoutes');
 const documentRoutes=require('./routes/DocumentRoutes');
 const deadlineRoutes=require('./routes/DeadlineRoutes');
+const adminRoutes=require('./routes/AdminRoutes');
 
 
 const app = express();
@@ -36,6 +37,7 @@ app.use('/api/feedback',feedbackRoutes);
 app.use('/api/facultyAdvisor',facultyAdvisorRoutes);
 app.use('/api/document',documentRoutes);
 app.use('/api/deadline',deadlineRoutes);
+app.use('/api/admin',adminRoutes);
 
 
 app.get("/", (req, res) => {
