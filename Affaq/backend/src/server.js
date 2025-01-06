@@ -2,7 +2,6 @@ const express = require("express");
 const connectDB = require("./config/dbs");
 
 
-
 const userRoutes=require('./routes/UserRoutes')
 const taskRoutes=require('./routes/TaskRoutes')
 const studentRoutes=require('./routes/StudentRoutes')
@@ -12,6 +11,7 @@ const projectRoutes=require('./routes/ProjectRoutes');
 const milestoneRoutes=require('./routes/MilestoneRoutes');
 const meetingRoutes=require('./routes/MeetingRoutes');
 const groupRoutes=require('./routes/GroupRoutes');
+const feedbackRoutes=require('./routes/FeedbackRoutes');
 
 
 const app = express();
@@ -29,6 +29,7 @@ app.use('/api/project',projectRoutes);
 app.use('/api/milestone',milestoneRoutes);
 app.use('/api/meeting',meetingRoutes);
 app.use('/api/group',groupRoutes);
+app.use('/api/feedback',feedbackRoutes);
 
 
 app.get("/", (req, res) => {

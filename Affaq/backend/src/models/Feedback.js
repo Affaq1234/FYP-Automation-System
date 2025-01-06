@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const feedbackSchema = new mongoose.Schema({
-  facultyld: {
+  facultyId: {
     type: String,
     required: true,
   },
