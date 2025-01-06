@@ -20,7 +20,7 @@ const deleteStudent = async (req, res) => {
     try {
       const { id } = req.params;
       await Student.findByIdAndDelete(id);
-      res.status(204).send({"Status":"Success"});
+      res.status(204).json({"Status":"Success"});
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -40,7 +40,7 @@ const updateStudent = async (req, res) => {
       const student = await Student.findById(id); 
   
       if (!student) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ message: 'Student not found' });
       }
       res.status(200).json(student); 
     } catch (err) {
