@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const meetingSchema = new mongoose.Schema({
-  facultyld: {
+  facultyId: {
     type: String,
     required: true,
   },
