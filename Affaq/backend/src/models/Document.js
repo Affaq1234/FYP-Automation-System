@@ -8,6 +8,10 @@ const documentSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    documentType:{
+        type:String,
+        required:true
+    },
     attachmentName:{
         type:String,
         required:true
