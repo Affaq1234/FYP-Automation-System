@@ -1,0 +1,119 @@
+/* General Container */
+.proposal-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Content Wrapper */
+  .content-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* Sidebar */
+  .content-wrapper .StudentSidebar {
+    flex: 0 0 250px;
+    margin-right: 20px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Page Title */
+  .proposal-title {
+    text-align: center;
+    color: #3b0650;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Proposal Form */
+  .proposal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .proposal-form label {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .proposal-form input,
+  .proposal-form textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .proposal-form input:focus,
+  .proposal-form textarea:focus {
+    border-color: #8c00ff;
+    box-shadow: 0 0 8px rgba(140, 0, 255, 0.5);
+    outline: none;
+  }
+  
+  .proposal-form button {
+    background-color: #8c00ff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .proposal-form button:hover {
+    background-color: #5d00b3;
+    transform: translateY(-2px);
+  }
+  
+  /* Submitted Proposals */
+  .submitted-proposals {
+    margin-top: 20px;
+  }
+  
+  .submitted-proposals h2 {
+    color: #3b0650;
+    margin-bottom: 15px;
+  }
+  
+  .submitted-proposals ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .submitted-proposals li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+  
+    .StudentSidebar {
+      margin-bottom: 20px;
+    }
+  }
+  

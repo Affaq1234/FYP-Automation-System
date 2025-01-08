@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './loginPage.css'; // Your CSS file for styling
 import { Link, useNavigate } from "react-router-dom";
+import './loginPage.css';
 
 const LoginPage = () => {
   const [step, setStep] = useState(1);
@@ -10,6 +10,16 @@ const LoginPage = () => {
   const handleRoleSelect = (role) => {
     setRole(role);
     setStep(2);
+  };
+
+  // Function to handle login submission
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    if (role === "Student") {
+      navigate("/dashboard/student"); // Redirect to Student Dashboard
+    } else {
+      alert("This role's dashboard is not yet implemented!");
+    }
   };
 
   return (
@@ -34,7 +44,7 @@ const LoginPage = () => {
       {step === 2 && role && (
         <div className="login-form">
           <h2>Login as {role}</h2>
-          <form>
+          <form onSubmit={handleLoginSubmit}>
             <div className="input-container">
               <i className="fas fa-envelope"></i>
               <input type="email" id="email" placeholder="Enter your email" required />

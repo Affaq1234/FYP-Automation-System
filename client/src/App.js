@@ -6,6 +6,10 @@ import LoginPage from './Pages/loginPage';
 import SignupPage from "./Pages/SignupPage";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
+import StudentDashboard from "./Pages/StudentDashboard";
+import ManageDeadlines from "./Pages/ManageDeadlines";
+import ViewTasks from "./Pages/ViewTasks";
+import SubmitProposal from "./Pages/SubmitProposal";
 
 
 const App = () => {
@@ -17,6 +21,11 @@ const App = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/dashboard/student" element={<StudentDashboard />} />
+        <Route path="/deadlines" element={<ManageDeadlines />} />
+        <Route path="/tasks" element={<ViewTasks />} />
+        <Route path="/proposals" element={<SubmitProposal />} />
+
         {/* Add routes for other pages like Login, About, Contact */}
       </Routes>
     </Router>
