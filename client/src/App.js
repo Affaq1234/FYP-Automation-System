@@ -10,6 +10,7 @@ import StudentDashboard from "./Pages/StudentDashboard";
 import ManageDeadlines from "./Pages/ManageDeadlines";
 import ViewTasks from "./Pages/ViewTasks";
 import SubmitProposal from "./Pages/SubmitProposal";
+import StartVideoConference from "./Pages/StartVideoConference";
 
 
 const App = () => {
@@ -25,6 +26,8 @@ const App = () => {
         <Route path="/deadlines" element={<ManageDeadlines />} />
         <Route path="/tasks" element={<ViewTasks />} />
         <Route path="/proposals" element={<SubmitProposal />} />
+        <Route path="/video-conference" element={<StartVideoConference />} />
+
 
         {/* Add routes for other pages like Login, About, Contact */}
       </Routes>

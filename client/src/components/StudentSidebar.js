@@ -52,6 +52,9 @@ const StudentSidebar = () => {
                             else if (feature.name === "Submit Proposals") {
                                 navigate("/proposals");
                             }
+                            else if (feature.name === "Start Video Conference") {
+                                navigate("/video-conference");
+                            }
                         }}
                     >
                         <i className={feature.icon}></i>

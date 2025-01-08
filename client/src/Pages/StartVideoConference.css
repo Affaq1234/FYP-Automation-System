@@ -1,0 +1,119 @@
+/* General Container */
+.video-conference-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Content Wrapper */
+  .content-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* Sidebar */
+  .content-wrapper .StudentSidebar {
+    flex: 0 0 250px;
+    margin-right: 20px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Page Title */
+  .video-conference-title {
+    text-align: center;
+    color: #3b0650;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Meeting Link Section */
+  .meeting-link-section {
+    margin-bottom: 30px;
+  }
+  
+  .meeting-link-section label {
+    display: block;
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .meeting-link-section input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .meeting-link-section button {
+    background-color: #8c00ff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .meeting-link-section button:hover {
+    background-color: #5d00b3;
+    transform: translateY(-2px);
+  }
+  
+  /* Success Message */
+  .success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Instructions Section */
+  .instructions {
+    margin-top: 20px;
+  }
+  
+  .instructions h2 {
+    color: #3b0650;
+    margin-bottom: 15px;
+  }
+  
+  .instructions ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .instructions li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+  
+    .StudentSidebar {
+      margin-bottom: 20px;
+    }
+  }
+  
