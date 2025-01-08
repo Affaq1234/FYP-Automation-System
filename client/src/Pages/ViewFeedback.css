@@ -1,0 +1,95 @@
+/* General Container */
+.feedback-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Content Wrapper */
+  .content-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* Sidebar */
+  .content-wrapper .StudentSidebar {
+    flex: 0 0 250px;
+    margin-right: 20px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Page Title */
+  .feedback-title {
+    text-align: center;
+    color: #3b0650;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Feedback Table */
+  .feedback-table {
+    margin-top: 20px;
+  }
+  
+  .feedback-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .feedback-table th,
+  .feedback-table td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .feedback-table th {
+    background-color: #3b0650;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .feedback-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .feedback-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+  
+    .StudentSidebar {
+      margin-bottom: 20px;
+    }
+  }
+  

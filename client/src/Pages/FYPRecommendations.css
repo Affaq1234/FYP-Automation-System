@@ -1,0 +1,92 @@
+/* General Container */
+.fyp-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Content Wrapper */
+  .content-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* Sidebar */
+  .content-wrapper .StudentSidebar {
+    flex: 0 0 250px;
+    margin-right: 20px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Page Title */
+  .fyp-title {
+    text-align: center;
+    color: #3b0650;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Trending Ideas */
+  .trending-ideas ul,
+  .successful-projects ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .trending-ideas li,
+  .successful-projects li {
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .trending-ideas li h3,
+  .successful-projects li h3 {
+    color: #3b0650;
+    margin-bottom: 10px;
+  }
+  
+  .trending-ideas li p,
+  .successful-projects li p {
+    margin: 0;
+    color: #555;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+  
+    .StudentSidebar {
+      margin-bottom: 20px;
+    }
+  }
+  

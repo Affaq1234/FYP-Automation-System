@@ -11,6 +11,10 @@ import ManageDeadlines from "./Pages/ManageDeadlines";
 import ViewTasks from "./Pages/ViewTasks";
 import SubmitProposal from "./Pages/SubmitProposal";
 import StartVideoConference from "./Pages/StartVideoConference";
+import UploadDocumentation from "./Pages/UploadDocumentation";
+import ViewFeedback from "./Pages/ViewFeedback";
+import FYPRecommendations from "./Pages/FYPRecommendations";
+import GroupManagement from "./Pages/GroupManagement";
 
 
 const App = () => {
@@ -27,6 +31,14 @@ const App = () => {
         <Route path="/tasks" element={<ViewTasks />} />
         <Route path="/proposals" element={<SubmitProposal />} />
         <Route path="/video-conference" element={<StartVideoConference />} />
+        <Route path="/upload-documentation" element={<UploadDocumentation />} />
+        <Route path="/view-feedback" element={<ViewFeedback />} />
+        <Route path="/fyp-recommendations" element={<FYPRecommendations />} />
+        <Route path="/group-management" element={<GroupManagement />} />
+
+
+
+
 
 
         {/* Add routes for other pages like Login, About, Contact */}
@@ -36,30 +48,3 @@ const App = () => {
 };
 
 export default App;
-
-/*import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
-*/

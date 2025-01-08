@@ -1,0 +1,56 @@
+.group-management-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .content-wrapper {
+    display: flex;
+  }
+  
+  .main-content {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    color: #3b0650;
+    margin-bottom: 20px;
+  }
+  
+  .profiles-section ul,
+  .logs-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .profiles-section li {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .communication-section button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: #8c00ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .communication-section button:hover {
+    background-color: #5d00b3;
+  }
+  
