@@ -21,7 +21,7 @@ const StudentSidebar = () => {
     { id: 5, name: "Upload Documentation", icon: "fas fa-upload", path: "/upload-documentation" },
     { id: 6, name: "Group Management", icon: "fas fa-users", path: "/group" }, // Fixed icon
     { id: 7, name: "View Feedback", icon: "fas fa-comment-dots", path: "/view-feedback" },
-    { id: 8, name: "View FYP Recommendations", icon: "fas fa-lightbulb", path: "/fyp-recommendations" },
+    { id: 8, name: "View FYP Recommendations", icon: "fas fa-lightbulb", path: "/fyo-recommendations" },
     { id: 9, name: "Logout", icon: "fas fa-sign-out-alt", path: "/logout" },
   ];
 
