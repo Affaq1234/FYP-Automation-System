@@ -17,10 +17,13 @@ const LoginPage = () => {
     e.preventDefault();
     if (role === "Student") {
       navigate("/dashboard/student"); // Redirect to Student Dashboard
-    } else {
+    } else if (role === "Supervisor") {
+      navigate("/dashboard/supervisor"); // Redirect to Supervisor Dashboard
+    } else if (role === "Admin") {
       alert("This role's dashboard is not yet implemented!");
     }
   };
+  
 
   return (
     <div className="login-container">
