@@ -47,4 +47,45 @@ const updateDocument = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
+
+  async function convertFileToBuffer(filePath) {
+    try {
+      const MAX_FILE_SIZE_MB = 16;
+      const MAX_FILE_SIZE_BYTES = 16 * 1024 * 1024;
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`File does not exist at path: ${filePath}`);
+      }
+  
+      const fileStats = fs.statSync(filePath);
+      if (fileStats.size > MAX_FILE_SIZE_BYTES) {
+        throw new Error(
+          `File size exceeds ${MAX_FILE_SIZE_MB} MB. File size: ${(
+            fileStats.size /
+            (1024 * 1024)
+          ).toFixed(2)} MB`
+        );
+      }
+  
+      const fileData = fs.readFileSync(filePath);
+      const buffer = Buffer.from(fileData);
+      const fileName = path.basename(filePath);
+  
+      console.log("File converted to buffer successfully.");
+      return { buffer, fileName };
+    } catch (error) {
+      console.error("Error:", error.message);
+      throw error;
+    }
+  }
+  
+  async function saveBufferToFile(bufferData, outputPath) {
+    try {
+        fs.writeFileSync(outputPath, bufferData);
+        console.log(`File saved successfully at: ${outputPath}`);
+    } catch (error) {
+        console.error('Error:', error.message);
+        throw error;
+    }
+  }
+  
   module.exports={createDocument,deleteDocument,updateDocument,getAllDocuments,findOneDocument};
