@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import SupervisorSidebar from "../components/SupervisorSidebar";
 import "./StartVideoConference.css";
+import StudentSidebar from "../components/StudentSidebar";
 
 const StartVideoConference = () => {
   const [selectedMeeting, setSelectedMeeting] = useState("");
@@ -30,7 +30,7 @@ const StartVideoConference = () => {
       <Navbar />
 
       <div className="content-wrapper">
-        <SupervisorSidebar />
+        <StudentSidebar />
 
         <div className="main-content">
           <h1 className="video-conference-title">Start Video Conference</h1>

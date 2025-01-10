@@ -16,10 +16,11 @@ const SupervisorSidebar = () => {
     { id: 0, name: "Go Back", icon:  "fas fa-home", path: "/dashboard" },
     { id: 1, name: "Provide Feedback", icon: "fas fa-comment-dots", path: "/provide-feedback" },
     { id: 2, name: "Schedule Meetings", icon: "fas fa-calendar", path: "/schedule-meeting" },
-    { id: 3, name: "Generate Reports", icon: "fas fa-file-alt", path: "/generate-reports" },
-    { id: 4, name: "Approve Proposals", icon: "fas fa-check", path: "/approve-proposals" },
+    { id: 3, name: "Approve Proposals", icon: "fas fa-check", path: "/approve-proposal" },
+    { id: 4, name: "Generate Reports", icon: "fas fa-file-alt", path: "/generate-reports" },   
     { id: 5, name: "View and Track Progress", icon: "fas fa-chart-line", path: "/track-progress" },
-    { id: 7, name: "Access Communication Tools", icon: "fas fa-tools", path: "/communication-tools" },
+    { id: 6, name: "Search Documents", icon:  "fas fa-search", path: "/search-documents" },
+
     { id: 10, name: "Logout", icon: "fas fa-sign-out-alt", path: "/logout" },
   ];
 
@@ -41,7 +42,10 @@ const SupervisorSidebar = () => {
                   navigate("/provide-feedback")
                 } else if(feature.name === "Schedule Meetings"){
                   navigate("/schedule-meeting")
+                } else if(feature.name === "Approve Proposals"){
+                  navigate("/approve-proposal")
                 }
+              
               }}
             >
               <i className={feature.icon}></i>

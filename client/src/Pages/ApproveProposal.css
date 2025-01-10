@@ -1,0 +1,91 @@
+/* General Container */
+.proposal-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Proposal List */
+  .proposal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .proposal-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .proposal-item h3 {
+    margin: 0 0 10px;
+    color: #3b0650;
+  }
+  
+  .proposal-item p {
+    margin: 5px 0;
+  }
+  
+  .status {
+    font-weight: bold;
+  }
+  
+  .status.pending {
+    color: #e67e22;
+  }
+  
+  .status.approved {
+    color: #27ae60;
+  }
+  
+  .status.rejected {
+    color: #c0392b;
+  }
+  
+  /* Action Buttons */
+  .actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .approve-button {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .approve-button:hover {
+    background-color: #1e8449;
+  }
+  
+  .reject-button {
+    background-color: #c0392b;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .reject-button:hover {
+    background-color: #922b21;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+  }
+  
