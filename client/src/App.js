@@ -17,6 +17,7 @@ import FYPRecommendations from "./Pages/FYPRecommendations";
 import GroupManagement from "./Pages/GroupManagement";
 import SupervisorDashboard from "./Pages/SupervisorDashboard";
 import ProvideFeedback from "./Pages/ProvideFeedback";
+import ScheduleMeeting from "./Pages/ScheduleMeeting";
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/group-management" element={<GroupManagement />} />
         <Route path="/dashboard/supervisor" element={<SupervisorDashboard />} />
         <Route path="/provide-feedback" element={<ProvideFeedback />} />
+        <Route path="/schedule-meeting" element={<ScheduleMeeting />} />
 
 
         {/* Add routes for other pages like Login, About, Contact */}

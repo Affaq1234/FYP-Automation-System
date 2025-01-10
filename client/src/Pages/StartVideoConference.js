@@ -1,68 +1,78 @@
 import React, { useState } from "react";
-import "./StartVideoConference.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import StudentSidebar from "../components/StudentSidebar";
+import SupervisorSidebar from "../components/SupervisorSidebar";
+import "./StartVideoConference.css";
 
 const StartVideoConference = () => {
+  const [selectedMeeting, setSelectedMeeting] = useState("");
   const [meetingLink, setMeetingLink] = useState("");
-  const [emailSent, setEmailSent] = useState(false);
 
-  const handleLinkChange = (e) => {
-    setMeetingLink(e.target.value);
-  };
+  // Mock data for scheduled meetings (replace with real data later)
+  const scheduledMeetings = [
+    { id: 1, topic: "Team Alpha Discussion", date: "2025-01-15", time: "10:00 AM" },
+    { id: 2, topic: "Project Review with Beta", date: "2025-01-16", time: "02:00 PM" },
+    { id: 3, topic: "Final Presentation", date: "2025-01-20", time: "11:00 AM" },
+  ];
 
-  const sendMeetingLink = () => {
-    if (!meetingLink) {
-      alert("Please enter a valid meeting link!");
+  const handleGenerateLink = () => {
+    if (!selectedMeeting) {
+      alert("Please select a meeting first.");
       return;
     }
-
-    // Simulate sending email (backend will handle actual email logic)
-    setEmailSent(true);
-    setTimeout(() => setEmailSent(false), 3000); // Reset after 3 seconds
+    // Mock meeting link generation
+    const generatedLink = `https://meetings.example.com/${selectedMeeting.id}`;
+    setMeetingLink(generatedLink);
   };
 
   return (
     <div className="video-conference-container">
       <Navbar />
+
       <div className="content-wrapper">
-        <StudentSidebar />
+        <SupervisorSidebar />
+
         <div className="main-content">
           <h1 className="video-conference-title">Start Video Conference</h1>
 
-          {/* Meeting Link Form */}
-          <div className="meeting-link-section">
-            <label htmlFor="meeting-link">Enter or Paste Meeting Link:</label>
-            <input
-              type="text"
-              id="meeting-link"
-              placeholder="https://meet.example.com/meeting-id"
-              value={meetingLink}
-              onChange={handleLinkChange}
-            />
-            <button onClick={sendMeetingLink}>Send Meeting Link</button>
+          {/* Meeting Selection */}
+          <div className="meeting-selection">
+            <label htmlFor="meeting-select">Select a Meeting:</label>
+            <select
+              id="meeting-select"
+              value={selectedMeeting}
+              onChange={(e) =>
+                setSelectedMeeting(scheduledMeetings.find((meeting) => meeting.id === parseInt(e.target.value)))
+              }
+            >
+              <option value="">-- Select a Meeting --</option>
+              {scheduledMeetings.map((meeting) => (
+                <option key={meeting.id} value={meeting.id}>
+                  {`${meeting.topic} on ${meeting.date} at ${meeting.time}`}
+                </option>
+              ))}
+            </select>
           </div>
 
-          {/* Success Message */}
-          {emailSent && (
-            <div className="success-message">
-              Meeting link has been sent to all group members and advisors!
-            </div>
-          )}
+          {/* Generate Meeting Link */}
+          <div className="generate-link-section">
+            <button
+              className="generate-link-button"
+              onClick={handleGenerateLink}
+              disabled={!selectedMeeting}
+            >
+              Generate Meeting Link
+            </button>
 
-          {/* Instructions Section */}
-          <div className="instructions">
-            <h2>Instructions</h2>
-            <ul>
-              <li>Paste the meeting link in the input box above.</li>
-              <li>Click "Send Meeting Link" to notify group members and advisors.</li>
-              <li>Ensure all participants check their emails for the link.</li>
-              <li>Use the provided link to join the video conference.</li>
-            </ul>
+            {meetingLink && (
+              <div className="generated-link">
+                <p><strong>Meeting Link:</strong> <a href={meetingLink} target="_blank" rel="noopener noreferrer">{meetingLink}</a></p>
+              </div>
+            )}
           </div>
         </div>
       </div>
+
       <Footer />
     </div>
   );

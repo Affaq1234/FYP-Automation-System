@@ -15,7 +15,7 @@ const SupervisorSidebar = () => {
   const features = [
     { id: 0, name: "Go Back", icon:  "fas fa-home", path: "/dashboard" },
     { id: 1, name: "Provide Feedback", icon: "fas fa-comment-dots", path: "/provide-feedback" },
-    { id: 2, name: "Schedule Meetings", icon: "fas fa-calendar", path: "/schedule-meetings" },
+    { id: 2, name: "Schedule Meetings", icon: "fas fa-calendar", path: "/schedule-meeting" },
     { id: 3, name: "Generate Reports", icon: "fas fa-file-alt", path: "/generate-reports" },
     { id: 4, name: "Approve Proposals", icon: "fas fa-check", path: "/approve-proposals" },
     { id: 5, name: "View and Track Progress", icon: "fas fa-chart-line", path: "/track-progress" },
@@ -39,6 +39,8 @@ const SupervisorSidebar = () => {
                   navigate("/dashboard/Supervisor");
                 } else if (feature.name === "Provide Feedback"){
                   navigate("/provide-feedback")
+                } else if(feature.name === "Schedule Meetings"){
+                  navigate("/schedule-meeting")
                 }
               }}
             >
