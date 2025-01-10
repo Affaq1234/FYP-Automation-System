@@ -1,0 +1,136 @@
+/* General Layout */
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  }
+  
+  .dashboard-layout {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  /* Main Content */
+  .feedback-main {
+    flex-grow: 1;
+    margin-left: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+    color: #3b0650;
+  }
+  
+  .hero-section p {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  /* Task Section */
+  .task-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #390458;
+  }
+  
+  .task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .task-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .task-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .task-card.selected {
+    border: 2px solid #8c00ff;
+  }
+  
+  /* Feedback Form */
+  .feedback-form-section {
+    margin-top: 30px;
+  }
+  
+  .feedback-form-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #390458;
+  }
+  
+  .feedback-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 150px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feedback-form textarea:focus {
+    border-color: #8c00ff;
+    box-shadow: 0 0 8px rgba(140, 0, 255, 0.5);
+    outline: none;
+  }
+  
+  .feedback-form button {
+    background-color: #8c00ff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .feedback-form button:hover {
+    background-color: #5d00b3;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .dashboard-layout {
+      flex-direction: column;
+    }
+  
+    .feedback-main {
+      margin-left: 0;
+    }
+  
+    .task-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  

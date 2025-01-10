@@ -13,16 +13,14 @@ const SupervisorSidebar = () => {
   };
 
   const features = [
-    { id: 0, name: "Provide Feedback", icon: "fas fa-comment-dots", path: "/provide-feedback" },
-    { id: 1, name: "Schedule Meetings", icon: "fas fa-calendar", path: "/schedule-meetings" },
-    { id: 2, name: "Generate Reports", icon: "fas fa-file-alt", path: "/generate-reports" },
-    { id: 3, name: "Approve Proposals", icon: "fas fa-check", path: "/approve-proposals" },
-    { id: 4, name: "View and Track Progress", icon: "fas fa-chart-line", path: "/track-progress" },
-    { id: 5, name: "Access Communication History", icon: "fas fa-history", path: "/communication-history" },
-    { id: 6, name: "Access Communication Tools", icon: "fas fa-tools", path: "/communication-tools" },
-    { id: 7, name: "Search Documents", icon: "fas fa-search", path: "/search-documents" },
-    { id: 8, name: "View Notifications", icon: "fas fa-bell", path: "/view-notifications" },
-    { id: 9, name: "Logout", icon: "fas fa-sign-out-alt", path: "/logout" },
+    { id: 0, name: "Go Back", icon:  "fas fa-home", path: "/dashboard" },
+    { id: 1, name: "Provide Feedback", icon: "fas fa-comment-dots", path: "/provide-feedback" },
+    { id: 2, name: "Schedule Meetings", icon: "fas fa-calendar", path: "/schedule-meetings" },
+    { id: 3, name: "Generate Reports", icon: "fas fa-file-alt", path: "/generate-reports" },
+    { id: 4, name: "Approve Proposals", icon: "fas fa-check", path: "/approve-proposals" },
+    { id: 5, name: "View and Track Progress", icon: "fas fa-chart-line", path: "/track-progress" },
+    { id: 7, name: "Access Communication Tools", icon: "fas fa-tools", path: "/communication-tools" },
+    { id: 10, name: "Logout", icon: "fas fa-sign-out-alt", path: "/logout" },
   ];
 
   return (
@@ -37,8 +35,10 @@ const SupervisorSidebar = () => {
               onClick={() => {
                 if (feature.name === "Logout") {
                   setIsModalOpen(true);
-                } else {
-                  navigate(feature.path);
+                } else if (feature.name === "Go Back") {
+                  navigate("/dashboard/Supervisor");
+                } else if (feature.name === "Provide Feedback"){
+                  navigate("/provide-feedback")
                 }
               }}
             >

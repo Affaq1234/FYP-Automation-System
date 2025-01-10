@@ -1,17 +1,69 @@
 import React from "react";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import SupervisorSidebar from "../components/SupervisorSidebar"; // Adjust the path if needed
-import "./SupervisorDashboard.css"; 
+import Navbar from "../components/navbar"; // Top navigation bar
+import Footer from "../components/footer"; // Footer
+import SupervisorSidebar from "../components/SupervisorSidebar"; // Sidebar
+import "./SupervisorDashboard.css";
+
 const SupervisorDashboard = () => {
+  const recentActivities = [
+    { id: 1, activity: "Reviewed Proposal by Team 1", time: "2 hours ago" },
+    { id: 2, activity: "Scheduled a meeting with Team 2", time: "Yesterday" },
+    { id: 3, activity: "Provided feedback to Team 5", time: "2 days ago" },
+  ];
+
+  const stats = [
+    { id: 1, label: "Active Teams", value: 5 },
+    { id: 2, label: "Proposals Reviewed", value: 12 },
+    { id: 3, label: "Meetings Scheduled", value: 8 },
+    { id: 4, label: "Feedback Given", value: 20 },
+  ];
+
   return (
     <div className="dashboard-container">
-        <Navbar />
-      <SupervisorSidebar />
-      <div className="dashboard-content">
-        <h1>Welcome to the Supervisor Dashboard</h1>
-        <p>Access all the tools and features available for Supervisors.</p>
+      {/* Navbar */}
+      <Navbar />
+
+      <div className="dashboard-layout">
+        {/* Sidebar */}
+        <SupervisorSidebar />
+
+        {/* Main Content */}
+        <main className="dashboard-main">
+          {/* Welcome Section */}
+          <div className="hero-section">
+            <h1>Welcome, Supervisor!</h1>
+            <p>Your centralized hub for managing and evaluating projects.</p>
+          </div>
+
+          {/* Stats Section */}
+          <div className="stats-section">
+            <h2>Dashboard Overview</h2>
+            <div className="stats-grid">
+              {stats.map((stat) => (
+                <div key={stat.id} className="stat-card">
+                  <h3>{stat.value}</h3>
+                  <p>{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Recent Activities Section */}
+          <div className="activities-section">
+            <h2>Recent Activities</h2>
+            <ul>
+              {recentActivities.map((activity) => (
+                <li key={activity.id}>
+                  <p>{activity.activity}</p>
+                  <small>{activity.time}</small>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </main>
       </div>
+
+      {/* Footer */}
       <Footer />
     </div>
   );

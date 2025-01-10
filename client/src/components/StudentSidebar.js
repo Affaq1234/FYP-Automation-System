@@ -13,7 +13,7 @@ const StudentSidebar = () => {
   };
 
   const features = [
-    { id: 0, name: "Dashboard", icon: "fas fa-home", path: "/dashboard" },
+    { id: 0, name: "Go Back", icon: "fas fa-home", path: "/dashboard" },
     { id: 1, name: "View and Manage Deadlines", icon: "fas fa-calendar-alt", path: "/deadlines" },
     { id: 2, name: "View Assigned Tasks and Milestones", icon: "fas fa-tasks", path: "/tasks" },
     { id: 3, name: "Submit Proposals", icon: "fas fa-file-upload", path: "/proposals" },
@@ -43,7 +43,7 @@ const StudentSidebar = () => {
                 else if (feature.name === "View Assigned Tasks and Milestones") {
                     navigate("/tasks");
                 }
-                else if (feature.name === "Dashboard") {
+                else if (feature.name === "Go Back") {
                     navigate("/dashboard/student");
                 }
                 else if (feature.name === "Submit Proposals") {
