@@ -1,8 +1,4 @@
 const User = require("../models/User");
-const Admin = require('../models/Admin');
-const Student = require('../models/Student');
-const FacultyAdvisor = require('../models/FacultyAdvisor');
-
 
 const createUser = async (req, res) => {
   try {
@@ -64,98 +60,41 @@ const findOneUser = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
-  const { username, password } = req.body;
+const login= async (req,res) => {
+  const { email, password } = req.body;
 
-  if (!username || !password) {
-    return res
-      .status(400)
-      .json({ message: "Username and password are required." });
+  // Check if email and password are provided
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required.' });
   }
+
   try {
-    const user = await User.findOne({ username, password });
+    // Find the user by email
+    const user = await User.findOne({ email });
+
+    // If the user doesn't exist
     if (!user) {
-      return res.status(401).json({ message: "Invalid username or password." });
+      return res.status(404).json({ message: 'User not found.' });
     }
-    res.json({ userID: user._id, role: user.role });
+
+    // If the password doesn't match
+    if (password!=user.password) {
+      return res.status(401).json({ message: 'Invalid credentials.' });
+    }
+
+    // Return user information upon successful login
+    return res.status(200).json({
+      userId: user._id,
+      role: user.role,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error." });
+    // Handle unexpected errors
+    return res.status(500).json({ message: 'Internal server error.' });
   }
-};
+}
+
 
 const signup = async (req, res) => {
-  const { username, email, password, role, additionalData } = req.body;
-
-  if (!username || !email || !password || !role) {
-      return res.status(400).json({ message: 'All fields are required: username, email, password, role.' });
-  }
-
-  try {
-      const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-      if (existingUser) {
-          const errorField = existingUser.username === username ? 'Username' : 'Email';
-          return res.status(400).json({ message: `${errorField} is already in use.` });
-      }
-
-      switch (role) {
-          case 'Admin':
-              if (!additionalData || !additionalData.name || !additionalData.permissions) {
-                  return res.status(400).json({ message: 'Admin requires: name, permissions.' });
-              }
-              break;
-
-          case 'Student':
-              if (!additionalData || !additionalData.studentName || !additionalData.regNo) {
-                  return res.status(400).json({ message: 'Student requires: studentName, regNo.' });
-              }
-              break;
-
-          case 'FacultyAdvisor':
-              if (!additionalData || !additionalData.Name) {
-                  return res.status(400).json({ message: 'FacultyAdvisor requires: Name.' });
-              }
-              break;
-
-          default:
-              return res.status(400).json({ message: 'Invalid role specified.' });
-      }
-
-      const newUser = new User({ username, email, password, role });
-      const savedUser = await newUser.save();
-      const userId = savedUser._id.toString();
-
-      switch (role) {
-          case 'Admin':
-              const newAdmin = new Admin({
-                  userId,
-                  name: additionalData.name,
-                  permissions: additionalData.permissions,
-              });
-              await newAdmin.save();
-              break;
-
-          case 'Student':
-              const newStudent = new Student({
-                  userId,
-                  studentName: additionalData.studentName,
-                  regNo: additionalData.regNo,
-              });
-              await newStudent.save();
-              break;
-
-          case 'FacultyAdvisor':
-              const newFacultyAdvisor = new FacultyAdvisor({
-                  userId,
-                  Name: additionalData.Name,
-                  Meetings: additionalData.Meetings || [],
-              });
-              await newFacultyAdvisor.save();
-              break;
-      }
-      res.status(201).json({ message: 'User registered successfully.', userId, role });
-  } catch (error) {
-      res.status(500).json({ message: 'Internal server error.' });
-  }
 };
 
 module.exports = {

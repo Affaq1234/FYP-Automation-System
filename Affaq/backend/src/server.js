@@ -2,9 +2,6 @@ const express = require("express");
 const connectDB = require("./config/dbs");
 const cors = require('cors');
 
-app.use(cors());
-
-
 const userRoutes=require('./routes/UserRoutes')
 const taskRoutes=require('./routes/TaskRoutes')
 const studentRoutes=require('./routes/StudentRoutes')
@@ -22,6 +19,7 @@ const adminRoutes=require('./routes/AdminRoutes');
 
 
 const app = express();
+app.use(cors());
 const PORT = 5000;
 app.use(express.json()); 
 connectDB();
