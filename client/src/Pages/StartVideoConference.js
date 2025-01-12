@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import "./StartVideoConference.css";
-import StudentSidebar from "../components/StudentSidebar";
+import Navbar from "../components/navbar"; // Top navigation bar
+import Footer from "../components/footer"; // Footer
+import StudentSidebar from "../components/StudentSidebar"; // Sidebar
+import "./StartVideoConference.css"; // CSS for this page
 
 const StartVideoConference = () => {
   const [selectedMeeting, setSelectedMeeting] = useState("");
@@ -26,36 +26,37 @@ const StartVideoConference = () => {
   };
 
   return (
-    <div className="video-conference-container">
+    <div className="feedback-container"> 
       <Navbar />
 
-      <div className="content-wrapper">
+      <div className="dashboard-layout"> 
         <StudentSidebar />
 
-        <div className="main-content">
-          <h1 className="video-conference-title">Start Video Conference</h1>
-
-          {/* Meeting Selection */}
-          <div className="meeting-selection">
-            <label htmlFor="meeting-select">Select a Meeting:</label>
-            <select
-              id="meeting-select"
-              value={selectedMeeting}
-              onChange={(e) =>
-                setSelectedMeeting(scheduledMeetings.find((meeting) => meeting.id === parseInt(e.target.value)))
-              }
-            >
-              <option value="">-- Select a Meeting --</option>
-              {scheduledMeetings.map((meeting) => (
-                <option key={meeting.id} value={meeting.id}>
-                  {`${meeting.topic} on ${meeting.date} at ${meeting.time}`}
-                </option>
-              ))}
-            </select>
+        <main className="feedback-main"> 
+          <h1>Start Video Conference</h1> 
+          <div className="task-section"> 
+            <h2>Select a Meeting</h2>
+            <form className="feedback-form">
+              <label htmlFor="meeting-select">Meeting:</label>
+              <select
+                id="meeting-select"
+                value={selectedMeeting}
+                onChange={(e) =>
+                  setSelectedMeeting(scheduledMeetings.find((meeting) => meeting.id === parseInt(e.target.value)))
+                }
+              >
+                <option value="">-- Select a Meeting --</option>
+                {scheduledMeetings.map((meeting) => (
+                  <option key={meeting.id} value={meeting.id}>
+                    {`${meeting.topic} on ${meeting.date} at ${meeting.time}`}
+                  </option>
+                ))}
+              </select>
+            </form>
           </div>
 
-          {/* Generate Meeting Link */}
-          <div className="generate-link-section">
+          <div className="feedback-form-section"> {/* Align link generation */}
+            <h2>Generate Meeting Link</h2>
             <button
               className="generate-link-button"
               onClick={handleGenerateLink}
@@ -66,11 +67,16 @@ const StartVideoConference = () => {
 
             {meetingLink && (
               <div className="generated-link">
-                <p><strong>Meeting Link:</strong> <a href={meetingLink} target="_blank" rel="noopener noreferrer">{meetingLink}</a></p>
+                <p>
+                  <strong>Meeting Link:</strong>{" "}
+                  <a href={meetingLink} target="_blank" rel="noopener noreferrer">
+                    {meetingLink}
+                  </a>
+                </p>
               </div>
             )}
           </div>
-        </div>
+        </main>
       </div>
 
       <Footer />

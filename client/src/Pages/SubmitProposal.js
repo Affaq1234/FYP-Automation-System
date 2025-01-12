@@ -28,9 +28,18 @@ const SubmitProposal = () => {
       description: formState.description,
       fileName: formState.file ? formState.file.name : "No file uploaded",
       date: new Date().toLocaleDateString(),
+      status: "Pending", // Initial status
     };
     setProposals([...proposals, newProposal]);
     setFormState({ title: "", description: "", file: null }); // Reset form
+  };
+
+  const updateProposalStatus = (id, status) => {
+    setProposals((prevProposals) =>
+      prevProposals.map((proposal) =>
+        proposal.id === id ? { ...proposal, status } : proposal
+      )
+    );
   };
 
   return (
@@ -84,6 +93,13 @@ const SubmitProposal = () => {
                   <li key={proposal.id}>
                     <strong>{proposal.title}</strong> - {proposal.description} (
                     {proposal.fileName}) [Submitted on {proposal.date}]
+                    <span
+                      className={`status ${
+                        proposal.status.toLowerCase() // Add CSS class based on status
+                      }`}
+                    >
+                      {proposal.status}
+                    </span>
                   </li>
                 ))}
               </ul>

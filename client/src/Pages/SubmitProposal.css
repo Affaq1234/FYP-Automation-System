@@ -116,4 +116,29 @@
       margin-bottom: 20px;
     }
   }
+
+  /* Status Styles */
+.status {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+span.status.pending {
+  background-color: #f39c12;
+  color: white;
+}
+
+span.status.approved {
+  background-color: #27ae60;
+  color: white;
+}
+
+span.status.rejected {
+  background-color: #c0392b;
+  color: white;
+}
+
   

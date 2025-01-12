@@ -67,9 +67,7 @@ const GroupManagement = () => {
             <button onClick={() => window.open("https://zoom.us", "_blank")}>
               Start Zoom Meeting
             </button>
-            <button onClick={() => window.open("mailto:group@example.com")}>
-              Group Email
-            </button>
+            
           </div>
 
           {/* Activity Logs */}

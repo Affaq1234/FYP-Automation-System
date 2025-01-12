@@ -113,4 +113,61 @@
       font-size: 0.9rem;
     }
   }
+
+  /* Milestone Section */
+.milestone-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.milestone-section input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.milestone-section button {
+  padding: 10px 20px;
+  background-color: #3b0650;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.milestone-list {
+  margin-top: 20px;
+}
+
+.milestone-item {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.milestone-item h2 {
+  cursor: pointer;
+  color: #3b0650;
+}
+
+.task-section {
+  margin-top: 10px;
+}
+
+.tasks-table th {
+  text-align: left;
+}
+
+.delete-button {
+  color: white;
+  background-color: #c0392b;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
   

@@ -23,7 +23,6 @@ const LoginPage = () => {
       alert("This role's dashboard is not yet implemented!");
     }
   };
-  
 
   return (
     <div className="login-container">
@@ -59,17 +58,12 @@ const LoginPage = () => {
             <button type="submit" className="login-button">Login</button>
           </form>
 
-          <div className="google-login">
-            <p>Or, continue with:</p>
-            <button className="google-button">
-              <img src="/images/googleLogo.png" alt="Google logo" className="google-logo" />
-              Google
-            </button>
-          </div>
-
-          <div className="sign-up-option">
-            <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
-          </div>
+          {/* Sign-up Option - Visible Only for Students */}
+          {role === "Student" && (
+            <div className="sign-up-option">
+              <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
+            </div>
+          )}
         </div>
       )}
     </div>

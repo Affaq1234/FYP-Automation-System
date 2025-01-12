@@ -19,14 +19,12 @@ const Contact = () => {
           </p>
           <ul>
             <li>
-              <i className="fas fa-envelope"></i> Email: support@fypautomation.com
+              <i className="fas fa-envelope"></i> Email: asadullahkham97@gmail.com
             </li>
             <li>
-              <i className="fas fa-phone"></i> Phone: +123-456-7890
+              <i className="fas fa-phone"></i> Phone: +923230080740
             </li>
-            <li>
-              <i className="fas fa-map-marker-alt"></i> Address: 123 Main Street, Tech City
-            </li>
+           
           </ul>
         </section>
         <section className="contact-form">

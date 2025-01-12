@@ -13,7 +13,7 @@ const SupervisorSidebar = () => {
   };
 
   const features = [
-    { id: 0, name: "Go Back", icon:  "fas fa-home", path: "/dashboard" },
+    { id: 0, name: "Dashboard", icon:  "fas fa-home", path: "/dashboard" },
     { id: 1, name: "Provide Feedback", icon: "fas fa-comment-dots", path: "/provide-feedback" },
     { id: 2, name: "Schedule Meetings", icon: "fas fa-calendar", path: "/schedule-meeting" },
     { id: 3, name: "Approve Proposals", icon: "fas fa-check", path: "/approve-proposal" },
@@ -36,7 +36,7 @@ const SupervisorSidebar = () => {
               onClick={() => {
                 if (feature.name === "Logout") {
                   setIsModalOpen(true);
-                } else if (feature.name === "Go Back") {
+                } else if (feature.name === "Dashboard") {
                   navigate("/dashboard/Supervisor");
                 } else if (feature.name === "Provide Feedback"){
                   navigate("/provide-feedback")

@@ -1,203 +1,180 @@
 /* General Layout */
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  }
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure full height */
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
+.dashboard-layout {
+  display: flex;
+  flex-grow: 1;
+  gap: 20px; /* Ensure space between sidebar and content */
+  margin-top: 20px; /* To ensure space between the Navbar and content */
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  flex-shrink: 0;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px; /* Sidebar width */
+  /* position: sticky; */ /* Keep the sidebar sticky on scroll */
+  top: 20px; /* Ensure it doesn't overlap with other elements */
+  height: calc(100vh - 60px); /* Ensure the sidebar height doesn't exceed the page */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* Main Content */
+.dashboard-main {
+  flex-grow: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto; /* Allow height to grow with content */
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  color: #3b0650;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Dashboard Sections */
+.dashboard-section {
+  margin-bottom: 30px;
+}
+
+.dashboard-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #390458;
+}
+
+/* Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card i {
+  font-size: 2rem;
+  color: #8c00ff;
+  margin-bottom: 10px;
+}
+
+.dashboard-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #3b0650;
+}
+
+/* Progress Overview */
+.progress-card {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.progress {
+  height: 10px;
+  background-color: #8c00ff;
+}
+
+/* Milestones */
+.milestones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.milestone-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.milestone-card h3 {
+  margin: 0;
+  color: #3b0650;
+}
+
+.milestone-card p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #27ae60;
+  border-radius: 5px;
+}
+
+/* Footer */
+footer {
+  margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .dashboard-layout {
-    display: flex;
-    flex-grow: 1;
-    padding: 20px;
-  }
-  
-  
-  /* Main Content */
-  .dashboard-main {
-    flex-grow: 1;
-    margin-left: 20px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .hero-section h1 {
-    font-size: 2.5rem;
-    color: #3b0650;
-  }
-  
-  .hero-section p {
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  /* Dashboard Sections */
-  .dashboard-section {
-    margin-bottom: 30px;
-  }
-  
-  .dashboard-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #390458;
-  }
-  
-  /* Cards */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .dashboard-card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .dashboard-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .dashboard-card i {
-    font-size: 2rem;
-    color: #8c00ff;
-    margin-bottom: 10px;
-  }
-  
-  .dashboard-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #3b0650;
-  }
-  
-  /* Announcements */
-  .announcement-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .announcement-list li {
-    background-color: #f5f5f5;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-  
-  /* Progress Overview */
-  .progress-card {
-    margin-bottom: 15px;
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .progress-bar {
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 5px;
-  }
-  
-  .progress {
-    height: 10px;
-    background-color: #8c00ff;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .dashboard-layout {
-      flex-direction: column;
-    }
-  
-    .dashboard-sidebar {
-      margin-bottom: 20px;
-    }
+    flex-direction: column;
   }
 
-  .sidebar-item.logout {
-    margin-top: auto; /* Push to the bottom */
-    background-color: #ff4d4d; /* Red background */
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sidebar-item.logout:hover {
-    background-color: #ff0000; /* Darker red on hover */
-    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
-    cursor: pointer;
-  }
-
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .modal-content h3 {
+  .dashboard-sidebar {
     margin-bottom: 20px;
-    color: #3b0650;
-    font-size: 1.5rem;
+    width: 100%;
+    height: auto; /* Ensure the sidebar adjusts on small screens */
   }
-  
-  .modal-content .btn-confirm,
-  .modal-content .btn-cancel {
-    margin: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+
+  .dashboard-main {
+    margin-left: 0;
   }
-  
-  .modal-content .btn-confirm {
-    background: #8c00ff;
-    color: white;
-  }
-  
-  .modal-content .btn-confirm:hover {
-    background: #5d00b3;
-  }
-  
-  .modal-content .btn-cancel {
-    background: #ccc;
-    color: black;
-  }
-  
-  .modal-content .btn-cancel:hover {
-    background: #aaa;
-  }
-  
-  
+}

@@ -1,38 +1,27 @@
-// Redesigned StudentDashboard Component with Sidebar and Improved Layout
-//import React from "react";
-import "./StudentDashboard.css"; // Corresponding CSS file for the theme
+import "./StudentDashboard.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import React from "react";
 import StudentSidebar from "../components/StudentSidebar";
 
-
-
-
 const StudentDashboard = () => {
-
-
-  const announcements = [
-    { id: 1, text: "Mid-term evaluation results have been published." },
-    { id: 2, text: "Next project milestone due: March 10th." },
-    { id: 3, text: "Reminder: Group meeting scheduled for tomorrow." },
+  const milestones = [
+    { id: 1, title: "Milestone 1", description: "Proposal Submission", completion: 80 },
+    { id: 2, title: "Milestone 2", description: "Mid-Term Report", completion: 40 },
+    { id: 3, title: "Milestone 3", description: "Final Project Presentation", completion: 20 },
   ];
-
 
   return (
     <div className="dashboard-container">
       <Navbar />
       <div className="dashboard-layout">
-
-      <StudentSidebar />
-       
-    
+        <StudentSidebar /> {/* Ensure the sidebar height is fixed */}
 
         {/* Main Content */}
         <main className="dashboard-main">
           <div className="hero-section">
             <h1>Welcome, [Student Name]!</h1>
-            <p>Track your progress and stay updated with the latest announcements.</p>
+            <p>Track your progress and stay updated with the latest milestones.</p>
           </div>
 
           <div className="dashboard-content">
@@ -52,36 +41,28 @@ const StudentDashboard = () => {
               </div>
             </div>
 
+            {/* Milestones Section */}
             <div className="dashboard-section">
-              <h2>Announcements</h2>
-              <ul className="announcement-list">
-                {announcements.map((announcement) => (
-                  <li key={announcement.id}>{announcement.text}</li>
+              <h2>Milestones</h2>
+              <div className="milestones-list">
+                {milestones.map((milestone) => (
+                  <div key={milestone.id} className="milestone-card">
+                    <h3>{milestone.title}</h3>
+                    <p>{milestone.description}</p>
+                    <p>Completion: {milestone.completion}%</p>
+                    <div className="progress-bar">
+                      <div
+                        className="progress"
+                        style={{ width: `${milestone.completion}%` }}
+                      ></div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
-            </div>
-
-            <div className="dashboard-section">
-              <h2>Progress Overview</h2>
-              <div className="progress-card">
-                <h3>Milestone 1</h3>
-                <p>Completion: 80%</p>
-                <div className="progress-bar">
-                  <div className="progress" style={{ width: "80%" }}></div>
-                </div>
-              </div>
-              <div className="progress-card">
-                <h3>Milestone 2</h3>
-                <p>Completion: 40%</p>
-                <div className="progress-bar">
-                  <div className="progress" style={{ width: "40%" }}></div>
-                </div>
               </div>
             </div>
           </div>
         </main>
       </div>
-      
       <Footer />
     </div>
   );

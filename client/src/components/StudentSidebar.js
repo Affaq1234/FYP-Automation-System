@@ -13,13 +13,13 @@ const StudentSidebar = () => {
   };
 
   const features = [
-    { id: 0, name: "Go Back", icon: "fas fa-home", path: "/dashboard" },
-    { id: 1, name: "View and Manage Deadlines", icon: "fas fa-calendar-alt", path: "/deadlines" },
-    { id: 2, name: "View Assigned Tasks and Milestones", icon: "fas fa-tasks", path: "/tasks" },
+    { id: 0, name: "Dashboard", icon: "fas fa-home", path: "/dashboard" },
+ 
+    { id: 2, name: "View Milestones and Assign Tasks", icon: "fas fa-tasks", path: "/tasks" },
     { id: 3, name: "Submit Proposals", icon: "fas fa-file-upload", path: "/proposals" },
     { id: 4, name: "Start Video Conference", icon: "fas fa-comments", path: "/video-conference" },
     { id: 5, name: "Upload Documentation", icon: "fas fa-upload", path: "/upload-documentation" },
-    { id: 6, name: "Group Management", icon: "fas fa-users", path: "/group" }, // Fixed icon
+    { id: 6, name: "Group Management", icon: "fas fa-users", path: "/group" }, 
     { id: 7, name: "View Feedback", icon: "fas fa-comment-dots", path: "/view-feedback" },
     { id: 8, name: "View FYP Recommendations", icon: "fas fa-lightbulb", path: "/fyo-recommendations" },
     { id: 9, name: "Logout", icon: "fas fa-sign-out-alt", path: "/logout" },
@@ -40,10 +40,10 @@ const StudentSidebar = () => {
                 } else if (feature.name === "View and Manage Deadlines") {
                     navigate("/deadlines");
                 }
-                else if (feature.name === "View Assigned Tasks and Milestones") {
+                else if (feature.name === "View Milestones and Assign Tasks") {
                     navigate("/tasks");
                 }
-                else if (feature.name === "Go Back") {
+                else if (feature.name === "Dashboard") {
                     navigate("/dashboard/student");
                 }
                 else if (feature.name === "Submit Proposals") {
@@ -92,33 +92,3 @@ const StudentSidebar = () => {
 };
 
 export default StudentSidebar;
-
-
-/* export default StudentSidebar;
-else if (feature.name === "View and Manage Deadlines") {
-    navigate("/deadlines");
-}
-else if (feature.name === "View Assigned Tasks and Milestones") {
-    navigate("/tasks");
-}
-else if (feature.name === "Dashboard") {
-    navigate("/dashboard/student");
-}
-else if (feature.name === "Submit Proposals") {
-    navigate("/proposals");
-}
-else if (feature.name === "Start Video Conference") {
-    navigate("/video-conference");
-}
-else if (feature.name === "Upload Documentation") {
-    navigate("/upload-documentation");
-}
-else if (feature.name === "View Feedback") {
-    navigate("/view-feedback");
-}
-else if (feature.name === "View FYP Recommendations") {
-    navigate("/fyp-recommendations");
-}
-else if (feature.name === "Group Management") {
-    navigate("/group");
-} */

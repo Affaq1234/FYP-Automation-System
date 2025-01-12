@@ -5,14 +5,8 @@ import SupervisorSidebar from "../components/SupervisorSidebar"; // Sidebar
 import "./SupervisorDashboard.css";
 
 const SupervisorDashboard = () => {
-  const recentActivities = [
-    { id: 1, activity: "Reviewed Proposal by Team 1", time: "2 hours ago" },
-    { id: 2, activity: "Scheduled a meeting with Team 2", time: "Yesterday" },
-    { id: 3, activity: "Provided feedback to Team 5", time: "2 days ago" },
-  ];
-
   const stats = [
-    { id: 1, label: "Active Teams", value: 5 },
+    { id: 1, label: "Active Groups", value: 3 },
     { id: 2, label: "Proposals Reviewed", value: 12 },
     { id: 3, label: "Meetings Scheduled", value: 8 },
     { id: 4, label: "Feedback Given", value: 20 },
@@ -46,19 +40,6 @@ const SupervisorDashboard = () => {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Recent Activities Section */}
-          <div className="activities-section">
-            <h2>Recent Activities</h2>
-            <ul>
-              {recentActivities.map((activity) => (
-                <li key={activity.id}>
-                  <p>{activity.activity}</p>
-                  <small>{activity.time}</small>
-                </li>
-              ))}
-            </ul>
           </div>
         </main>
       </div>

@@ -30,10 +30,8 @@ const ProvideFeedback = () => {
         <SupervisorSidebar />
 
         <main className="feedback-main">
-          <div className="hero-section">
-            <h1>Provide Feedback</h1>
-            <p>Review and provide feedback on student tasks and documents.</p>
-          </div>
+          {/* Simplified heading for Provide Feedback */}
+          <h1>Provide Feedback</h1>
 
           <div className="task-section">
             <h2>Submitted Tasks</h2>

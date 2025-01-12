@@ -20,6 +20,14 @@ const SignupPage = () => {
             <input type="text" id="name" placeholder="Full Name" required />
           </div>
           <div className="input-container">
+          <i className="fas fa-user-circle"></i>
+          <input type="text" id="username" placeholder="Username" required />
+        </div>
+        <div className="input-container">
+          <i className="fas fa-id-card"></i>
+          <input type="text" id="registration-number" placeholder="Registration Number" required />
+        </div>
+          <div className="input-container">
             <i className="fas fa-envelope"></i>
             <input type="email" id="email" placeholder="Email Address" required />
           </div>

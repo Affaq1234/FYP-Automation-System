@@ -86,7 +86,9 @@ const Home = () => {
           <div className="cta-section">
             <h2>Get Started Today!</h2>
             <p>Ready to streamline your project management? Sign up now to start using the system.</p>
-            <button className="cta-button">Get Started</button>
+            <button className="cta-button">
+            <Link to="/login">Get Started</Link>
+            </button>
           </div>
         </div>
       </div>
