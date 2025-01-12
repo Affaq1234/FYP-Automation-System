@@ -1,0 +1,155 @@
+/* General Container */
+.deadlines-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Content Wrapper */
+  .content-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* Sidebar */
+  .content-wrapper .StudentSidebar {
+    flex: 0 0 250px;
+    margin-right: 20px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Page Title */
+  .deadlines-title {
+    text-align: center;
+    color: #3b0650;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Calendar Section */
+  .calendar-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .deadline-calendar {
+    margin: 0 auto;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .calendar-section p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  /* Form Section */
+  .deadline-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .deadline-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 90%;
+    max-width: 500px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .deadline-form input:focus {
+    border-color: #8c00ff;
+    box-shadow: 0 0 8px rgba(140, 0, 255, 0.5);
+    outline: none;
+  }
+  
+  .deadline-form button {
+    background-color: #8c00ff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .deadline-form button:hover {
+    background-color: #5d00b3;
+    transform: translateY(-2px);
+  }
+  
+  /* Table Section */
+  .deadlines-table {
+    margin-top: 20px;
+    overflow-x: auto; /* For responsiveness */
+  }
+  
+  .deadlines-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .deadlines-table th,
+  .deadlines-table td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .deadlines-table th {
+    background-color: #3b0650;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .deadlines-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .deadlines-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+  
+    .StudentSidebar {
+      margin-bottom: 20px;
+    }
+  
+    .deadline-form input {
+      width: 100%;
+    }
+  
+    .deadlines-table table {
+      font-size: 0.9rem;
+    }
+  }
+  
