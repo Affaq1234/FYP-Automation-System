@@ -1,7 +1,7 @@
 const User = require("../models/User");
-const Admin = require('./models/Admin');
-const Student = require('./models/Student');
-const FacultyAdvisor = require('./models/FacultyAdvisor');
+const Admin = require('../models/Admin');
+const Student = require('../models/Student');
+const FacultyAdvisor = require('../models/FacultyAdvisor');
 
 
 const createUser = async (req, res) => {
