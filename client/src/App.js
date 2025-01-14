@@ -19,6 +19,13 @@ import SupervisorDashboard from "./Pages/SupervisorDashboard";
 import ProvideFeedback from "./Pages/ProvideFeedback";
 import ScheduleMeeting from "./Pages/ScheduleMeeting";
 import ApproveProposal from "./Pages/Approveproposal";
+import AdminDashboard from "./Pages/AdminDashboard";
+import ManageUserAccounts from "./Pages/manageUserAccounts";
+import BackupRestore from "./Pages/BackupAndRestore";
+import Reset from "./Pages/ResetSystem";
+import AdminNotificationsPage from "./Pages/adminNotification";
+
+
 
 
 const App = () => {
@@ -43,6 +50,12 @@ const App = () => {
         <Route path="/provide-feedback" element={<ProvideFeedback />} />
         <Route path="/schedule-meeting" element={<ScheduleMeeting />} />
         <Route path="/approve-proposal" element={<ApproveProposal />} />
+        <Route path="/dashboard/admin" element={<AdminDashboard />} />
+        <Route path="/manageUserAccounts" element={<ManageUserAccounts />} />
+        <Route path="/BackupAndRestore" element={<BackupRestore />} />
+        <Route path="/ResetSystem" element={<Reset />} />
+        <Route path="/adminNotification" element={<AdminNotificationsPage/>} />
+        
 
 
         {/* Add routes for other pages like Login, About, Contact */}

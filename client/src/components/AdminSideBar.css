@@ -1,0 +1,29 @@
+/* Parent Container */
+.container {
+  display: flex; /* Sidebar and content side by side */
+  align-items: flex-start; /* Align items to the top */
+}
+
+/* Sticky Sidebar */
+.dashboard-sidebar {
+  position: sticky; /* Makes the sidebar sticky */
+  top: 0; /* Sidebar sticks to the top of the viewport */
+  width: 250px; /* Fixed width */
+  height: auto; /* Let the sidebar grow with its content */
+  background-color: #3b0650;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Optional shadow */
+  overflow-y: auto; /* Scrollbar if content overflows */
+  z-index: 10; /* Ensures it stays above other elements */
+}
+
+/* Content Area */
+.content {
+  flex: 1; /* Occupies the remaining space */
+  padding: 20px;
+  background-color: #f4f4f4;
+  min-height: 100vh; /* Ensures it fills the viewport height */
+}
+
