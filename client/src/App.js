@@ -17,7 +17,7 @@ import SupervisorDashboad from "./Pages/SupervisorDashboad";
 import SupervisorSearchPage from "./Pages/SearchDocument";
 import Meeting from "./Pages/Meeting";
 import GenerateReport from "./Pages/generateReports";
-
+import AdminNotificationsPage from "./Pages/adminNotification";
 
 const App = () => {
   return (
@@ -40,6 +40,10 @@ const App = () => {
         <Route path="/SearchDocument" element={<SupervisorSearchPage />} />
         <Route path="/Meeting" element={<Meeting />} />
         <Route path="/generateReports" element={<GenerateReport />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        
+        <Route path="/adminNotification" element={<AdminNotificationsPage/>} />
+        
         
         {/* Add routes for other pages like Login, About, Contact */}
       </Routes>

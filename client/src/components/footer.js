@@ -22,18 +22,17 @@ const Footer = () => {
         </div>
         <div className="footer-section contact">
           <h3>Contact Us</h3>
-          <p><i className="fas fa-envelope"></i> support@fypautomation.com</p>
-          <p><i className="fas fa-phone"></i> +123-456-7890</p>
-          <p><i className="fas fa-map-marker-alt"></i> 123 Main Street, Tech City</p>
+          <p><i className="fas fa-envelope"></i> asadullahkham97@gmail.com</p>
+          <p><i className="fas fa-phone"></i> 03230080740</p>
+          <p><i className="fas fa-map-marker-alt"></i> Bahria Town , Lahore City</p>
         </div>
       </div>
       <div className="footer-bottom">
         <p>© 2025 FYP Automation System. All Rights Reserved.</p>
         <div className="social-icons">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+         
+          <a href="https://www.linkedin.com/in/asad-ullah-k-5147a5261/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/asads_cap/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
         </div>
       </div>
     </footer>

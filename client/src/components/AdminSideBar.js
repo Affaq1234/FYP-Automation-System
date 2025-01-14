@@ -13,13 +13,12 @@ const AdminSidebar = () => {
     };
 
   const features = [
-    { id: 0, name: "Manage User Accounts", icon: "fas fa-home", path: "/manageUserAccounts" }, // Added Dashboard feature
-    { id: 1, name: "Backup and Restore", icon: "fas fa-calendar-alt", path: "/BackupAndRestore" },
-    { id: 2, name: "Reset System", icon: "fas fa-tasks", path: "/ResetSystem" },
-    { id: 3, name: "Search Documents", icon: "fas fa-search", path: "/search" },
-    { id: 4, name: "View Notifications", icon: "fas fa-bell", path: "/notifications" },
-    { id: 5, name: "Access Communication Tools", icon: "fas fa-envelope", path: "/communication" },
-    { id: 6, name: "Logout", icon: "fas fa-sign-out-alt", path: "/logout" },
+    { id: 0, name: "Dashboard", icon: "fas fa-home", path: "/AdminDashboard" }, // Added Dashboard feature
+    { id: 1, name: "Manage User Accounts", icon: "fas fa-user", path: "/manageUserAccounts" }, // Added Dashboard feature
+    { id: 2, name: "Backup and Restore", icon: "fas fa-calendar-alt", path: "/BackupAndRestore" },
+    { id: 3, name: "Reset System", icon: "fas fa-tasks", path: "/ResetSystem" },  
+    { id: 4, name: "View Notifications", icon: "fas fa-bell", path: "/adminNotification" },
+    { id: 5, name: "Logout", icon: "fas fa-sign-out-alt", path: "/logout" },
   ];
 
   return (
@@ -34,6 +33,8 @@ const AdminSidebar = () => {
                         onClick={() => {
                             if (feature.name === "Logout") {
                                 setIsModalOpen(true); // Open the modal
+                            }else if (feature.name === "Dashboard") {
+                                navigate("/AdminDashboard");
                             } else if (feature.name === "Manage User Accounts") {
                                 navigate("/manageUserAccounts");
                             }
@@ -43,12 +44,10 @@ const AdminSidebar = () => {
                             else if (feature.name === "Reset System") {
                                 navigate("/ResetSystem");
                             }
-                            else if (feature.name === "Search Documents") {
-                                navigate("/dashboard/student");
-                            }
                             else if (feature.name === "View Notifications") {
-                                navigate("/proposals");
+                                navigate("/adminNotification");
                             }
+                            
                         }}
                     >
                         <i className={feature.icon}></i>

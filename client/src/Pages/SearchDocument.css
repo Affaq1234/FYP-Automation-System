@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f4f4f9;
     color: #333;
+    
 }
 .proposal-container1{
     max-width: 1403px;
@@ -61,12 +62,17 @@ body {
 }
 
 .btn.primary {
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 20px; /* Increase vertical padding */
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 1000px; /* Allows height to adjust dynamically with padding */
 }
 
 .btn.primary:hover {
-    background-color: #0056b3;
+    opacity: 0.8;
 }
 
 .btn.secondary {

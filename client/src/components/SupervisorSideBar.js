@@ -13,10 +13,11 @@ const SupervisorSidebar = () => {
     };
 
     const features = [
-        { id: 0, name: "Generate Reports", icon: "fas fa-home", path: "/generateReports" }, // Added Dashboard feature
+        { id: 0, name: "Dashboard", icon: "fas fa-home", path: "/SupervisorDashboad" },
+        { id: 0, name: "Generate Reports", icon: "fas fa-file-alt", path: "/generateReports" }, // Added Dashboard feature
         { id: 1, name: "Approved Proposal", icon: "fas fa-calendar-alt", path: "/deadlines" },
         { id: 2, name: "View and Track Progress", icon: "fas fa-tasks", path: "/tasks" },
-        { id: 3, name: "Shedule Meetings", icon: "fas fa-file-upload", path: "/Meeting" },
+        { id: 3, name: "Shedule Meetings", icon: "fas fa-clock", path: "/Meeting" },
         { id: 4, name: "Communication History", icon: "fas fa-upload", path: "/upload" },
         { id: 5, name: "Feedback", icon: "fas fa-comment-dots", path: "/feedback" },
         { id: 6, name: "Access Communication Tools", icon: "fas fa-envelope", path: "/communication" },

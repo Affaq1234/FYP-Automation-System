@@ -14,6 +14,7 @@ function ManageUserAccounts() {
   const [rollNumber, setRollNumber] = useState(""); // State for roll number
   const [projectName, setProjectName] = useState(""); // State for project name
   const [studentsInGroup, setStudentsInGroup] = useState([]); // Array to store students in the group
+  const [viewGroup, setViewGroup] = useState(false); // State to toggle group view
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +38,11 @@ function ManageUserAccounts() {
     setStudentName("");
     setRollNumber("");
     setProjectName("");
+  };
+
+  // Toggle the visibility of the group details
+  const toggleGroupView = () => {
+    setViewGroup(!viewGroup);
   };
 
   return (
@@ -143,8 +149,17 @@ function ManageUserAccounts() {
               </form>
             </div>
 
-            {/* Display Group Students */}
+            {/* View Group Button */}
             {studentsInGroup.length > 0 && (
+              <div className="card">
+                <button onClick={toggleGroupView} className="submit-btn">
+                  View Group
+                </button>
+              </div>
+            )}
+
+            {/* Display Group Students */}
+            {viewGroup && studentsInGroup.length > 0 && (
               <div className="card">
                 <h3>Students in Group: {groupName}</h3>
                 <ul className="student-list">
