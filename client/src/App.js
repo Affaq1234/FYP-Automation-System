@@ -24,6 +24,8 @@ import ManageUserAccounts from "./Pages/manageUserAccounts";
 import BackupRestore from "./Pages/BackupAndRestore";
 import Reset from "./Pages/ResetSystem";
 import AdminNotificationsPage from "./Pages/adminNotification";
+import SupervisorSearchPage from "./Pages/SearchDocument";
+import GenerateReport from "./Pages/generateReports";
 
 
 
@@ -55,6 +57,8 @@ const App = () => {
         <Route path="/BackupAndRestore" element={<BackupRestore />} />
         <Route path="/ResetSystem" element={<Reset />} />
         <Route path="/adminNotification" element={<AdminNotificationsPage/>} />
+        <Route path="/SearchDocument" element={<SupervisorSearchPage />} />
+        <Route path="/generateReports" element={<GenerateReport />} />
         
 
 

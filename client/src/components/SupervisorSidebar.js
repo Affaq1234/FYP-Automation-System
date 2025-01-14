@@ -44,6 +44,10 @@ const SupervisorSidebar = () => {
                   navigate("/schedule-meeting")
                 } else if(feature.name === "Approve Proposals"){
                   navigate("/approve-proposal")
+                }  else if (feature.name === "Generate Reports") {
+                  navigate("/generateReports");
+                } else if (feature.name === "Search Documents") {
+                  navigate("/SearchDocument");
                 }
               
               }}
