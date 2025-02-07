@@ -23,6 +23,7 @@ const LoginPage = () => {
       navigate("/dashboard/admin");
     }
   };
+  
 
   return (
     <div className="login-container">

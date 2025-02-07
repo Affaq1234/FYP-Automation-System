@@ -146,35 +146,30 @@
     color: #8c00ff;
   }
   
-  /* Google Login */
-  .google-login {
-    margin-top: 20px;
-  }
-  
-  .google-button {
+ /* General Styles */
+.login-container {
   display: flex;
-  width: 100%;
-  align-items: center;
   justify-content: center;
-  padding: 12px ;
-  background: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-} 
-.google-button img {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(135, 182, 255, 0.8), rgba(255, 195, 255, 0.8));
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
 }
 
-.google-button:hover {
-  background-color: #e6e6e6;
-  border-color: #ccc;
+/* Role Selection and Login Form */
+.role-selection,
+.login-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
 }
+
+/* Rest of the CSS remains the same */
 
   /* Responsive Design */
   @media (max-width: 768px) {
