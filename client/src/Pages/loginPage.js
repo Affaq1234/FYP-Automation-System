@@ -5,16 +5,48 @@ import './loginPage.css';
 const LoginPage = () => {
   const [step, setStep] = useState(1);
   const [role, setRole] = useState('');
-  const navigate = useNavigate(); // Hook for navigation
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleRoleSelect = (role) => {
     setRole(role);
     setStep(2);
   };
 
-  // Function to handle login submission
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordPattern.test(password);
+  };
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
+    const newErrors = {};
+
+    // Validate Email
+    if (!validateEmail(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    // Validate Password
+    if (!validatePassword(password)) {
+      newErrors.password =
+        "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.";
+    }
+
+    // If there are errors, set them and stop form submission
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // If no errors, proceed with login
     if (role === "Student") {
       navigate("/dashboard/student"); // Redirect to Student Dashboard
     } else if (role === "Supervisor") {
@@ -23,7 +55,6 @@ const LoginPage = () => {
       navigate("/dashboard/admin");
     }
   };
-  
 
   return (
     <div className="login-container">
@@ -50,11 +81,33 @@ const LoginPage = () => {
           <form onSubmit={handleLoginSubmit}>
             <div className="input-container">
               <i className="fas fa-envelope"></i>
-              <input type="email" id="email" placeholder="Enter your email" required />
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setErrors({ ...errors, email: "" }); // Clear email error when typing
+                }}
+                required
+              />
+              {errors.email && <p className="error-message">{errors.email}</p>}
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
-              <input type="password" id="password" placeholder="Enter your password" required />
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setErrors({ ...errors, password: "" }); // Clear password error when typing
+                }}
+                required
+              />
+              {errors.password && <p className="error-message">{errors.password}</p>}
             </div>
             <button type="submit" className="login-button">Login</button>
           </form>
