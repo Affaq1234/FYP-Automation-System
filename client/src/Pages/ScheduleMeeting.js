@@ -23,7 +23,6 @@ const ScheduleMeeting = () => {
       alert("Please fill out all fields.");
       return;
     }
-
     setScheduledMeetings([...scheduledMeetings, meetingDetails]);
     setMeetingDetails({ date: "", time: "", topic: "" });
     alert("Meeting scheduled successfully!");

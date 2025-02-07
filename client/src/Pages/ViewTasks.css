@@ -12,10 +12,11 @@
 .content-wrapper {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
 }
 
 /* Sidebar */
-.content-wrapper .StudentSidebar {
+.StudentSidebar {
   flex: 0 0 250px;
   margin-right: 20px;
 }
@@ -44,29 +45,10 @@
   text-align: center;
 }
 
-.filter-section label {
-  font-size: 1.1rem;
-  margin-right: 10px;
-  color: #333;
-}
-
-.filter-section select {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.filter-section select:focus {
-  border-color: #004d80;
-  box-shadow: 0 0 8px rgba(0, 77, 128, 0.5);
-  outline: none;
-}
-
 /* Tasks Table */
 .tasks-table {
-  overflow-x: auto; /* For responsiveness */
+  overflow-x: auto;
+  margin-top: 20px;
 }
 
 .tasks-table table {
@@ -74,10 +56,9 @@
   border-collapse: collapse;
 }
 
-.tasks-table th,
-.tasks-table td {
+.tasks-table th, .tasks-table td {
   text-align: left;
-  padding: 15px;
+  padding: 12px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -97,21 +78,6 @@
 
 .tasks-table td {
   color: #333;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .content-wrapper {
-    flex-direction: column;
-  }
-
-  .StudentSidebar {
-    margin-bottom: 20px;
-  }
-
-  .tasks-table table {
-    font-size: 0.9rem;
-  }
 }
 
 /* Milestone Section */
@@ -135,94 +101,73 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.milestone-list {
-  margin-top: 20px;
-}
-
-.milestone-item {
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.milestone-item h2 {
-  cursor: pointer;
-  color: #3b0650;
-}
-
-.task-section {
-  margin-top: 10px;
-}
-
-.tasks-table th {
-  text-align: left;
+.milestone-section button:hover {
+  background-color: #5a1a7a;
 }
 
 /* Button Styling */
 button {
   font-size: 0.9rem;
-  padding: 8px 12px; /* Adjusted for consistent size */
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-/* Delete Button */
-.delete-button {
-  background-color: #c0392b; /* Red */
-  color: white;
-}
-
-.delete-button:hover {
-  background-color: #a93226;
-  transform: translateY(-2px);
-}
-
-/* Edit Button */
-.edit-button {
-  background-color: #2980b9; /* Blue */
-  color: white;
-}
-
-.edit-button:hover {
-  background-color: #2471a3;
-  transform: translateY(-2px);
-}
-
-/* Save Button */
-.save-button {
-  background-color: #27ae60; /* Green */
-  color: white;
-}
-
-.save-button:hover {
-  background-color: #229954;
-  transform: translateY(-2px);
-}
-
-/* Task Button */
-button.task-button {
-  background-color: #f39c12; /* Orange */
-  color: white;
   padding: 8px 12px;
-  border: none;
   border-radius: 4px;
-  font-size: 0.9rem;
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button.task-button:hover {
-  background-color: #d87c04; /* Darker Orange */
-  transform: translateY(-2px);
+button:hover {
+  transform: scale(1.05);
 }
 
+/* Task Status */
+.status-pending {
+  color: #f39c12;
+  font-weight: bold;
+}
 
-/* Align Buttons */
-button + button {
-  margin-left: 10px;
+.status-in-progress {
+  color: #2980b9;
+  font-weight: bold;
+}
+
+.status-completed {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+/* Specific Button Colors */
+.task-button {
+  background-color: #27ae60;
+  color: white;
+}
+
+.task-button:hover {
+  background-color: #2ecc71;
+}
+
+.mark-completed-button {
+  background-color: #2980b9;
+  color: white;
+}
+
+.mark-completed-button:hover {
+  background-color: #3498db;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .StudentSidebar {
+    margin-bottom: 20px;
+  }
+
+  .tasks-table table {
+    font-size: 0.9rem;
+  }
 }
