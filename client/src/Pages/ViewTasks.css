@@ -1,9 +1,9 @@
 /* General Container */
-.tasks-container {
+.feedback-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background: linear-gradient(135deg, #f0e6ff, #e0ccff);
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -12,11 +12,10 @@
 .content-wrapper {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
 }
 
 /* Sidebar */
-.StudentSidebar {
+.content-wrapper .StudentSidebar {
   flex: 0 0 250px;
   margin-right: 20px;
 }
@@ -31,7 +30,7 @@
 }
 
 /* Page Title */
-.tasks-title {
+.feedback-title {
   text-align: center;
   color: #3b0650;
   font-size: 2rem;
@@ -39,64 +38,84 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Filter Section */
-.filter-section {
+/* Search and Filters */
+.search-bar {
   margin-bottom: 20px;
-  text-align: center;
+  display: flex;
+  gap: 10px;
 }
 
-/* Tasks Table */
-.tasks-table {
-  overflow-x: auto;
+.search-bar input,
+.search-bar select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar select {
+  flex: 1;
+  max-width: 200px;
+}
+
+/* Feedback Table */
+.feedback-table {
   margin-top: 20px;
 }
 
-.tasks-table table {
+.feedback-table table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.tasks-table th, .tasks-table td {
+.feedback-table th,
+.feedback-table td {
   text-align: left;
-  padding: 12px;
+  padding: 15px;
   border-bottom: 1px solid #ccc;
 }
 
-.tasks-table th {
+.feedback-table th {
   background-color: #3b0650;
   color: white;
   font-weight: bold;
 }
 
-.tasks-table tr:nth-child(even) {
+.feedback-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-.tasks-table tr:hover {
+.feedback-table tr:hover {
   background-color: #f1f1f1;
 }
 
-.tasks-table td {
-  color: #333;
-}
-
-/* Milestone Section */
-.milestone-section {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.milestone-section input {
-  flex: 1;
-  padding: 10px;
+/* Status Styles */
+.status {
+  padding: 5px 10px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  font-weight: bold;
+  text-transform: capitalize;
 }
 
-.milestone-section button {
-  padding: 10px 20px;
-  background-color: #3b0650;
+.status.resolved {
+  background-color: #27ae60;
+  color: white;
+}
+
+.status.pending {
+  background-color: #f39c12;
+  color: white;
+}
+
+.status.in-progress {
+  background-color: #2980b9;
+  color: white;
+}
+
+/* Actions */
+.resolve-button {
+  padding: 5px 10px;
+  background-color: #8c00ff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -104,57 +123,8 @@
   transition: background-color 0.3s ease;
 }
 
-.milestone-section button:hover {
-  background-color: #5a1a7a;
-}
-
-/* Button Styling */
-button {
-  font-size: 0.9rem;
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-/* Task Status */
-.status-pending {
-  color: #f39c12;
-  font-weight: bold;
-}
-
-.status-in-progress {
-  color: #2980b9;
-  font-weight: bold;
-}
-
-.status-completed {
-  color: #27ae60;
-  font-weight: bold;
-}
-
-/* Specific Button Colors */
-.task-button {
-  background-color: #27ae60;
-  color: white;
-}
-
-.task-button:hover {
-  background-color: #2ecc71;
-}
-
-.mark-completed-button {
-  background-color: #2980b9;
-  color: white;
-}
-
-.mark-completed-button:hover {
-  background-color: #3498db;
+.resolve-button:hover {
+  background-color: #5d00b3;
 }
 
 /* Responsive Design */
@@ -167,7 +137,11 @@ button:hover {
     margin-bottom: 20px;
   }
 
-  .tasks-table table {
-    font-size: 0.9rem;
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar select {
+    max-width: 100%;
   }
 }
