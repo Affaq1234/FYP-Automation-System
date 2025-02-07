@@ -26,12 +26,29 @@ const SubmitProposal = () => {
       id: proposals.length + 1,
       title: formState.title,
       description: formState.description,
+      file: formState.file, // Store the file object
       fileName: formState.file ? formState.file.name : "No file uploaded",
       date: new Date().toLocaleDateString(),
       status: "Pending", // Initial status
     };
     setProposals([...proposals, newProposal]);
     setFormState({ title: "", description: "", file: null }); // Reset form
+  };
+
+  const handleDownload = (file, fileName) => {
+    if (!file) {
+      alert("File not found.");
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url); // Clean up the URL object
   };
 
   const updateProposalStatus = (id, status) => {
@@ -91,15 +108,29 @@ const SubmitProposal = () => {
               <ul>
                 {proposals.map((proposal) => (
                   <li key={proposal.id}>
-                    <strong>{proposal.title}</strong> - {proposal.description} (
-                    {proposal.fileName}) [Submitted on {proposal.date}]
-                    <span
-                      className={`status ${
-                        proposal.status.toLowerCase() // Add CSS class based on status
-                      }`}
-                    >
-                      {proposal.status}
-                    </span>
+                    <div className="proposal-details">
+                      <div className="proposal-header">
+                        <strong>{proposal.title}</strong>
+                        <span
+                          className={`status ${proposal.status.toLowerCase()}`}
+                        >
+                          {proposal.status}
+                        </span>
+                      </div>
+                      <p>{proposal.description}</p>
+                      <div className="proposal-meta">
+                        <span>File: {proposal.fileName}</span>
+                        <span>Submitted on: {proposal.date}</span>
+                      </div>
+                      {proposal.file && (
+                        <button
+                          className="download-button"
+                          onClick={() => handleDownload(proposal.file, proposal.fileName)}
+                        >
+                          Download File
+                        </button>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ul>
