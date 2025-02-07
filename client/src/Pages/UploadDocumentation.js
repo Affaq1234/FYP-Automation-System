@@ -11,14 +11,39 @@ const UploadDocumentation = () => {
   const handleUpload = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
+    const file = formData.get("file");
+
+    // Ensure the file is a valid File object
+    if (!(file instanceof File)) {
+      alert("Please upload a valid file.");
+      return;
+    }
+
     const newDocument = {
       name: formData.get("documentName"),
-      file: formData.get("file").name,
+      file: file, // Store the File object
       access: formData.get("access"),
       date: new Date().toLocaleDateString(),
     };
     setDocuments([...documents, newDocument]);
     event.target.reset(); // Clear the form
+  };
+
+  const handleDownload = (file, fileName) => {
+    if (!file) {
+      alert("File not found.");
+      return;
+    }
+
+    // Create a URL for the file
+    const url = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url); // Clean up the URL object
   };
 
   const filteredDocuments = documents.filter((doc) =>
@@ -69,15 +94,24 @@ const UploadDocumentation = () => {
                   <th>File</th>
                   <th>Access</th>
                   <th>Date</th>
+                  <th>Download</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredDocuments.map((doc, index) => (
                   <tr key={index}>
                     <td>{doc.name}</td>
-                    <td>{doc.file}</td>
+                    <td>{doc.file.name}</td>
                     <td>{doc.access}</td>
                     <td>{doc.date}</td>
+                    <td>
+                      <button
+                        className="download-button"
+                        onClick={() => handleDownload(doc.file, doc.file.name)}
+                      >
+                        Download
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -1,130 +1,145 @@
 /* General Container */
 .upload-doc-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Content Wrapper */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Sidebar */
+.content-wrapper .StudentSidebar {
+  flex: 0 0 250px;
+  margin-right: 20px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Title */
+.upload-doc-title {
+  text-align: center;
+  color: #3b0650;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Bar */
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Upload Form */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.upload-form input,
+.upload-form select {
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 90%;
+  max-width: 500px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.upload-form button {
+  background-color: #8c00ff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-form button:hover {
+  background-color: #5d00b3;
+  transform: translateY(-2px);
+}
+
+/* Document Table */
+.documents-table {
+  margin-top: 20px;
+}
+
+.documents-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.documents-table th,
+.documents-table td {
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.documents-table th {
+  background-color: #3b0650;
+  color: white;
+  font-weight: bold;
+}
+
+.documents-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.documents-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Download Button */
+.download-button {
+  background-color: #27ae60;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.download-button:hover {
+  background-color: #2ecc71;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .content-wrapper {
-    display: flex;
-    align-items: flex-start;
+    flex-direction: column;
   }
-  
-  /* Sidebar */
-  .content-wrapper .StudentSidebar {
-    flex: 0 0 250px;
-    margin-right: 20px;
-  }
-  
-  /* Main Content */
-  .main-content {
-    flex: 1;
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Page Title */
-  .upload-doc-title {
-    text-align: center;
-    color: #3b0650;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Search Bar */
-  .search-bar {
+
+  .StudentSidebar {
     margin-bottom: 20px;
   }
-  
-  .search-bar input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Upload Form */
-  .upload-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  
-  .upload-form input,
-  .upload-form select {
-    padding: 10px;
-    margin-bottom: 15px;
-    width: 90%;
-    max-width: 500px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .upload-form button {
-    background-color: #8c00ff;
-    color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .upload-form button:hover {
-    background-color: #5d00b3;
-    transform: translateY(-2px);
-  }
-  
-  /* Document Table */
-  .documents-table {
-    margin-top: 20px;
-  }
-  
-  .documents-table table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .documents-table th,
-  .documents-table td {
-    text-align: left;
-    padding: 15px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .documents-table th {
-    background-color: #3b0650;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .documents-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .documents-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .content-wrapper {
-      flex-direction: column;
-    }
-  
-    .StudentSidebar {
-      margin-bottom: 20px;
-    }
-  }
-  
+}
