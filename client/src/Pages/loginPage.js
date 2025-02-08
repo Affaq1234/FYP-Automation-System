@@ -7,7 +7,9 @@ const LoginPage = () => {
   const [role, setRole] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleRoleSelect = (role) => {
@@ -46,14 +48,18 @@ const LoginPage = () => {
       return;
     }
 
-    // If no errors, proceed with login
-    if (role === "Student") {
-      navigate("/dashboard/student"); // Redirect to Student Dashboard
-    } else if (role === "Supervisor") {
-      navigate("/dashboard/supervisor"); // Redirect to Supervisor Dashboard
-    } else if (role === "Admin") {
-      navigate("/dashboard/admin");
-    }
+    // Simulate login process
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      if (role === "Student") {
+        navigate("/dashboard/student"); // Redirect to Student Dashboard
+      } else if (role === "Supervisor") {
+        navigate("/dashboard/supervisor"); // Redirect to Supervisor Dashboard
+      } else if (role === "Admin") {
+        navigate("/dashboard/admin");
+      }
+    }, 2000);
   };
 
   return (
@@ -92,7 +98,11 @@ const LoginPage = () => {
                 }}
                 required
               />
-              {errors.email && <p className="error-message">{errors.email}</p>}
+              {errors.email && (
+                <p className="error-message">
+                  <i className="fas fa-exclamation-circle"></i> {errors.email}
+                </p>
+              )}
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
@@ -107,9 +117,21 @@ const LoginPage = () => {
                 }}
                 required
               />
-              {errors.password && <p className="error-message">{errors.password}</p>}
+              {errors.password && (
+                <p className="error-message">
+                  <i className="fas fa-exclamation-circle"></i> {errors.password}
+                </p>
+              )}
             </div>
-            <button type="submit" className="login-button">Login</button>
+
+            {/* Login Button */}
+            <button type="submit" className="login-button" disabled={isLoading}>
+              {isLoading ? (
+                <i className="fas fa-spinner fa-spin"></i> // Loading spinner
+              ) : (
+                "Login"
+              )}
+            </button>
           </form>
 
           {/* Sign-up Option - Visible Only for Students */}

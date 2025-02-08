@@ -52,7 +52,7 @@ const SignupPage = () => {
 
     // If no errors, proceed with form submission
     console.log("Form submitted:", formData);
-    navigate("/login"); // Redirect to login page after successful signup
+    navigate("/dashboard/student"); // Redirect to Student Dashboard after successful signup
   };
 
   const handleChange = (e) => {
@@ -97,7 +97,7 @@ const SignupPage = () => {
             <input
               type="text"
               id="registrationNumber"
-              placeholder="Registration Number (e.g., 2023-CS-123)"
+              placeholder=" (e.g., 2023-CS-123)"
               value={formData.registrationNumber}
               onChange={handleChange}
               required

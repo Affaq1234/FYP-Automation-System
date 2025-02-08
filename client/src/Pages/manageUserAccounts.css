@@ -27,7 +27,6 @@
   color: black;
 }
 
-/* Removed unnecessary .form-container and .card, and applied styles directly to the user-form-container */
 .user-form-container {
   display: flex;
   flex-direction: column;
@@ -68,6 +67,12 @@
   border-color: #3b0650;
 }
 
+/* Disabled field styling */
+.user-form input[disabled] {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
 .submit-btn {
   margin-top: 20px;
   padding: 10px 15px;
@@ -80,14 +85,16 @@
 }
 
 .submit-btn:hover {
-  background-color: #3b0650;
+  background-color: #5a2b7b;
 }
 
 .submit-btn:focus {
   outline: none;
 }
 
-.student-table {
+/* Separate tables for Students and Supervisors */
+.student-table,
+.supervisor-table {
   margin-top: 20px;
   padding: 20px;
   background-color: #fff;
@@ -96,14 +103,17 @@
   overflow-x: auto;
 }
 
-.student-table table {
+.student-table table,
+.supervisor-table table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
 
 .student-table th,
-.student-table td {
+.supervisor-table th,
+.student-table td,
+.supervisor-table td {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -111,21 +121,25 @@
   color: #333;
 }
 
-.student-table th {
+.student-table th,
+.supervisor-table th {
   background-color: #f1f1f1;
   font-weight: bold;
   color: #3b0650;
 }
 
-.student-table td {
+.student-table td,
+.supervisor-table td {
   color: #555;
 }
 
-.student-table tr:hover {
+.student-table tr:hover,
+.supervisor-table tr:hover {
   background-color: #f9f9f9;
 }
 
-.view-students-btn {
+.view-students-btn,
+.view-supervisors-btn {
   margin-top: 10px;
   background-color: #3b0650;
   color: white;
@@ -135,11 +149,13 @@
   cursor: pointer;
 }
 
-.view-students-btn:hover {
-  background-color: #3b0650;
+.view-students-btn:hover,
+.view-supervisors-btn:hover {
+  background-color: #5a2b7b;
 }
 
-.student-table p {
+.student-table p,
+.supervisor-table p {
   margin-top: 20px;
   color: #ff0000;
   font-size: 14px;

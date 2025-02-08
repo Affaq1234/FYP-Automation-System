@@ -61,9 +61,9 @@ function CreateGroupPage() {
       <Navbar />
       <div className="content-wrapper">
         {/* Admin Sidebar */}
-        <div className="admin-sidebar">
+       
           <AdminSidebar />
-        </div>
+        
 
         {/* Main Content */}
         <div className="main-content">
