@@ -26,6 +26,7 @@ import Reset from "./Pages/ResetSystem";
 import AdminNotificationsPage from "./Pages/adminNotification";
 import SupervisorSearchPage from "./Pages/SearchDocument";
 import GenerateReport from "./Pages/generateReports";
+import CreateGroupPage from "./Pages/CreateGroupPage"; 
 
 
 
@@ -59,7 +60,7 @@ const App = () => {
         <Route path="/adminNotification" element={<AdminNotificationsPage/>} />
         <Route path="/SearchDocument" element={<SupervisorSearchPage />} />
         <Route path="/generateReports" element={<GenerateReport />} />
-        
+        <Route path="/CreateGroupPage" element={<CreateGroupPage />} />
 
 
         {/* Add routes for other pages like Login, About, Contact */}

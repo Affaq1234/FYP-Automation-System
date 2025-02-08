@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import "./manageUserAccounts.css";
-import AdminSidebar from "../components/AdminSideBar";
-import "./SubmitProposal.css";
+import AdminSidebar from "../components/AdminSideBar"; 
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
@@ -9,57 +9,46 @@ function ManageUserAccounts() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
-  const [groupName, setGroupName] = useState(""); // State for group name
-  const [studentName, setStudentName] = useState(""); // State for student name
-  const [rollNumber, setRollNumber] = useState(""); // State for roll number
-  const [projectName, setProjectName] = useState(""); // State for project name
-  const [studentsInGroup, setStudentsInGroup] = useState([]); // Array to store students in the group
-  const [viewGroup, setViewGroup] = useState(false); // State to toggle group view
+  const [registrationNumber, setRegistrationNumber] = useState(""); // Added registration number state
+  const [students, setStudents] = useState([]); // State to store students data
+  const [viewStudents, setViewStudents] = useState(false); // State to toggle the visibility of the student table
+
+  // Assume the current user's role (replace this with actual logic)
+  const currentUserRole = "Supervisor"; // Replace with actual logic to fetch the logged-in user role
+  const currentUserName = "John Doe"; // Replace with actual logged-in user's name
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("User Details:", { name, email, role });
+    // Add the new student to the students array with registration number
+    const newStudent = { name, email, role, registrationNumber };
+    setStudents([...students, newStudent]);
+
     // Reset form fields
     setName("");
     setEmail("");
     setRole("");
-  };
+    setRegistrationNumber(""); // Reset registration number
 
-  const handleAddStudentToGroup = (e) => {
-    e.preventDefault();
-    const newStudent = {
-      name: studentName,
-      rollNumber,
-      projectName,
-    };
-    setStudentsInGroup([...studentsInGroup, newStudent]);
-
-    // Reset student fields after adding
-    setStudentName("");
-    setRollNumber("");
-    setProjectName("");
-  };
-
-  // Toggle the visibility of the group details
-  const toggleGroupView = () => {
-    setViewGroup(!viewGroup);
+    // Automatically show the table after form submission
+    setViewStudents(true);
   };
 
   return (
-    <div className="proposal-container">
+    <div className="manage-user-accounts">
       <Navbar />
       <div className="content-wrapper">
         <AdminSidebar />
-        <div className="manage-user-accounts">
+        <div className="main-content">
           <div className="header1">
             <h1>Manage User Accounts</h1>
             <p>Add or edit accounts for students and supervisors</p>
           </div>
 
-          <div className="form-container">
-            {/* User Form Section */}
-            <div className="card">
-              <h2>Add / Edit User</h2>
+          {/* Directly apply form styles inside .manage-user-accounts */}
+          <div className="user-form-container">
+            <h2>Add / Edit User</h2>
+            {/* Only allow adding/editing users if the current user is a supervisor */}
+            {currentUserRole !== "Student" ? (
               <form onSubmit={handleSubmit} className="user-form">
                 <label htmlFor="name">Name</label>
                 <input
@@ -70,7 +59,6 @@ function ManageUserAccounts() {
                   placeholder="Enter name"
                   required
                 />
-
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
@@ -80,7 +68,15 @@ function ManageUserAccounts() {
                   placeholder="Enter email"
                   required
                 />
-
+                <label htmlFor="registrationNumber">Registration Number</label>
+                <input
+                  type="text"
+                  id="registrationNumber"
+                  value={registrationNumber}
+                  onChange={(e) => setRegistrationNumber(e.target.value)}
+                  placeholder="Enter registration number"
+                  required
+                />
                 <label htmlFor="role">Role</label>
                 <select
                   id="role"
@@ -92,86 +88,72 @@ function ManageUserAccounts() {
                   <option value="Student">Student</option>
                   <option value="Supervisor">Supervisor</option>
                 </select>
-
                 <button type="submit" className="submit-btn">
                   Submit
                 </button>
               </form>
-            </div>
-
-            {/* Group Form Section */}
-            <div className="card">
-              <h2>Create Group of Students</h2>
-              <form onSubmit={handleAddStudentToGroup} className="user-form">
-                <label htmlFor="group-name">Group Name</label>
-                <input
-                  type="text"
-                  id="group-name"
-                  value={groupName}
-                  onChange={(e) => setGroupName(e.target.value)}
-                  placeholder="Enter group name"
-                  required
-                />
-
-                <label htmlFor="student-name">Student Name</label>
-                <input
-                  type="text"
-                  id="student-name"
-                  value={studentName}
-                  onChange={(e) => setStudentName(e.target.value)}
-                  placeholder="Enter student name"
-                  required
-                />
-
-                <label htmlFor="roll-number">Roll Number</label>
-                <input
-                  type="text"
-                  id="roll-number"
-                  value={rollNumber}
-                  onChange={(e) => setRollNumber(e.target.value)}
-                  placeholder="Enter roll number"
-                  required
-                />
-
-                <label htmlFor="project-name">Project Name</label>
-                <input
-                  type="text"
-                  id="project-name"
-                  value={projectName}
-                  onChange={(e) => setProjectName(e.target.value)}
-                  placeholder="Enter project name"
-                  required
-                />
-
-                <button type="submit" className="submit-btn">
-                  Add Student to Group
-                </button>
-              </form>
-            </div>
-
-            {/* View Group Button */}
-            {studentsInGroup.length > 0 && (
-              <div className="card">
-                <button onClick={toggleGroupView} className="submit-btn">
-                  View Group
-                </button>
-              </div>
-            )}
-
-            {/* Display Group Students */}
-            {viewGroup && studentsInGroup.length > 0 && (
-              <div className="card">
-                <h3>Students in Group: {groupName}</h3>
-                <ul className="student-list">
-                  {studentsInGroup.map((student, index) => (
-                    <li key={index}>
-                      {student.name} - {student.rollNumber} - {student.projectName}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            ) : (
+              <p>You do not have permission to add/edit users. Only supervisors can perform this action.</p>
             )}
           </div>
+
+          {/* Display Student Table automatically after form submission */}
+          {viewStudents && students.length > 0 && (
+            <div className="student-table">
+              <h2>User List</h2>
+              <table>
+                <thead>
+                  <tr>
+                    {/* Conditionally render columns based on user role */}
+                    {currentUserRole === "Student" && (
+                      <>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Registration Number</th>
+                      </>
+                    )}
+                    {currentUserRole === "Supervisor" && (
+                      <>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Registration Number</th>
+                      </>
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  {students
+                    .filter(student => student.name !== currentUserName && student.role !== "Supervisor") // Filter out the supervisor's own data
+                    .map((student, index) => (
+                      <tr key={index}>
+                        {/* Render name, email, role, and registration number for students */}
+                        {currentUserRole === "Student" && (
+                          <>
+                            <td>{student.name}</td>
+                            <td>{student.email}</td>
+                            <td>{student.role}</td>
+                            <td>{student.registrationNumber}</td>
+                          </>
+                        )}
+
+                        {/* Render name, role, and registration number for supervisors */}
+                        {currentUserRole === "Supervisor" && (
+                          <>
+                            <td>{student.name}</td>
+                            <td>{student.role}</td>
+                            <td>{student.registrationNumber}</td>
+                          </>
+                        )}
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          {viewStudents && students.length === 0 && (
+            <p>No students available.</p>
+          )}
         </div>
       </div>
       <Footer />

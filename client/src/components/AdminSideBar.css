@@ -1,29 +1,97 @@
 /* Parent Container */
 .container {
-  display: flex; /* Sidebar and content side by side */
-  align-items: flex-start; /* Align items to the top */
+  display: flex;
+  align-items: flex-start;
 }
 
-/* Sticky Sidebar */
+/* Sidebar Styling */
 .dashboard-sidebar {
-  position: sticky; /* Makes the sidebar sticky */
-  top: 0; /* Sidebar sticks to the top of the viewport */
-  width: 250px; /* Fixed width */
-  height: auto; /* Let the sidebar grow with its content */
+  position: sticky;
+  top: 0;
+  width: 250px;
   background-color: #3b0650;
   color: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Optional shadow */
-  overflow-y: auto; /* Scrollbar if content overflows */
-  z-index: 10; /* Ensures it stays above other elements */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  z-index: 10;
+  height: 100vh; /* Ensure sidebar takes full height */
 }
 
-/* Content Area */
-.content {
-  flex: 1; /* Occupies the remaining space */
+.dashboard-sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #fff;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #8c00ff;
+}
+
+.sidebar-item i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.sidebar-item span {
+  font-size: 1rem;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
   padding: 20px;
-  background-color: #f4f4f4;
-  min-height: 100vh; /* Ensures it fills the viewport height */
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.btn-confirm {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn-cancel {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -15,6 +15,7 @@ const AdminSidebar = () => {
   const features = [
     { id: 0, name: "Dashboard", icon: "fas fa-home", path: "/AdminDashboard" }, // Added Dashboard feature
     { id: 1, name: "Manage User Accounts", icon: "fas fa-user", path: "/manageUserAccounts" }, // Added Dashboard feature
+    { id: 0, name: "Create Group", icon: "fas fa-users-cog", path: "/CreateGroupPage" },
     { id: 2, name: "Backup and Restore", icon: "fas fa-calendar-alt", path: "/BackupAndRestore" },
     { id: 3, name: "Reset System", icon: "fas fa-tasks", path: "/ResetSystem" },  
     { id: 4, name: "View Notifications", icon: "fas fa-bell", path: "/adminNotification" },
@@ -37,6 +38,9 @@ const AdminSidebar = () => {
                                 navigate("/dashboard/admin");
                             } else if (feature.name === "Manage User Accounts") {
                                 navigate("/manageUserAccounts");
+                            }
+                            else if (feature.name === "Create Group") {
+                                navigate("/CreateGroupPage");
                             }
                             else if (feature.name === "Backup and Restore") {
                                 navigate("/BackupAndRestore");

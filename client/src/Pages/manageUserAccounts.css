@@ -1,13 +1,13 @@
+/* Updated main container */
 .manage-user-accounts {
   font-family: Arial, sans-serif;
   padding: 20px;
-  max-width: 600px;
-
+  max-width: 1500px;
+  margin: 0 auto;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
-  
 }
 
 .header1 {
@@ -27,30 +27,25 @@
   color: black;
 }
 
-.form-container {
+/* Removed unnecessary .form-container and .card, and applied styles directly to the user-form-container */
+.user-form-container {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  max-width: 500px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card h2 {
-  margin: 0 0 10px;
+.user-form-container h2 {
   font-size: 18px;
   color: #444;
+  margin-bottom: 15px;
 }
 
 .user-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 500px;
 }
 
 .user-form label {
@@ -70,13 +65,13 @@
 .user-form input:focus,
 .user-form select:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #3b0650;
 }
 
 .submit-btn {
   margin-top: 20px;
   padding: 10px 15px;
-  background-color: #007bff;
+  background-color: #3b0650;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -85,29 +80,67 @@
 }
 
 .submit-btn:hover {
-  background-color: #0056b3;
+  background-color: #3b0650;
 }
 
 .submit-btn:focus {
   outline: none;
 }
 
-
-/* Add additional styles for the student group section */
-.student-list {
-  list-style: none;
-  padding: 0;
+.student-table {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
 }
 
-.student-list li {
-  padding: 8px;
-  margin-bottom: 10px;
+.student-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.student-table th,
+.student-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: #333;
+}
+
+.student-table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+  color: #3b0650;
+}
+
+.student-table td {
+  color: #555;
+}
+
+.student-table tr:hover {
   background-color: #f9f9f9;
-  border-radius: 5px;
-  border: 1px solid #ddd;
 }
 
+.view-students-btn {
+  margin-top: 10px;
+  background-color: #3b0650;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
+.view-students-btn:hover {
+  background-color: #3b0650;
+}
 
-
-
+.student-table p {
+  margin-top: 20px;
+  color: #ff0000;
+  font-size: 14px;
+}
