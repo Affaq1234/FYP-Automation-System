@@ -2,20 +2,20 @@ const express = require("express");
 const connectDB = require("./config/dbs");
 const cors = require('cors');
 
-const userRoutes=require('./routes/UserRoutes')
-const taskRoutes=require('./routes/TaskRoutes')
-const studentRoutes=require('./routes/StudentRoutes')
-const reminderRoutes=require('./routes/ReminderRoutes');
-const proposalRoutes=require('./routes/ProposalRoutes');
-const projectRoutes=require('./routes/ProjectRoutes');
-const milestoneRoutes=require('./routes/MilestoneRoutes');
-const meetingRoutes=require('./routes/MeetingRoutes');
-const groupRoutes=require('./routes/GroupRoutes');
-const feedbackRoutes=require('./routes/FeedbackRoutes');
-const facultyAdvisorRoutes=require('./routes/FacultyAdvisorRoutes');
-const documentRoutes=require('./routes/DocumentRoutes');
-const deadlineRoutes=require('./routes/DeadlineRoutes');
-const adminRoutes=require('./routes/AdminRoutes');
+const userRoutes=require('./modules/User/UserRoutes')
+const taskRoutes=require('./modules/Task/TaskRoutes')
+const studentRoutes=require('./modules/Student/StudentRoutes')
+const reminderRoutes=require('./modules/Reminder/ReminderRoutes');
+const proposalRoutes=require('./modules/Proposal/ProposalRoutes');
+const projectRoutes=require('./modules/Project/ProjectRoutes');
+const milestoneRoutes=require('./modules/Milestone/MilestoneRoutes');
+const meetingRoutes=require('./modules/Meeting/MeetingRoutes');
+const groupRoutes=require('./modules/Group/GroupRoutes');
+const feedbackRoutes=require('./modules/Feedback/FeedbackRoutes');
+const facultyAdvisorRoutes=require('./modules/FacultyAdvisor/FacultyAdvisorRoutes');
+const documentRoutes=require('./modules/Document/DocumentRoutes');
+const deadlineRoutes=require('./modules/Deadline/DeadlineRoutes');
+const adminRoutes=require('./modules/Admin/AdminRoutes');
 
 
 const app = express();
