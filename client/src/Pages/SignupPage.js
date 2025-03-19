@@ -97,7 +97,7 @@ const SignupPage = () => {
             <input
               type="text"
               id="registrationNumber"
-              placeholder=" (e.g., 2023-CS-123)"
+              placeholder=" (e.g., 2021-CS-XX)"
               value={formData.registrationNumber}
               onChange={handleChange}
               required

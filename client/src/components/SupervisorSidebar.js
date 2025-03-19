@@ -18,7 +18,7 @@ const SupervisorSidebar = () => {
     { id: 2, name: "Schedule Meetings", icon: "fas fa-calendar", path: "/schedule-meeting" },
     { id: 3, name: "Approve Proposals", icon: "fas fa-check", path: "/approve-proposal" },
     { id: 4, name: "Generate Reports", icon: "fas fa-file-alt", path: "/generate-reports" },   
-    { id: 5, name: "View and Track Progress", icon: "fas fa-chart-line", path: "/track-progress" },
+   // { id: 5, name: "View and Track Progress", icon: "fas fa-chart-line", path: "/track-progress" },
     { id: 6, name: "Search Documents", icon:  "fas fa-search", path: "/search-documents" },
 
     { id: 10, name: "Logout", icon: "fas fa-sign-out-alt", path: "/logout" },

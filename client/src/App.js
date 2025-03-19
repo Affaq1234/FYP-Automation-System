@@ -27,6 +27,8 @@ import AdminNotificationsPage from "./Pages/adminNotification";
 import SupervisorSearchPage from "./Pages/SearchDocument";
 import GenerateReport from "./Pages/generateReports";
 import CreateGroupPage from "./Pages/CreateGroupPage"; 
+import EvaluatorDashboard from "./Pages/EvaluatorDashboard";
+import AssignedGroups from "./Pages/AssignedGroups";
 
 
 
@@ -61,6 +63,10 @@ const App = () => {
         <Route path="/SearchDocument" element={<SupervisorSearchPage />} />
         <Route path="/generateReports" element={<GenerateReport />} />
         <Route path="/CreateGroupPage" element={<CreateGroupPage />} />
+        <Route path="/dashboard/evaluator" element={<EvaluatorDashboard />} />
+        <Route path="/assignedGroups" element={<AssignedGroups />} /> 
+        
+        
 
 
         {/* Add routes for other pages like Login, About, Contact */}
