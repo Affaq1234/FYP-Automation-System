@@ -51,6 +51,11 @@ function ResetSystem() {
             <p>Revert system configuration to factory settings.</p>
             <button onClick={() => handleReset("Configuration")}>Reset</button>
           </div>
+          <div className="reset-card">
+            <h3>Reset Database</h3>
+            <p>Clear all database records and start fresh.</p>
+            <button onClick={() => handleReset("Database")}>Reset</button>
+          </div>
         </div>
       </main>
 

@@ -1,62 +1,61 @@
 import React, { useState } from "react";
-import "./SubmitProposal.css";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import StudentSidebar from "../components/StudentSidebar";
+import "./SubmitProposal.css"; // Styles for proposal submission page
+import Navbar from "../components/navbar"; // Navigation bar at the top
+import Footer from "../components/footer"; // Footer at the bottom
+import StudentSidebar from "../components/StudentSidebar"; // Sidebar for navigation
 
 const SubmitProposal = () => {
+  // State for storing submitted proposals
   const [proposals, setProposals] = useState([]);
+
+  // State for handling form input values
   const [formState, setFormState] = useState({
     title: "",
     description: "",
     file: null,
   });
 
+  // Handles input changes and file uploads
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormState({
       ...formState,
-      [name]: files ? files[0] : value,
+      [name]: files ? files[0] : value, // If it's a file input, store the file
     });
   };
 
+  // Handles proposal submission
   const handleSubmit = (e) => {
     e.preventDefault();
     const newProposal = {
       id: proposals.length + 1,
       title: formState.title,
       description: formState.description,
-      file: formState.file, // Store the file object
+      file: formState.file, // Store file object
       fileName: formState.file ? formState.file.name : "No file uploaded",
-      date: new Date().toLocaleDateString(),
-      status: "Pending", // Initial status
+      date: new Date().toLocaleDateString(), // Store the date of submission
+      status: "Pending", // Default status
     };
-    setProposals([...proposals, newProposal]);
-    setFormState({ title: "", description: "", file: null }); // Reset form
+
+    setProposals([...proposals, newProposal]); // Add proposal to the list
+    setFormState({ title: "", description: "", file: null }); // Reset form fields
   };
 
+  // Handles file download
   const handleDownload = (file, fileName) => {
     if (!file) {
       alert("File not found.");
       return;
     }
 
-    const url = URL.createObjectURL(file);
+    const url = URL.createObjectURL(file); // Create a downloadable URL
     const link = document.createElement("a");
     link.href = url;
     link.download = fileName;
     document.body.appendChild(link);
-    link.click();
+    link.click(); // Trigger the download
     document.body.removeChild(link);
-    URL.revokeObjectURL(url); // Clean up the URL object
-  };
-
-  const updateProposalStatus = (id, status) => {
-    setProposals((prevProposals) =>
-      prevProposals.map((proposal) =>
-        proposal.id === id ? { ...proposal, status } : proposal
-      )
-    );
+    URL.revokeObjectURL(url); // Clean up memory
   };
 
   return (
@@ -67,7 +66,7 @@ const SubmitProposal = () => {
         <div className="main-content">
           <h1 className="proposal-title">Submit Your Proposal</h1>
 
-          {/* Proposal Form */}
+          {/* Proposal Submission Form */}
           <form className="proposal-form" onSubmit={handleSubmit}>
             <label htmlFor="title">Proposal Title:</label>
             <input
@@ -101,7 +100,7 @@ const SubmitProposal = () => {
             <button type="submit">Submit Proposal</button>
           </form>
 
-          {/* Submitted Proposals List */}
+          {/* Display Submitted Proposals */}
           <div className="submitted-proposals">
             <h2>Previously Submitted Proposals</h2>
             {proposals.length > 0 ? (
@@ -111,9 +110,7 @@ const SubmitProposal = () => {
                     <div className="proposal-details">
                       <div className="proposal-header">
                         <strong>{proposal.title}</strong>
-                        <span
-                          className={`status ${proposal.status.toLowerCase()}`}
-                        >
+                        <span className={`status ${proposal.status.toLowerCase()}`}>
                           {proposal.status}
                         </span>
                       </div>

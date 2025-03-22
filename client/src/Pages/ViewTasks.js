@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import "./ViewTasks.css";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import StudentSidebar from "../components/StudentSidebar";
+import "./ViewTasks.css"; 
+import Navbar from "../components/navbar"; 
+import Footer from "../components/footer"; 
+import StudentSidebar from "../components/StudentSidebar"; 
 
 const ViewTasks = () => {
+  // State to manage the list of milestones
   const [milestones, setMilestones] = useState([]);
-  const [newMilestone, setNewMilestone] = useState("");
-  const [newTask, setNewTask] = useState({ title: "", creator: "", status: "Pending", completedBy: "", createdAt: "", deadline: "" });
-  const [editingMilestone, setEditingMilestone] = useState(null);
-  const [editedMilestoneName, setEditedMilestoneName] = useState("");
 
+  // State to store new milestone input
+  const [newMilestone, setNewMilestone] = useState("");
+
+  // State for new task input fields
+  const [newTask, setNewTask] = useState({
+    title: "",
+    creator: "",
+    status: "Pending",
+    completedBy: "",
+    createdAt: "",
+    deadline: "",
+  });
+
+  // Function to add a new milestone
   const handleAddMilestone = () => {
     if (!newMilestone.trim()) {
       alert("Please enter a milestone name.");
@@ -19,13 +30,14 @@ const ViewTasks = () => {
     const newMilestoneObj = {
       id: Date.now(),
       name: newMilestone,
-      tasks: [],
+      tasks: [], // Each milestone starts with an empty task list
       createdAt: new Date().toLocaleString(),
     };
     setMilestones([...milestones, newMilestoneObj]);
-    setNewMilestone("");
+    setNewMilestone(""); // Clear input field after adding
   };
 
+  // Function to add a new task under a specific milestone
   const handleAddTask = (milestoneId) => {
     if (!newTask.title.trim() || !newTask.creator.trim()) {
       alert("Please fill in all task fields.");
@@ -41,9 +53,11 @@ const ViewTasks = () => {
           : milestone
       )
     );
+    // Reset task fields after adding
     setNewTask({ title: "", creator: "", status: "Pending", completedBy: "", createdAt: "", deadline: "" });
   };
 
+  // Function to update task status (e.g., mark as completed)
   const handleUpdateTaskStatus = (milestoneId, taskId, newStatus, studentName) => {
     setMilestones((prevMilestones) =>
       prevMilestones.map((milestone) =>
@@ -69,22 +83,41 @@ const ViewTasks = () => {
         <div className="main-content">
           <h1 className="tasks-title">Manage Milestones and Tasks</h1>
 
+          {/* Input Field for Adding a Milestone */}
           <div className="milestone-section">
-            <input type="text" value={newMilestone} onChange={(e) => setNewMilestone(e.target.value)} placeholder="Add a new milestone" />
+            <input 
+              type="text" 
+              value={newMilestone} 
+              onChange={(e) => setNewMilestone(e.target.value)} 
+              placeholder="Add a new milestone" 
+            />
             <button onClick={handleAddMilestone}>Add Milestone</button>
           </div>
 
+          {/* List of Milestones with Tasks */}
           <div className="milestone-list">
             {milestones.map((milestone) => (
               <div key={milestone.id} className="milestone-item">
                 <h2>{milestone.name}</h2>
                 <p>Created on: {milestone.createdAt}</p>
 
+                {/* Input Fields for Adding a Task to the Milestone */}
                 <div className="task-section">
-                  <input type="text" value={newTask.title} onChange={(e) => setNewTask({ ...newTask, title: e.target.value })} placeholder="Task title" />
-                  <input type="text" value={newTask.creator} onChange={(e) => setNewTask({ ...newTask, creator: e.target.value })} placeholder="Created by" />
+                  <input 
+                    type="text" 
+                    value={newTask.title} 
+                    onChange={(e) => setNewTask({ ...newTask, title: e.target.value })} 
+                    placeholder="Task title" 
+                  />
+                  <input 
+                    type="text" 
+                    value={newTask.creator} 
+                    onChange={(e) => setNewTask({ ...newTask, creator: e.target.value })} 
+                    placeholder="Created by" 
+                  />
                   <button className="task-button" onClick={() => handleAddTask(milestone.id)}>Add Task</button>
 
+                  {/* Table of Tasks Under the Milestone */}
                   <div className="tasks-table">
                     <table>
                       <thead>

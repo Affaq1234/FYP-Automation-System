@@ -6,12 +6,14 @@ import Footer from "../components/footer";
 import SupervisorSidebar from "../components/SupervisorSidebar";
 
 function GenerateReport() {
+  // State variables to store report details
   const [reports, setReports] = useState([]);
   const [reportTitle, setReportTitle] = useState('');
   const [reportContent, setReportContent] = useState('');
   const [reportDate, setReportDate] = useState('');
   const [isReportGenerated, setIsReportGenerated] = useState(false);
 
+  // Handles report submission and adds it to the list
   const handleGenerateReport = (e) => {
     e.preventDefault();
 
@@ -22,13 +24,13 @@ function GenerateReport() {
         date: reportDate,
       };
 
-      setReports([...reports, newReport]);
+      setReports([...reports, newReport]); // Adds new report to the existing list
       setReportTitle('');
       setReportContent('');
       setReportDate('');
-      setIsReportGenerated(true);
+      setIsReportGenerated(true); // Displays generated reports section
     } else {
-      alert('Please fill all fields!');
+      alert('Please fill all fields!'); // Ensures all fields are filled before submission
     }
   };
 
@@ -39,58 +41,58 @@ function GenerateReport() {
         <SupervisorSidebar />
         
         <div className="App">
-      <h1>Generate Supervisor Reports</h1>
+          <h1>Generate Supervisor Reports</h1>
 
-      <form onSubmit={handleGenerateReport} className="report-form">
-        <div className="form-group">
-          <label htmlFor="reportTitle">Report Title:</label>
-          <input
-            type="text"
-            id="reportTitle"
-            value={reportTitle}
-            onChange={(e) => setReportTitle(e.target.value)}
-            required
-          />
-        </div>
+          {/* Form to input report details */}
+          <form onSubmit={handleGenerateReport} className="report-form">
+            <div className="form-group">
+              <label htmlFor="reportTitle">Report Title:</label>
+              <input
+                type="text"
+                id="reportTitle"
+                value={reportTitle}
+                onChange={(e) => setReportTitle(e.target.value)}
+                required
+              />
+            </div>
 
-        <div className="form-group">
-          <label htmlFor="reportContent">Report Content:</label>
-          <textarea
-            id="reportContent"
-            value={reportContent}
-            onChange={(e) => setReportContent(e.target.value)}
-            required
-          />
-        </div>
+            <div className="form-group">
+              <label htmlFor="reportContent">Report Content:</label>
+              <textarea
+                id="reportContent"
+                value={reportContent}
+                onChange={(e) => setReportContent(e.target.value)}
+                required
+              />
+            </div>
 
-        <div className="form-group">
-          <label htmlFor="reportDate">Date:</label>
-          <input
-            type="date"
-            id="reportDate"
-            value={reportDate}
-            onChange={(e) => setReportDate(e.target.value)}
-            required
-          />
-        </div>
+            <div className="form-group">
+              <label htmlFor="reportDate">Date:</label>
+              <input
+                type="date"
+                id="reportDate"
+                value={reportDate}
+                onChange={(e) => setReportDate(e.target.value)}
+                required
+              />
+            </div>
 
-        <button type="submit" className="generate-btn">Generate Report</button>
-      </form>
+            <button type="submit" className="generate-btn">Generate Report</button>
+          </form>
 
-      {isReportGenerated && <h2>Generated Reports</h2>}
+          {/* Displays generated reports after submission */}
+          {isReportGenerated && <h2>Generated Reports</h2>}
 
-      <div className="report-list">
-        {reports.map((report, index) => (
-          <div key={index} className="report-card">
-            <h3>{report.title}</h3>
-            <p><strong>Date:</strong> {report.date}</p>
-            <p><strong>Content:</strong> {report.content}</p>
+          <div className="report-list">
+            {reports.map((report, index) => (
+              <div key={index} className="report-card">
+                <h3>{report.title}</h3>
+                <p><strong>Date:</strong> {report.date}</p>
+                <p><strong>Content:</strong> {report.content}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
-
-
+        </div>
       </div>
       <Footer />
     </div>

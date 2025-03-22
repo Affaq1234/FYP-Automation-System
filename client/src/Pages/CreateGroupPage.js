@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./CreateGroupPage.css"; // Include your styles
-import Navbar from "../components/navbar"; // Your Navbar component
-import Footer from "../components/footer"; // Your Footer component
+import "./CreateGroupPage.css"; 
+import Navbar from "../components/navbar"; 
+import Footer from "../components/footer";
 import AdminSidebar from "../components/AdminSideBar";
 
 function CreateGroupPage() {

@@ -3,30 +3,34 @@ import { Link, useNavigate } from "react-router-dom";
 import './loginPage.css';
 
 const LoginPage = () => {
+  // State to track step in the login process
   const [step, setStep] = useState(1);
   const [role, setRole] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Function to select a role and proceed to login form
   const handleRoleSelect = (role) => {
     setRole(role);
     setStep(2);
   };
 
+  // Function to validate email format
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
 
+  // Function to validate password strength
   const validatePassword = (password) => {
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordPattern.test(password);
   };
 
+  // Function to handle login form submission
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
@@ -42,23 +46,24 @@ const LoginPage = () => {
         "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.";
     }
 
-    // If there are errors, set them and stop form submission
+    // If there are validation errors, display them
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    // Simulate login process
+    // Simulate login process with a loading effect
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
+      // Redirect user to the respective dashboard based on role
       if (role === "Student") {
-        navigate("/dashboard/student"); // Redirect to Student Dashboard
+        navigate("/dashboard/student");
       } else if (role === "Supervisor") {
-        navigate("/dashboard/supervisor"); // Redirect to Supervisor Dashboard
+        navigate("/dashboard/supervisor");
       } else if (role === "Evaluator") {
-        navigate("/dashboard/evaluator"); // Redirect to evaluator Dashboard
-      }else if (role === "Admin") {
+        navigate("/dashboard/evaluator");
+      } else if (role === "Admin") {
         navigate("/dashboard/admin");
       }
     }, 2000);
@@ -66,38 +71,42 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
+      {/* Close button to return to the homepage */}
       {step === 2 && (
         <button className="back-button" onClick={() => navigate("/")}>
           <i className="fas fa-times"></i>
         </button>
       )}
 
+      {/* Step 1: Role Selection */}
       {step === 1 && (
         <div className="role-selection">
           <h2>Who are you?</h2>
           <div className="role-buttons">
-            <button onClick={() => handleRoleSelect('Admin')}>Login as Admin</button>
-            <button onClick={() => handleRoleSelect('Supervisor')}>Login as Supervisor</button>
-            <button onClick={() => handleRoleSelect('Evaluator')}>Login as Evaluator</button>
-            <button onClick={() => handleRoleSelect('Student')}>Login as Student</button>
+            <button onClick={() => handleRoleSelect('Admin')}> Admin</button>
+            <button onClick={() => handleRoleSelect('Supervisor')}>Supervisor</button>
+            <button onClick={() => handleRoleSelect('Evaluator')}>Evaluator</button>
+            <button onClick={() => handleRoleSelect('Student')}>Student</button>
           </div>
         </div>
       )}
 
+      {/* Step 2: Login Form */}
       {step === 2 && role && (
         <div className="login-form">
           <h2>Login as {role}</h2>
           <form onSubmit={handleLoginSubmit}>
+
+            {/* Email Input */}
             <div className="input-container">
               <i className="fas fa-envelope"></i>
               <input
                 type="email"
-                id="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  setErrors({ ...errors, email: "" }); // Clear email error when typing
+                  setErrors({ ...errors, email: "" }); // Clear error when typing
                 }}
                 required
               />
@@ -107,16 +116,17 @@ const LoginPage = () => {
                 </p>
               )}
             </div>
+
+            {/* Password Input */}
             <div className="input-container">
               <i className="fas fa-lock"></i>
               <input
                 type="password"
-                id="password"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
-                  setErrors({ ...errors, password: "" }); // Clear password error when typing
+                  setErrors({ ...errors, password: "" }); // Clear error when typing
                 }}
                 required
               />
@@ -127,17 +137,13 @@ const LoginPage = () => {
               )}
             </div>
 
-            {/* Login Button */}
+            {/* Login Button with Loading Effect */}
             <button type="submit" className="login-button" disabled={isLoading}>
-              {isLoading ? (
-                <i className="fas fa-spinner fa-spin"></i> // Loading spinner
-              ) : (
-                "Login"
-              )}
+              {isLoading ? <i className="fas fa-spinner fa-spin"></i> : "Login"}
             </button>
           </form>
 
-          {/* Sign-up Option - Visible Only for Students */}
+          {/* Sign-up Option for Students Only */}
           {role === "Student" && (
             <div className="sign-up-option">
               <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>

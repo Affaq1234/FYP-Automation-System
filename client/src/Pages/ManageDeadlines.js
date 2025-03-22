@@ -7,9 +7,13 @@ import Footer from "../components/footer";
 import StudentSidebar from "../components/StudentSidebar";
 
 const ManageDeadlines = () => {
+  // State to manage selected date from calendar
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  // State to store list of deadlines
   const [deadlines, setDeadlines] = useState([]);
 
+  // Function to add a new deadline
   const addDeadline = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -17,8 +21,8 @@ const ManageDeadlines = () => {
       date: selectedDate.toDateString(),
       task: formData.get("task"),
     };
-    setDeadlines([...deadlines, newDeadline]);
-    event.target.reset(); // Clear the form
+    setDeadlines([...deadlines, newDeadline]); // Update the deadline list
+    event.target.reset(); // Clear the input field
   };
 
   return (
@@ -29,7 +33,7 @@ const ManageDeadlines = () => {
         <div className="main-content">
           <h1 className="deadlines-title">View and Manage Deadlines</h1>
 
-          {/* Calendar Section */}
+          {/* Calendar Section - Select a date */}
           <div className="calendar-section">
             <Calendar
               onChange={setSelectedDate}
@@ -39,7 +43,7 @@ const ManageDeadlines = () => {
             <p>Selected Date: {selectedDate.toDateString()}</p>
           </div>
 
-          {/* Form Section */}
+          {/* Form Section - Add new deadline */}
           <form onSubmit={addDeadline} className="deadline-form">
             <input
               type="text"
@@ -50,7 +54,7 @@ const ManageDeadlines = () => {
             <button type="submit">Add Deadline</button>
           </form>
 
-          {/* Table Section */}
+          {/* Table Section - Display list of deadlines */}
           <div className="deadlines-table">
             <h2>Upcoming Deadlines</h2>
             <table>

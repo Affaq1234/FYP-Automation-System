@@ -9,12 +9,26 @@ const BackupRestore = () => {
   const [backupStatus, setBackupStatus] = useState('');
   const [restoreStatus, setRestoreStatus] = useState('');
   const [resetStatus, setResetStatus] = useState('');
+  const [downloadStatus, setDownloadStatus] = useState("");
 
   const handleBackup = () => {
     setBackupStatus('Backup in progress...');
     // Simulate system backup process
     setTimeout(() => {
       setBackupStatus('Backup completed successfully!');
+    }, 2000);
+  };
+  const handleDownloadBackup = () => {
+    setDownloadStatus("Preparing backup for download...");
+    setTimeout(() => {
+      setDownloadStatus("Download ready!");
+      // Simulating file download
+      const link = document.createElement("a");
+      link.href = "path/to/backup-file.zip"; // Replace with actual backup file path
+      link.download = "backup-file.zip";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }, 2000);
   };
 
@@ -77,6 +91,12 @@ const BackupRestore = () => {
               <p>Remove all data from the database</p>
               <button onClick={handleReset}>Reset System</button>
               {resetStatus && <p>{resetStatus}</p>}
+            </div>
+            <div className="card">
+              <h3>Download Backup</h3>
+              <p>Download the latest backup file</p>
+              <button onClick={handleDownloadBackup}>Download Backup</button>
+              {downloadStatus && <p>{downloadStatus}</p>}
             </div>
           </div>
         </div>

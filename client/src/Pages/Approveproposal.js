@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import "./ApproveProposal.css";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import SupervisorSidebar from "../components/SupervisorSidebar";
+import "./ApproveProposal.css"; 
+import Navbar from "../components/navbar"; 
+import Footer from "../components/footer"; 
+import SupervisorSidebar from "../components/SupervisorSidebar"; 
 
+// Approve Proposal Page Component
 const ApproveProposal = () => {
+  // Sample list of submitted proposals
   const [proposals, setProposals] = useState([
     {
       id: 1,
@@ -24,6 +26,7 @@ const ApproveProposal = () => {
     },
   ]);
 
+  // Function to approve or reject a proposal
   const handleAction = (id, action) => {
     setProposals((prevProposals) =>
       prevProposals.map((proposal) =>
@@ -34,12 +37,15 @@ const ApproveProposal = () => {
 
   return (
     <div className="proposal-container">
-      <Navbar />
+      <Navbar /> {/* Calling navigation bar */}
       <div className="content-wrapper">
-        <SupervisorSidebar />
+        <SupervisorSidebar /> {/* Sidebar for navigation */}
+
+        {/* Main Content Section */}
         <div className="main-content">
           <h1 className="proposal-title">Approve Proposals</h1>
 
+          {/* List of Submitted Proposals */}
           <div className="proposal-list">
             {proposals.map((proposal) => (
               <div key={proposal.id} className="proposal-item">
@@ -55,6 +61,8 @@ const ApproveProposal = () => {
                     {proposal.status}
                   </span>
                 </p>
+
+                {/* Approval and Rejection Buttons */}
                 <div className="actions">
                   {proposal.status === "Pending" && (
                     <>
@@ -78,7 +86,7 @@ const ApproveProposal = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer /> {/* Calling footer */}
     </div>
   );
 };

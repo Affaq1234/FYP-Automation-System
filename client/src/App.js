@@ -29,8 +29,11 @@ import GenerateReport from "./Pages/generateReports";
 import CreateGroupPage from "./Pages/CreateGroupPage"; 
 import EvaluatorDashboard from "./Pages/EvaluatorDashboard";
 import AssignedGroups from "./Pages/AssignedGroups";
-
-
+import PastEvaluations from "./Pages/PastEvaluation";
+import EvaluateProjects from "./Pages/ProjectEvaluation";
+import ProposalEvaluations from "./Pages/ProposalEvaluation";
+import FYPOneEvaluations from "./Pages/FYPOneEvaluation";
+import FYPSecEvaluations  from "./Pages/FYPSecEvaluation";
 
 
 const App = () => {
@@ -64,10 +67,12 @@ const App = () => {
         <Route path="/generateReports" element={<GenerateReport />} />
         <Route path="/CreateGroupPage" element={<CreateGroupPage />} />
         <Route path="/dashboard/evaluator" element={<EvaluatorDashboard />} />
-        <Route path="/assignedGroups" element={<AssignedGroups />} /> 
-        
-        
-
+        <Route path="/assignedGroups" element={<AssignedGroups />} />
+        <Route path="/PastEvaluation" element={<PastEvaluations />} />
+        <Route path="/ProjectEvaluation/:groupId" element={<EvaluateProjects />} />
+        <Route path="/ProposalEvaluation/:groupId" element={<ProposalEvaluations />} />
+        <Route path="/FYPOneEvaluation/:groupId" element={<FYPOneEvaluations />} />
+        <Route path="/FYPSecEvaluation/:groupId" element={<FYPSecEvaluations />} />
 
         {/* Add routes for other pages like Login, About, Contact */}
       </Routes>

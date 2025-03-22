@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import Navbar from "../components/navbar"; // Top navigation bar
 import Footer from "../components/footer"; // Footer
-import SupervisorSidebar from "../components/SupervisorSidebar"; // Sidebar
-import "./ProvideFeedback.css"; // CSS for this page
+import SupervisorSidebar from "../components/SupervisorSidebar"; // Sidebar for navigation
+import "./ProvideFeedback.css"; // CSS for styling
 
 const ProvideFeedback = () => {
+  // State to hold feedback input
   const [feedback, setFeedback] = useState("");
+  
+  // State to track selected task for feedback
   const [selectedTask, setSelectedTask] = useState(null);
 
+  // List of submitted tasks for evaluation
   const tasks = [
     { id: 1, title: "Project Proposal", student: "abc", description: "Proposal for AI-powered chatbot." },
     { id: 2, title: "Documentation Milestone 1", student: "xyz", description: "Initial project documentation." },
     { id: 3, title: "Final Report Draft", student: "Team 1", description: "Draft for the final report." },
   ];
 
+  // Handles submission of feedback
   const handleFeedbackSubmit = (e) => {
     e.preventDefault();
     console.log(`Feedback for task "${selectedTask.title}":`, feedback);
+    
+    // Clear input fields after submission
     setFeedback("");
     setSelectedTask(null);
+
+    // Show confirmation message
     alert("Feedback submitted successfully!");
   };
 
@@ -30,16 +39,17 @@ const ProvideFeedback = () => {
         <SupervisorSidebar />
 
         <main className="feedback-main">
-          {/* Simplified heading for Provide Feedback */}
+          {/* Page Heading */}
           <h1>Provide Feedback</h1>
 
+          {/* Task Selection Section */}
           <div className="task-section">
             <h2>Submitted Tasks</h2>
             <div className="task-list">
               {tasks.map((task) => (
                 <div
                   key={task.id}
-                  className={`task-card ${selectedTask?.id === task.id ? "selected" : ""}`}
+                  className={`task-card ${selectedTask?.id === task.id ? "selected" : ""}`} // Highlights selected task
                   onClick={() => setSelectedTask(task)}
                 >
                   <h3>{task.title}</h3>
@@ -50,6 +60,7 @@ const ProvideFeedback = () => {
             </div>
           </div>
 
+          {/* Feedback Form - Visible only when a task is selected */}
           {selectedTask && (
             <div className="feedback-form-section">
               <h2>Provide Feedback for: {selectedTask.title}</h2>

@@ -15,16 +15,16 @@ const EvaluatorSidebar = () => {
   const features = [
     { id: 0, name: "Dashboard", icon: "fas fa-home", path: "/dashboard/evaluator" },
     { id: 1, name: "Assigned Groups", icon: "fas fa-users", path: "/assignedGroups" },
-    { id: 2, name: "Evaluate Projects", icon: "fas fa-edit", path: "/evaluateProjects" },
-    { id: 3, name: "Past Evaluations", icon: "fas fa-history", path: "/pastEvaluations" },
-    { id: 4, name: "Reports & Analytics", icon: "fas fa-chart-line", path: "/reports" },
-    { id: 5, name: "Logout", icon: "fas fa-sign-out-alt", path: "/Logout" },
+    { id: 2, name: "Project Evaluations", icon: "fas fa-history", path: "/ProjectEvaluation/:groupId" },
+    { id: 3, name: "Past Evaluations", icon: "fas fa-history", path: "/PastEvaluation" },  
+    { id: 4, name: "Logout", icon: "fas fa-sign-out-alt", path: "/Logout" },
+
   ];
 
   return (
     <>
       <aside className="dashboard-sidebar">
-        <h2>Evaluator Panel</h2>
+        <h2>Features</h2>
         <ul className="sidebar-list">
           {features.map((feature) => (
             <li
@@ -39,9 +39,15 @@ const EvaluatorSidebar = () => {
                 }
                 else if (feature.name === "Assigned Groups") {
                     navigate("/assignedGroups");
+                  } 
+                  else if (feature.name === "Project Evaluations") {
+                    navigate("/ProjectEvaluation/:groupId");
                   } else {
                   navigate(feature.path);
                 }
+
+
+
               }}
             >
               <i className={feature.icon}></i>

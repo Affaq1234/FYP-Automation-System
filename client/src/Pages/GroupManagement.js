@@ -5,6 +5,7 @@ import Footer from "../components/footer";
 import StudentSidebar from "../components/StudentSidebar";
 
 const GroupManagement = () => {
+  // State to manage group members
   const [members, setMembers] = useState([
     {
       id: 1,
@@ -40,13 +41,16 @@ const GroupManagement = () => {
     },
   ]);
 
+  // State to manage activity logs
   const [activityLogs, setActivityLogs] = useState([
     { id: 1, message: "Affaq assigned as Developer", timestamp: "2023-10-01 10:00 AM" },
     { id: 2, message: "Asad assigned as Tester", timestamp: "2023-10-01 10:30 AM" },
   ]);
 
-  const [isAdmin, setIsAdmin] = useState(false); // Simulate admin/student role
+  // State to check if the user is an admin
+  const [isAdmin, setIsAdmin] = useState(false);
 
+  // Function to update the role of a member
   const updateRole = (id, newRole) => {
     const updatedMembers = members.map((member) =>
       member.id === id ? { ...member, role: newRole } : member
@@ -58,6 +62,7 @@ const GroupManagement = () => {
     ]);
   };
 
+  // Function to add a new member
   const addMember = () => {
     if (members.length >= 4) {
       alert("Maximum group size is 4 members.");
@@ -78,6 +83,7 @@ const GroupManagement = () => {
     ]);
   };
 
+  // Function to remove a member from the group
   const removeMember = (id) => {
     const updatedMembers = members.filter((member) => member.id !== id);
     setMembers(updatedMembers);
@@ -95,7 +101,7 @@ const GroupManagement = () => {
         <div className="main-content">
           <h1 className="title">Group Management</h1>
 
-          {/* Group Details */}
+          {/* Group Information Section */}
           <div className="group-details">
             <h2>Group Details</h2>
             <div className="group-info">
@@ -105,7 +111,7 @@ const GroupManagement = () => {
             </div>
           </div>
 
-          {/* Team Member Profiles */}
+          {/* Team Members Section */}
           <div className="profiles-section">
             <h2>Team Member Profiles</h2>
             <ul>
@@ -117,6 +123,8 @@ const GroupManagement = () => {
                     <p><strong>Role:</strong> {member.role}</p>
                     <p><strong>Email:</strong> {member.email}</p>
                     <p><strong>Skills:</strong> {member.skills}</p>
+
+                    {/* Allows role update only if user is an admin */}
                     {isAdmin && (
                       <label>
                         Update Role:
@@ -130,6 +138,8 @@ const GroupManagement = () => {
                         </select>
                       </label>
                     )}
+
+                    {/* Allows member removal only if user is an admin */}
                     {isAdmin && (
                       <button onClick={() => removeMember(member.id)} className="remove-button">
                         Remove Member
@@ -139,6 +149,8 @@ const GroupManagement = () => {
                 </li>
               ))}
             </ul>
+
+            {/* Allows adding a new member only if the group has less than 4 members */}
             {isAdmin && members.length < 4 && (
               <button onClick={addMember} className="add-member-button">
                 Add Member
@@ -146,7 +158,7 @@ const GroupManagement = () => {
             )}
           </div>
 
-          {/* Communication Channels */}
+          {/* Communication Section */}
           <div className="communication-section">
             <h2>Group Communication Channels</h2>
             <div className="communication-buttons">
@@ -162,7 +174,7 @@ const GroupManagement = () => {
             </div>
           </div>
 
-          {/* Activity Logs */}
+          {/* Activity Logs Section */}
           <div className="logs-section">
             <h2>Activity Logs</h2>
             <ul>

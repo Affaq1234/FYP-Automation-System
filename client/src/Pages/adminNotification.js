@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import "./SubmitProposal.css";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import "./AdminNotification.css"; // Add your styles here
-import AdminSidebar from "../components/AdminSideBar";
+//import "./SubmitProposal.css"; 
+import Navbar from "../components/navbar"; 
+import Footer from "../components/footer"; 
+import "./AdminNotification.css"; 
+import AdminSidebar from "../components/AdminSideBar"; 
 
+// Admin Notifications Page Component
 const AdminNotificationsPage = () => {
-  // Mock data for notifications
+  // Sample notifications displayed on the page
   const initialNotifications = [
     { id: 1, message: "New student registration pending approval", date: "2024-01-15", time: "10:30 AM", isRead: false },
     { id: 2, message: "Supervisor has updated the project details", date: "2024-01-14", time: "02:45 PM", isRead: true },
@@ -14,6 +15,7 @@ const AdminNotificationsPage = () => {
     { id: 4, message: "New document submission from Supervisor", date: "2024-01-12", time: "09:15 AM", isRead: true },
   ];
 
+  // State to manage notifications
   const [notifications, setNotifications] = useState(initialNotifications);
   const [newNotification, setNewNotification] = useState('');
   const [scheduledDate, setScheduledDate] = useState('');
@@ -21,34 +23,35 @@ const AdminNotificationsPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
-  // Mark notification as read
+  // Mark a notification as read
   const markAsRead = (id) => {
     setNotifications(notifications.map((notification) => 
       notification.id === id ? { ...notification, isRead: true } : notification
     ));
   };
 
-  // Delete notification
+  // Delete a notification
   const deleteNotification = (id) => {
     setNotifications(notifications.filter((notification) => notification.id !== id));
   };
 
-  // Handle new notification submission
+  // Handle form submission for adding a new notification
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newNotification.trim() !== "" && scheduledDate && scheduledTime) {
       setIsSubmitting(true);
-      setSuccessMessage(''); // Reset any success message on new submission
+      setSuccessMessage(''); // Clear success message on new submission
 
-      // Create the full scheduled time by combining date and time
+      // Combine date and time to create a scheduled time
       const scheduledDateTime = new Date(`${scheduledDate}T${scheduledTime}`);
       const currentDateTime = new Date();
 
       if (scheduledDateTime > currentDateTime) {
-        const timeDifference = scheduledDateTime - currentDateTime; // Calculate difference in milliseconds
+        // If the scheduled time is in the future, delay the notification
+        const timeDifference = scheduledDateTime - currentDateTime; 
 
         setTimeout(() => {
-          // Notification sent after scheduled time
+          // Once the time is reached, add the notification to the list
           const currentDate = new Date();
           const date = currentDate.toLocaleDateString();
           const time = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -66,13 +69,12 @@ const AdminNotificationsPage = () => {
           setScheduledDate('');
           setScheduledTime('');
           setIsSubmitting(false);
-          setSuccessMessage('Notification has been sent successfully!'); // Success message after notification is sent
+          setSuccessMessage('Notification has been sent successfully!'); // Show success message
 
-          // Show an alert with the details of the notification
-          alert(`Notification sent successfully on ${date} at ${time}`);
-        }, timeDifference); // Send the notification after the scheduled time
+          alert(`Notification sent successfully on ${date} at ${time}`); // Show alert
+        }, timeDifference);
       } else {
-        // Immediately send the notification if scheduled time is in the past
+        // If the time is in the past, send the notification immediately
         const currentDate = new Date();
         const date = currentDate.toLocaleDateString();
         const time = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -90,10 +92,9 @@ const AdminNotificationsPage = () => {
         setScheduledDate('');
         setScheduledTime('');
         setIsSubmitting(false);
-        setSuccessMessage('Notification has been sent successfully!'); // Success message after notification is sent
+        setSuccessMessage('Notification has been sent successfully!'); // Show success message
 
-        // Show an alert with the details of the notification
-        alert(`Notification sent successfully on ${date} at ${time}`);
+        alert(`Notification sent successfully on ${date} at ${time}`); // Show alert
       }
     } else {
       alert("Please provide a message, date, and time for the notification.");
@@ -103,85 +104,87 @@ const AdminNotificationsPage = () => {
 
   return (
     <div className="proposal-container">
-      <Navbar />
+      <Navbar /> {/* calling navigation bar */}
       <div className="content-wrapper">
-        <AdminSidebar />
+        <AdminSidebar /> {/* Sidebar for navigation */}
+
         <div className="admin-notifications-container">
-      <header className="header">
-        <h1>Admin Notifications</h1>
-        <p>View, manage, and send notifications to students and supervisors</p>
-      </header>
+          {/* Page Header */}
+          <header className="header">
+            <h1>Admin Notifications</h1>
+            <p>View, manage, and send notifications to students and supervisors</p>
+          </header>
 
-      {/* Form to submit a new notification */}
-      <div className="notification-form-container">
-        <h2>Create New Notification</h2>
-        <form onSubmit={handleSubmit}>
-          <textarea
-            value={newNotification}
-            onChange={(e) => setNewNotification(e.target.value)}
-            placeholder="Write your notification here..."
-            rows="4"
-            required
-          />
-          <div className="form-actions">
-            <label>
-              Schedule Date:
-              <input
-                type="date"
-                value={scheduledDate}
-                onChange={(e) => setScheduledDate(e.target.value)}
+          {/* Form to submit a new notification */}
+          <div className="notification-form-container">
+            <h2>Create New Notification</h2>
+            <form onSubmit={handleSubmit}>
+              <textarea
+                value={newNotification}
+                onChange={(e) => setNewNotification(e.target.value)}
+                placeholder="Write your notification here..."
+                rows="4"
                 required
               />
-            </label>
-            <label>
-              Schedule Time:
-              <input
-                type="time"
-                value={scheduledTime}
-                onChange={(e) => setScheduledTime(e.target.value)}
-                required
-              />
-            </label>
-            <button type="submit" className="btn submit" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Submit Notification"}
-            </button>
+              <div className="form-actions">
+                <label>
+                  Schedule Date:
+                  <input
+                    type="date"
+                    value={scheduledDate}
+                    onChange={(e) => setScheduledDate(e.target.value)}
+                    required
+                  />
+                </label>
+                <label>
+                  Schedule Time:
+                  <input
+                    type="time"
+                    value={scheduledTime}
+                    onChange={(e) => setScheduledTime(e.target.value)}
+                    required
+                  />
+                </label>
+                <button type="submit" className="btn submit" disabled={isSubmitting}>
+                  {isSubmitting ? "Submitting..." : "Submit Notification"}
+                </button>
+              </div>
+            </form>
+            {successMessage && <p className="success-message">{successMessage}</p>}
           </div>
-        </form>
-        {successMessage && <p className="success-message">{successMessage}</p>}
+
+          {/* Notifications List */}
+          <div className="notifications-list">
+            <h2>Recent Notifications</h2>
+            {notifications.length > 0 ? (
+              <ul>
+                {notifications.map((notification) => (
+                  <li key={notification.id} className={`notification-item ${notification.isRead ? "read" : "unread"}`}>
+                    <div>
+                      <p className="notification-message">{notification.message}</p>
+                      <p className="notification-date">{`${notification.date} at ${notification.time}`}</p>
+                    </div>
+                    <div className="notification-actions">
+                      {!notification.isRead && (
+                        <button className="btn mark-as-read" onClick={() => markAsRead(notification.id)}>
+                          Mark as Read
+                        </button>
+                      )}
+                      <button className="btn delete" onClick={() => deleteNotification(notification.id)}>
+                        Delete
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No notifications available.</p>
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* Notifications List */}
-      <div className="notifications-list">
-        <h2>Recent Notifications</h2>
-        {notifications.length > 0 ? (
-          <ul>
-            {notifications.map((notification) => (
-              <li key={notification.id} className={`notification-item ${notification.isRead ? "read" : "unread"}`}>
-                <div>
-                  <p className="notification-message">{notification.message}</p>
-                  <p className="notification-date">{`${notification.date} at ${notification.time}`}</p>
-                </div>
-                <div className="notification-actions">
-                  {!notification.isRead && (
-                    <button className="btn mark-as-read" onClick={() => markAsRead(notification.id)}>
-                      Mark as Read
-                    </button>
-                  )}
-                  <button className="btn delete" onClick={() => deleteNotification(notification.id)}>
-                    Delete
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No notifications available.</p>
-        )}
-      </div>
-    </div>
-
-      </div>
-      <Footer />
+      <Footer /> {/* Calling footer */}
     </div>
   );
 };

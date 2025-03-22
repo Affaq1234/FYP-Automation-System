@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import "./ViewFeedback.css";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import StudentSidebar from "../components/StudentSidebar";
+import "./ViewFeedback.css"; // Import CSS for styling
+import Navbar from "../components/navbar"; // Top navigation bar
+import Footer from "../components/footer"; // Footer component
+import StudentSidebar from "../components/StudentSidebar"; // Sidebar for student dashboard
 
 const ViewFeedback = () => {
+  // Hardcoded feedback data (simulating responses from supervisors)
   const [feedbackList, setFeedbackList] = useState([
     {
       id: 1,
@@ -38,10 +39,12 @@ const ViewFeedback = () => {
     },
   ]);
 
+  // States for search and filtering
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [sortBy, setSortBy] = useState("date");
 
+  // Filtering and sorting logic
   const filteredFeedback = feedbackList
     .filter((feedback) => {
       const matchesSearch = feedback.content.toLowerCase().includes(searchTerm.toLowerCase());
@@ -50,13 +53,14 @@ const ViewFeedback = () => {
     })
     .sort((a, b) => {
       if (sortBy === "date") {
-        return new Date(b.date) - new Date(a.date);
+        return new Date(b.date) - new Date(a.date); // Sort by latest date
       } else if (sortBy === "rating") {
-        return b.rating - a.rating;
+        return b.rating - a.rating; // Sort by highest rating
       }
       return 0;
     });
 
+  // Function to mark feedback as resolved
   const handleMarkAsResolved = (id) => {
     setFeedbackList((prevFeedback) =>
       prevFeedback.map((feedback) =>
@@ -73,7 +77,7 @@ const ViewFeedback = () => {
         <div className="main-content">
           <h1 className="feedback-title">View Feedback</h1>
 
-          {/* Search and Filters */}
+          {/* Search and Filter Options */}
           <div className="search-bar">
             <input
               type="text"

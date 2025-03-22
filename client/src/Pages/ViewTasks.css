@@ -1,120 +1,49 @@
-/* General Container */
-.feedback-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Content Wrapper */
-.content-wrapper {
-  display: flex;
-  align-items: flex-start;
-}
-
-/* Sidebar */
-.content-wrapper .StudentSidebar {
-  flex: 0 0 250px;
-  margin-right: 20px;
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Page Title */
-.feedback-title {
-  text-align: center;
-  color: #3b0650;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* Search and Filters */
-.search-bar {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.search-bar input,
-.search-bar select {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.search-bar select {
-  flex: 1;
-  max-width: 200px;
-}
-
-/* Feedback Table */
-.feedback-table {
+/* Tasks Table */
+.tasks-table {
+  width: 100%;
+  overflow-x: auto;
   margin-top: 20px;
 }
 
-.feedback-table table {
+.tasks-table table {
   width: 100%;
   border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.feedback-table th,
-.feedback-table td {
+.tasks-table th,
+.tasks-table td {
+  padding: 12px;
   text-align: left;
-  padding: 15px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
 }
 
-.feedback-table th {
+.tasks-table th {
   background-color: #3b0650;
   color: white;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
-.feedback-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+.tasks-table tr:nth-child(even) {
+  background-color: #f8f8f8;
 }
 
-.feedback-table tr:hover {
-  background-color: #f1f1f1;
+.tasks-table tr:hover {
+  background-color: #e6e6e6;
 }
 
-/* Status Styles */
-.status {
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-transform: capitalize;
+.tasks-table td {
+  font-size: 1rem;
+  color: #333;
 }
 
-.status.resolved {
-  background-color: #27ae60;
-  color: white;
-}
-
-.status.pending {
-  background-color: #f39c12;
-  color: white;
-}
-
-.status.in-progress {
-  background-color: #2980b9;
-  color: white;
-}
-
-/* Actions */
-.resolve-button {
-  padding: 5px 10px;
+/* Button Styles */
+.mark-completed-button {
+  padding: 8px 12px;
   background-color: #8c00ff;
   color: white;
   border: none;
@@ -123,25 +52,21 @@
   transition: background-color 0.3s ease;
 }
 
-.resolve-button:hover {
+.mark-completed-button:hover {
   background-color: #5d00b3;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .content-wrapper {
-    flex-direction: column;
+  .tasks-table table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
-  .StudentSidebar {
-    margin-bottom: 20px;
-  }
-
-  .search-bar {
-    flex-direction: column;
-  }
-
-  .search-bar select {
-    max-width: 100%;
+  .tasks-table th,
+  .tasks-table td {
+    padding: 10px;
+    font-size: 0.9rem;
   }
 }
