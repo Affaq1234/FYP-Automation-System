@@ -56,7 +56,9 @@ const LoginPage = () => {
         navigate("/dashboard/student"); // Redirect to Student Dashboard
       } else if (role === "Supervisor") {
         navigate("/dashboard/supervisor"); // Redirect to Supervisor Dashboard
-      } else if (role === "Admin") {
+      } else if (role === "Evaluator") {
+        navigate("/dashboard/evaluator"); // Redirect to evaluator Dashboard
+      }else if (role === "Admin") {
         navigate("/dashboard/admin");
       }
     }, 2000);
@@ -76,6 +78,7 @@ const LoginPage = () => {
           <div className="role-buttons">
             <button onClick={() => handleRoleSelect('Admin')}>Login as Admin</button>
             <button onClick={() => handleRoleSelect('Supervisor')}>Login as Supervisor</button>
+            <button onClick={() => handleRoleSelect('Evaluator')}>Login as Evaluator</button>
             <button onClick={() => handleRoleSelect('Student')}>Login as Student</button>
           </div>
         </div>
