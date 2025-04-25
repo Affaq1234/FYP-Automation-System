@@ -16,5 +16,9 @@ const studentSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
+  isGrouped:{
+    type:Boolean,
+    required: true,
+  },
 });
 module.exports = mongoose.model("Student", studentSchema);

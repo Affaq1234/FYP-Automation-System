@@ -1,4 +1,6 @@
 const User = require("./User");
+const Student=require("../Student/Student");
+const mongoose=require("mongoose")
 
 const createUser = async (req, res) => {
   try {
@@ -60,42 +62,104 @@ const findOneUser = async (req, res) => {
   }
 };
 
-const login= async (req,res) => {
-  const { email, password } = req.body;
+const login = async (req, res) => {
+  const { email, password, role } = req.body;
 
-  // Check if email and password are provided
-  if (!email || !password) {
-    return res.status(400).json({ message: 'Email and password are required.' });
+  // Basic input validation
+  if (!email || !password || !role) {
+    return res.status(400).json({ success: false, message: 'Email, password, and role are required.' });
   }
 
   try {
-    // Find the user by email
-    const user = await User.findOne({ email });
+    // Check for user with given email and role
+    const user = await User.findOne({ email, role });
 
-    // If the user doesn't exist
     if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
+      return res.status(404).json({ success: false, message: 'User not found.' });
     }
 
-    // If the password doesn't match
-    if (password!=user.password) {
-      return res.status(401).json({ message: 'Invalid credentials.' });
+    // Simple password comparison
+    if (password !== user.password) {
+      return res.status(401).json({ success: false, message: 'Invalid credentials.' });
     }
 
-    // Return user information upon successful login
+    // Login successful
     return res.status(200).json({
-      userId: user._id,
+      success: true,
+      id: user._id,
+      name: user.username,
+      email: user.email,
       role: user.role,
     });
+
   } catch (error) {
-    // Handle unexpected errors
-    return res.status(500).json({ message: 'Internal server error.' });
+    console.error('Login error:', error);
+    return res.status(500).json({ success: false, message: 'Internal server error.' });
   }
-}
+};
 
 
 const signup = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+      const { username, email, password, role, studentName, regNo, isGrouped } = req.body;
+
+      if (!username || !email || !password || !role || !studentName || !regNo) {
+          return res.status(400).json({ message: "All fields are required." });
+      }
+
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+          return res.status(409).json({ message: "Email is already registered." });
+      }
+
+      const existingStudent = await Student.findOne({ regNo });
+      if (existingStudent) {
+          return res.status(409).json({ message: "Registration number already exists." });
+      }
+
+      const newUser = new User({
+          username,
+          email,
+          password, 
+          role
+      });
+
+      const savedUser = await newUser.save({ session });
+
+      const newStudent = new Student({
+          userId: savedUser._id.toString(),
+          studentName,
+          regNo,
+          isGrouped
+      });
+
+      await newStudent.save({ session });
+
+      await session.commitTransaction();
+      session.endSession();
+
+      return res.status(201).json({ message: "Signup successful." });
+
+  } catch (err) {
+      await session.abortTransaction();
+      session.endSession();
+
+      console.error("Signup error:", err);
+
+      if (err.code === 11000) {
+          const duplicateField = Object.keys(err.keyValue)[0];
+          return res.status(409).json({
+              message: `Duplicate value for field: ${duplicateField}.`
+          });
+      }
+
+      return res.status(500).json({ message: "Internal server error." });
+  }
 };
+
 
 module.exports = {
   createUser,

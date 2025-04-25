@@ -20,6 +20,10 @@ const proposalSchema = new mongoose.Schema({
     attachment:{
         type:Buffer,
         require:true
+    },
+    evaluatorId:{
+        type:String,
+        required:true
     }
 });
 

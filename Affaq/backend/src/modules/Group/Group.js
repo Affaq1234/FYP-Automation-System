@@ -12,6 +12,10 @@ const groupSchema = new mongoose.Schema({
     supervisorID:{
         type: String,
         required:true
+    },
+    evaluatorID:{
+        type:String,
+        required:true
     }
 });
 

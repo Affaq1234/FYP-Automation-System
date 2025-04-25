@@ -19,6 +19,10 @@ const documentSchema = new mongoose.Schema({
     attachment:{
         type:Buffer,
         required:true,
+    },
+    uploadedBy:{
+        type: String,
+        required: true
     }
 });
 module.exports = mongoose.model("Document", documentSchema);

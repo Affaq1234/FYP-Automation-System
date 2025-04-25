@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dbURI = "mongodb+srv://Affaq:affaq1940351@fyp-automation-system.5uoeq.mongodb.net/?retryWrites=true&w=majority&appName=FYP-Automation-System";
+const dbURI ="mongodb+srv://Affaq:affaq1940351@fyp-automation-system.5uoeq.mongodb.net/?retryWrites=true&w=majority&appName=FYP-Automation-System";
 
 const connectDB = async () => {
   try {

@@ -14,9 +14,9 @@ const taskSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  completionRate: {
-    type: Number,
-    required: true,
-  },
+  uploadedBy:{
+    type: String,
+    required:true
+  }
 });
 module.exports = mongoose.model("Task", taskSchema);

@@ -16,10 +16,12 @@ const facultyAdvisorRoutes=require('./modules/FacultyAdvisor/FacultyAdvisorRoute
 const documentRoutes=require('./modules/Document/DocumentRoutes');
 const deadlineRoutes=require('./modules/Deadline/DeadlineRoutes');
 const adminRoutes=require('./modules/Admin/AdminRoutes');
+const notificationRoutes=require('./modules/Notifications/NotificationRoutes')
 
 
 const app = express();
 app.use(cors());
+
 const PORT = 5000;
 app.use(express.json()); 
 connectDB();
@@ -39,6 +41,7 @@ app.use('/api/facultyAdvisor',facultyAdvisorRoutes);
 app.use('/api/document',documentRoutes);
 app.use('/api/deadline',deadlineRoutes);
 app.use('/api/admin',adminRoutes);
+app.use('/api/notification',notificationRoutes);
 
 
 app.get("/", (req, res) => {
