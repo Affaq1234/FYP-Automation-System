@@ -1,6 +1,6 @@
 const ErrorModel = require('../Error/Error');
 
-exports.createError = async (req, res) => {
+const createError = async (req, res) => {
   try {
     const { errorCode, errorMessage, userId, createdAt } = req.body;
     const newError = new ErrorModel({
@@ -16,7 +16,7 @@ exports.createError = async (req, res) => {
   }
 };
 
-exports.getAllErrors = async (req, res) => {
+const getAllErrors = async (req, res) => {
   try {
     const errors = await ErrorModel.find();
     res.status(200).json(errors);
@@ -25,7 +25,7 @@ exports.getAllErrors = async (req, res) => {
   }
 };
 
-exports.getErrorById = async (req, res) => {
+const getErrorById = async (req, res) => {
   try {
     const error = await ErrorModel.findById(req.params.id);
     if (!error) {
@@ -37,7 +37,7 @@ exports.getErrorById = async (req, res) => {
   }
 };
 
-exports.deleteError = async (req, res) => {
+const deleteError = async (req, res) => {
   try {
     const deleted = await ErrorModel.findByIdAndDelete(req.params.id);
     if (!deleted) {
@@ -48,3 +48,4 @@ exports.deleteError = async (req, res) => {
     res.status(500).json({ message: "Error deleting error log", error });
   }
 };
+module.exports={createError,deleteError,getAllErrors,getErrorById}

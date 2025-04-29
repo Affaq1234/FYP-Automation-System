@@ -1,6 +1,6 @@
 const Evaluator = require('../Evaluator/Evaluator');
 
-exports.createEvaluator = async (req, res) => {
+const createEvaluator = async (req, res) => {
   try {
     const { userId, name } = req.body;
     const newEvaluator = new Evaluator({ userId, name });
@@ -11,7 +11,7 @@ exports.createEvaluator = async (req, res) => {
   }
 };
 
-exports.getAllEvaluators = async (req, res) => {
+const getAllEvaluators = async (req, res) => {
   try {
     const evaluators = await Evaluator.find();
     res.status(200).json(evaluators);
@@ -20,7 +20,7 @@ exports.getAllEvaluators = async (req, res) => {
   }
 };
 
-exports.getEvaluatorById = async (req, res) => {
+const getEvaluatorById = async (req, res) => {
   try {
     const evaluator = await Evaluator.findById(req.params.id);
     if (!evaluator) {
@@ -32,7 +32,7 @@ exports.getEvaluatorById = async (req, res) => {
   }
 };
 
-exports.updateEvaluator = async (req, res) => {
+const updateEvaluator = async (req, res) => {
   try {
     const { userId, name } = req.body;
     const updatedEvaluator = await Evaluator.findByIdAndUpdate(
@@ -49,7 +49,7 @@ exports.updateEvaluator = async (req, res) => {
   }
 };
 
-exports.deleteEvaluator = async (req, res) => {
+const deleteEvaluator = async (req, res) => {
   try {
     const deleted = await Evaluator.findByIdAndDelete(req.params.id);
     if (!deleted) {
@@ -60,3 +60,5 @@ exports.deleteEvaluator = async (req, res) => {
     res.status(500).json({ message: "Error deleting evaluator", error });
   }
 };
+
+module.exports={createEvaluator,deleteEvaluator,updateEvaluator,getAllEvaluators,getEvaluatorById}

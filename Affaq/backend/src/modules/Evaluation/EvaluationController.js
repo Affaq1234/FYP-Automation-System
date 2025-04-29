@@ -1,6 +1,6 @@
 const Evaluation = require('../Evaluation/Evaluation');
 
-exports.createEvaluation = async (req, res) => {
+const createEvaluation = async (req, res) => {
   try {
     const {
       evaluatorId,
@@ -29,7 +29,7 @@ exports.createEvaluation = async (req, res) => {
   }
 };
 
-exports.getAllEvaluations = async (req, res) => {
+const getAllEvaluations = async (req, res) => {
   try {
     const evaluations = await Evaluation.find();
     res.status(200).json(evaluations);
@@ -38,7 +38,7 @@ exports.getAllEvaluations = async (req, res) => {
   }
 };
 
-exports.getEvaluationById = async (req, res) => {
+const getEvaluationById = async (req, res) => {
   try {
     const evaluation = await Evaluation.findById(req.params.id);
     if (!evaluation) {
@@ -50,7 +50,7 @@ exports.getEvaluationById = async (req, res) => {
   }
 };
 
-exports.updateEvaluation = async (req, res) => {
+const updateEvaluation = async (req, res) => {
   try {
     const {
       evaluatorId,
@@ -86,7 +86,7 @@ exports.updateEvaluation = async (req, res) => {
   }
 };
 
-exports.deleteEvaluation = async (req, res) => {
+const deleteEvaluation = async (req, res) => {
   try {
     const deleted = await Evaluation.findByIdAndDelete(req.params.id);
     if (!deleted) {
@@ -97,3 +97,4 @@ exports.deleteEvaluation = async (req, res) => {
     res.status(500).json({ message: "Error deleting evaluation", error });
   }
 };
+module.exports={createEvaluation,deleteEvaluation,updateEvaluation,getAllEvaluations,getEvaluationById}

@@ -1,6 +1,6 @@
 const Log = require('../Log/Log');
 
-exports.createLog = async (req, res) => {
+const createLog = async (req, res) => {
   try {
     const { userId, action, message, createdAt } = req.body;
     const newLog = new Log({
@@ -16,7 +16,7 @@ exports.createLog = async (req, res) => {
   }
 };
 
-exports.getAllLogs = async (req, res) => {
+const getAllLogs = async (req, res) => {
   try {
     const logs = await Log.find();
     res.status(200).json(logs);
@@ -25,7 +25,7 @@ exports.getAllLogs = async (req, res) => {
   }
 };
 
-exports.getLogById = async (req, res) => {
+const getLogById = async (req, res) => {
   try {
     const log = await Log.findById(req.params.id);
     if (!log) {
@@ -37,7 +37,7 @@ exports.getLogById = async (req, res) => {
   }
 };
 
-exports.deleteLog = async (req, res) => {
+const deleteLog = async (req, res) => {
   try {
     const deleted = await Log.findByIdAndDelete(req.params.id);
     if (!deleted) {
@@ -48,3 +48,5 @@ exports.deleteLog = async (req, res) => {
     res.status(500).json({ message: "Error deleting log", error });
   }
 };
+
+module.exports={createLog,deleteLog,getAllLogs,getLogById}
