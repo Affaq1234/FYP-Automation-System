@@ -2,8 +2,8 @@ const Evaluator = require('../Evaluator/Evaluator');
 
 exports.createEvaluator = async (req, res) => {
   try {
-    const { userId, Name } = req.body;
-    const newEvaluator = new Evaluator({ userId, Name });
+    const { userId, name } = req.body;
+    const newEvaluator = new Evaluator({ userId, name });
     const savedEvaluator = await newEvaluator.save();
     res.status(201).json(savedEvaluator);
   } catch (error) {
@@ -34,10 +34,10 @@ exports.getEvaluatorById = async (req, res) => {
 
 exports.updateEvaluator = async (req, res) => {
   try {
-    const { userId, Name } = req.body;
+    const { userId, name } = req.body;
     const updatedEvaluator = await Evaluator.findByIdAndUpdate(
       req.params.id,
-      { userId, Name },
+      { userId, name },
       { new: true }
     );
     if (!updatedEvaluator) {
