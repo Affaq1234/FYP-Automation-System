@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const groupSchema = new mongoose.Schema({
-    studentsID: {
+    groupNo:{
+        type:String,
+        required:true
+    },
+    studentsRegno: {
         type: [],
         required: true
     },

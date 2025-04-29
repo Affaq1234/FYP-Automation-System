@@ -5,7 +5,6 @@ const cors = require('cors');
 const userRoutes=require('./modules/User/UserRoutes')
 const taskRoutes=require('./modules/Task/TaskRoutes')
 const studentRoutes=require('./modules/Student/StudentRoutes')
-const reminderRoutes=require('./modules/Reminder/ReminderRoutes');
 const proposalRoutes=require('./modules/Proposal/ProposalRoutes');
 const projectRoutes=require('./modules/Project/ProjectRoutes');
 const milestoneRoutes=require('./modules/Milestone/MilestoneRoutes');
@@ -14,9 +13,12 @@ const groupRoutes=require('./modules/Group/GroupRoutes');
 const feedbackRoutes=require('./modules/Feedback/FeedbackRoutes');
 const facultyAdvisorRoutes=require('./modules/FacultyAdvisor/FacultyAdvisorRoutes');
 const documentRoutes=require('./modules/Document/DocumentRoutes');
-const deadlineRoutes=require('./modules/Deadline/DeadlineRoutes');
 const adminRoutes=require('./modules/Admin/AdminRoutes');
-const notificationRoutes=require('./modules/Notifications/NotificationRoutes')
+const notificationRoutes=require('./modules/Notifications/NotificationRoutes');
+const logRoutes=require('./modules/Log/LogRoutes');
+const errorRoutes=require('./modules/Error/ErrorRoutes');
+const evaluatorRoutes=require('./modules/Evaluator/EvaluatorRoutes');
+const evaluationRoutes=require('./modules/Evaluation/EvaluationRoutes');
 
 
 const app = express();
@@ -30,7 +32,6 @@ connectDB();
 app.use('/api/user',userRoutes);
 app.use('/api/task',taskRoutes);
 app.use('/api/student',studentRoutes);
-app.use('/api/reminder',reminderRoutes);
 app.use('/api/proposal',proposalRoutes);
 app.use('/api/project',projectRoutes);
 app.use('/api/milestone',milestoneRoutes);
@@ -39,9 +40,12 @@ app.use('/api/group',groupRoutes);
 app.use('/api/feedback',feedbackRoutes);
 app.use('/api/facultyAdvisor',facultyAdvisorRoutes);
 app.use('/api/document',documentRoutes);
-app.use('/api/deadline',deadlineRoutes);
 app.use('/api/admin',adminRoutes);
 app.use('/api/notification',notificationRoutes);
+app.use('/api/log',logRoutes);
+app.use('/api/error',errorRoutes);
+app.use('/api/evaluator',evaluatorRoutes);
+app.use('/api/evaluation',evaluationRoutes);
 
 
 app.get("/", (req, res) => {
