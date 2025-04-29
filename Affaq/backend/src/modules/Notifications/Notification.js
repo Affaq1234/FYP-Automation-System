@@ -16,6 +16,6 @@ const notificationSchema = new mongoose.Schema({
     isRead:{
         type:Boolean,
     }
-});
+},{ timestamps: true });
 
 module.exports = mongoose.model("Notification",notificationSchema);

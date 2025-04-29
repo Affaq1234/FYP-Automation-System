@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const groupSchema = new mongoose.Schema({
     groupNo:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     studentsRegno: {
         type: [],
@@ -21,6 +22,6 @@ const groupSchema = new mongoose.Schema({
         type:String,
         required:true
     }
-});
+},{ timestamps: true });
 
 module.exports = mongoose.model("Group", groupSchema);

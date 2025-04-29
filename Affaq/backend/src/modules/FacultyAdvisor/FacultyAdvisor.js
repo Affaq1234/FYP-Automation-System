@@ -13,5 +13,5 @@ const facultyAdvisorSchema = new mongoose.Schema({
     Meetings: {
         type:[]
     }
-});
+},{ timestamps: true });
 module.exports = mongoose.model("FacultyAdvisor", facultyAdvisorSchema);

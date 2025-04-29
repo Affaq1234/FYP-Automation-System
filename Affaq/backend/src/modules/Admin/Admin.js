@@ -8,10 +8,6 @@ const AdminSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-  },
-  permissions: {
-    type: [],
-    required: true,
   }
-});
+},{ timestamps: true });
 module.exports = mongoose.model("Admin", AdminSchema);

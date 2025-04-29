@@ -12,10 +12,6 @@ const meetingSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-  },
-  communicationHistory: {
-    type: [],
-    required: true,
-  },
-});
+  }
+},{ timestamps: true });
 module.exports = mongoose.model("Meeting", meetingSchema);
