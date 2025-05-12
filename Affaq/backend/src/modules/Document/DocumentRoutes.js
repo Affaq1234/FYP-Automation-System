@@ -4,6 +4,7 @@ const documentController = require('./DocumentController');
 
 router.get('/', documentController.getAllDocuments);
 router.post('/', documentController.createDocument);
+router.get('/project/:projectID',documentController.getDocumentsByProjectId);
 router.delete('/:id',documentController.deleteDocument);
 router.patch('/:id',documentController.updateDocument);
 router.get('/:id',documentController.findOneDocument);

@@ -47,4 +47,15 @@ const updateFacultyAdvisor = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
-  module.exports={createFacultyAdvisor,deleteFacultyAdvisor,updateFacultyAdvisor,getAllFacultyAdvisors,findOneFacultyAdvisor};
+  const getFacultyAdvisorByUserId = async (req, res) => {
+    try {
+      const advisor = await FacultyAdvisor.findOne({ userId: req.params.userId });
+      if (!advisor) {
+        return res.status(404).json({ message: "Faculty advisor not found" });
+      }
+      res.json(advisor);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  module.exports={createFacultyAdvisor,deleteFacultyAdvisor,updateFacultyAdvisor,getAllFacultyAdvisors,findOneFacultyAdvisor,getFacultyAdvisorByUserId};

@@ -4,6 +4,7 @@ const meetingController = require('./MeetingController');
 
 router.get('/', meetingController.getAllMeetings);
 router.post('/', meetingController.createMeeting);
+router.get('/facultyAdvisor/:facultyId',meetingController.getMeetingsByFacultyId);
 router.delete('/:id',meetingController.deleteMeeting);
 router.patch('/:id',meetingController.updateMeeting);
 router.get('/:id',meetingController.findOneMeeting);

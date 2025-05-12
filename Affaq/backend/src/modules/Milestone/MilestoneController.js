@@ -1,4 +1,5 @@
 const Milestone=require('./Milestone');
+const Group=require('../Group/Group');
 const createMilestone = async (req, res) => {
     try {
         const newMilestone = new Milestone(req.body);
@@ -48,4 +49,23 @@ const updateMilestone = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
-  module.exports={createMilestone,deleteMilestone,updateMilestone,getAllMilestones,findOneMilestone};
+  const getMilestonesByProjectId = async (req, res) => {
+    try {
+        const milestones = await Milestone.find({ projectID: req.params.projectID });
+        res.status(200).json(milestones);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+const getMilestonesByGroupNo = async (req, res) => {
+  try {
+      const group = await Group.findOne({ groupNo: req.params.groupNo });
+      if (!group) return res.status(404).json({ error: "Group not found" });
+      
+      const milestones = await Milestone.find({ projectID: group.projectID });
+      res.status(200).json(milestones);
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+};
+  module.exports={createMilestone,deleteMilestone,updateMilestone,getAllMilestones,findOneMilestone,getMilestonesByProjectId,getMilestonesByGroupNo};

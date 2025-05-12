@@ -61,4 +61,18 @@ const deleteEvaluator = async (req, res) => {
   }
 };
 
-module.exports={createEvaluator,deleteEvaluator,updateEvaluator,getAllEvaluators,getEvaluatorById}
+const getEvaluatorsByUserId = async (req, res) => {
+  try {
+    const evaluators = await Evaluator.find({ userId: req.params.userId });
+    
+    if (evaluators.length === 0) {
+      return res.status(404).json({ message: "No evaluators found with this user ID" });
+    }
+    
+    res.json(evaluators);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports={createEvaluator,deleteEvaluator,updateEvaluator,getAllEvaluators,getEvaluatorById,getEvaluatorsByUserId}

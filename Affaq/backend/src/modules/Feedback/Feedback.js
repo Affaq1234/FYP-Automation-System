@@ -18,6 +18,17 @@ const feedbackSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  type:{
+    type:String,
+    enum:["document","milestone"],
+    required:true
+  },
+  documentId:{
+    type:String
+  },
+  milestoneId:{
+    type:String
+  }
 },{ timestamps: true });
 
 module.exports = mongoose.model("Feedback", feedbackSchema);

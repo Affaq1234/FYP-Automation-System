@@ -52,5 +52,20 @@ const findOneTask = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+const findTasksByMilestoneId = async (req, res) => {
+    try {
+      const { milestoneId } = req.params;
+  
+      const tasks = await Task.find({ milestoneId });
+  
+      if (tasks.length === 0) {
+        return res.status(404).json({ message: 'No tasks found for this milestone' });
+      }
+  
+      res.status(200).json(tasks);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
 
-module.exports={createTask,updateTask,deleteTask,findOneTask,getAllTasks};
+module.exports={createTask,updateTask,deleteTask,findOneTask,getAllTasks,findTasksByMilestoneId};

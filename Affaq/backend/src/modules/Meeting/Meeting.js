@@ -8,6 +8,10 @@ const meetingSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  groupId:{
+    type:String,
+    required:true
+  },
   agenda: {
     type: String,
     required: true,

@@ -97,10 +97,42 @@ async function saveBufferToFile(bufferData, outputPath) {
   }
 }
 
+const findByGroupId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const prop = await Proposal.findOne({groupID: id });
+
+    if (!prop) {
+      return res.status(404).json({ message: "Proposal not found" });
+    }
+
+    res.status(200).json(prop);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const findBySupervisorId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const prop = await Proposal.findOne({supervisorID: id });
+
+    if (!prop) {
+      return res.status(404).json({ message: "Proposal not found" });
+    }
+
+    res.status(200).json(prop);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   createProposal,
   deleteProposal,
   updateProposal,
   getAllProposals,
   findOneProposal,
+  findByGroupId,
+  findBySupervisorId
 };

@@ -97,4 +97,30 @@ const deleteEvaluation = async (req, res) => {
     res.status(500).json({ message: "Error deleting evaluation", error });
   }
 };
-module.exports={createEvaluation,deleteEvaluation,updateEvaluation,getAllEvaluations,getEvaluationById}
+const getEvaluationsByGroupId = async (req, res) => {
+  try {
+    const evaluations = await Evaluation.find({ groupId: req.params.groupId });
+    
+    if (evaluations.length === 0) {
+      return res.status(404).json({ message: "No evaluations found for this group ID" });
+    }
+    
+    res.json(evaluations);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+const getEvaluationsByEvaluatorId = async (req, res) => {
+  try {
+    const evaluations = await Evaluation.find({ evaluatorId: req.params.evaluatorId });
+    
+    if (evaluations.length === 0) {
+      return res.status(404).json({ message: "No evaluations found for this evaluator ID" });
+    }
+    
+    res.json(evaluations);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+module.exports={createEvaluation,deleteEvaluation,updateEvaluation,getAllEvaluations,getEvaluationById,getEvaluationsByEvaluatorId,getEvaluationsByGroupId}

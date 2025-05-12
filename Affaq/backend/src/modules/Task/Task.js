@@ -17,6 +17,9 @@ const taskSchema = new mongoose.Schema({
   uploadedBy:{
     type: String,
     required:true
+  },
+  completedBy:{
+    type:String
   }
 },{ timestamps: true });
 module.exports = mongoose.model("Task", taskSchema);

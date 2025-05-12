@@ -63,4 +63,17 @@ const updateAdmin = async (req, res) => {
       res.status(500).json({ message: 'Error clearing database', error: error.message });
     }
   };
-  module.exports={createAdmin,deleteAdmin,updateAdmin,getAllAdmins,findOneAdmin,clearDatabase};
+  const getAdminByUserId = async (req, res) => {
+    try {
+      const admin = await Admin.findOne({ userId: req.params.userId });
+      
+      if (!admin) {
+        return res.status(404).json({ message: "Admin not found with this user ID" });
+      }
+      
+      res.json(admin);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  module.exports={createAdmin,deleteAdmin,updateAdmin,getAllAdmins,findOneAdmin,clearDatabase,getAdminByUserId};

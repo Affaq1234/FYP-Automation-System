@@ -3,6 +3,8 @@ const router = express.Router();
 const feedbackController = require('./FeedbackController'); 
 
 router.get('/', feedbackController.getAllFeedbacks);
+router.get('/facultyAdvisor/:facultyId', feedbackController.getFeedbackByFacultyId);
+router.get('/group/:groupId', feedbackController.getFeedbackByGroupId);
 router.post('/', feedbackController.createFeedback);
 router.delete('/:id',feedbackController.deleteFeedback);
 router.patch('/:id',feedbackController.updateFeedback);

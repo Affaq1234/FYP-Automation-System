@@ -47,4 +47,20 @@ const updateFeedback = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
-  module.exports={createFeedback,deleteFeedback,updateFeedback,getAllFeedbacks,findOneFeedback};
+  const getFeedbackByFacultyId = async (req, res) => {
+    try {
+      const feedbacks = await Feedback.find({ facultyId: req.params.facultyId });
+      res.json(feedbacks);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  const getFeedbackByGroupId = async (req, res) => {
+    try {
+      const feedbacks = await Feedback.find({ groupId: req.params.groupId });
+      res.json(feedbacks);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  module.exports={createFeedback,deleteFeedback,updateFeedback,getAllFeedbacks,findOneFeedback,getFeedbackByFacultyId,getFeedbackByGroupId};

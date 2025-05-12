@@ -47,4 +47,42 @@ const updateStudent = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
-  module.exports={createStudent,updateStudent,deleteStudent,getAllStudents,findOneStudent};
+  const findOneStudentRegNo = async (req, res) => {
+    try {
+      const { regNo } = req.body;
+  
+      if (!regNo) {
+        return res.status(400).json({ message: 'Registration number is required' });
+      }
+  
+      const student = await Student.findOne({ regNo: regNo.trim() });
+  
+      if (!student) {
+        return res.status(404).json({ message: 'Student not found' });
+      }
+  
+      res.status(200).json(student);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+  const findOneStudentUserId= async (req, res) => {
+    try {
+      const { id} = req.params;
+  
+      if (!id) {
+        return res.status(400).json({ message: 'ID is required.' });
+      }
+  
+      const student = await Student.findOne({ userId: id });
+  
+      if (!student) {
+        return res.status(404).json({ message: 'Student not found' });
+      }
+  
+      res.status(200).json(student);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+  module.exports={createStudent,updateStudent,deleteStudent,getAllStudents,findOneStudent,findOneStudentRegNo,findOneStudentUserId};

@@ -47,4 +47,13 @@ const updateMeeting = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
-  module.exports={createMeeting,deleteMeeting,updateMeeting,getAllMeetings,findOneMeeting};
+
+  const getMeetingsByFacultyId = async (req, res) => {
+    try {
+      const meetings = await Meeting.find({ facultyId: req.params.facultyId });
+      res.status(200).json(meetings);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  module.exports={createMeeting,deleteMeeting,updateMeeting,getAllMeetings,findOneMeeting,getMeetingsByFacultyId};
