@@ -1,0 +1,86 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.dashboard-layout {
+    display: flex;
+    flex: 1;
+}
+
+.dashboard-main {
+    flex-grow: 1;
+    padding: 20px;
+    background: #f4f4f9;
+}
+
+
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Table Styling */
+.groups-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.groups-table th, .groups-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.groups-table th {
+    background: #3b0650;
+    color: white;
+}
+
+.groups-table tr:hover {
+    background: #f2f2f2;
+}
+
+/* Status Styling */
+.status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.status.pending {
+    background: #ffcc00;
+    color: #664d00;
+}
+
+.status.completed {
+    background: #4caf50;
+    color: white;
+}
+
+.status.in-progress {
+    background: #2196f3;
+    color: white;
+}
+
+/* Evaluate Button */
+.evaluate-btn {
+    background: #8c00ff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.evaluate-btn:hover {
+    background: #6a00cc;
+}

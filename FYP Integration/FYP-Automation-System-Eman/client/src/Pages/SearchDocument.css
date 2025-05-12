@@ -1,0 +1,210 @@
+/* SearchDocument.css */
+
+.search-document-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9; /* Light background */
+}
+
+.content-wrapper {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+    justify-content: center; /* Center the main content */
+    align-items: flex-start; /* Align items to the start (top in this case) */
+    max-width: 1200px; /* Add a maximum width for the main content area */
+    margin: 0 auto; /* Center the content area horizontally */
+}
+
+.search-container {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white; /* White background for the search container */
+    border-radius: 8px; /* Rounded corners for the search container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-left: 60px; /* Adjust this value based on the width of your SupervisorSidebar */
+    width: calc(100% - 270px); /* Adjust width to account for sidebar and padding */
+}
+
+
+h2 {
+    margin-bottom: 20px;
+    color: #333; /* Darker heading color */
+    text-align: center;
+}
+
+.group-input-section,
+.document-search-section,
+.results-container {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f5f5f5; /* Slightly lighter background for sections */
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 8px; /* Rounded corners for sections */
+}
+
+.group-input-section h3,
+.document-search-section h3,
+.results-container h3 {
+    margin-bottom: 15px;
+    color: #444; /* Darker heading color within sections */
+}
+
+.group-number-input,
+.search-input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc; /* More subtle border */
+    border-radius: 5px; /* Slightly more rounded corners */
+    width: calc(100% - 26px); /* Ensure input doesn't overflow with padding */
+    box-sizing: border-box;
+    font-size: 1em; /* Increased font size for better readability */
+}
+
+.group-number-input:focus,
+.search-input:focus {
+    outline: none;
+    border-color: #007bff; /* Highlight on focus */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add a focus shadow */
+}
+
+
+.btn {
+    padding: 12px 20px;
+    background-color: #390458;/* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Slightly more rounded corners */
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 1em; /* Increased font size for buttons */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn:hover {
+    color: #390458; /* Darker shade on hover */
+}
+
+.btn.secondary-btn {
+    background-color: #6c757d; /* Secondary button color */
+}
+
+.btn.secondary-btn:hover {
+    background-color: #5a6268; /* Darker shade on hover */
+}
+
+.btn.download-btn {
+    background-color: #28a745; /* Success (green) color for download */
+}
+
+.btn.download-btn:hover {
+    background-color: #218838; /* Darker shade on hover */
+}
+
+.document-list {
+    list-style: none;
+    padding: 0;
+}
+
+.document-card {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: white; /* White background for document cards */
+    border: 1px solid #e0e0e0; /* Very light border */
+    border-radius: 8px; /* Rounded corners for document cards */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition */
+}
+
+.document-card:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly more pronounced shadow on hover */
+}
+
+
+.document-title {
+    font-size: 1.2em; /* Increased font size for document title */
+    color: #2c3e50; /* Dark blue for title */
+    margin-bottom: 8px;
+    font-weight: 500; /* Medium font weight */
+}
+
+.document-meta {
+    flex-grow: 1;
+    margin-left: 20px; /* Increased margin */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.document-meta span {
+    display: block;
+    color: #7f8c8d; /* Gray for metadata */
+    font-size: 0.9em;
+}
+
+.search-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {  /* Medium screens and below (tablets) */
+    .content-wrapper {
+        padding: 15px;
+    }
+    .search-container{
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .group-input-section,
+    .document-search-section,
+    .results-container {
+        padding: 15px;
+    }
+
+    .group-number-input,
+    .search-input {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .document-meta {
+        margin-left: 10px;
+    }
+
+    .document-title{
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 576px) {  /* Small screens (phones) */
+    .search-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .document-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .document-meta{
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}

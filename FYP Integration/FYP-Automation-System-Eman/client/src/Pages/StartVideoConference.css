@@ -1,0 +1,105 @@
+/* General Container */
+.video-conference-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
+.content-wrapper {
+  display: flex;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  margin-left: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-conference-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #3b0650;
+  margin-bottom: 30px;
+}
+
+/* Meeting Selection */
+.meeting-selection {
+  margin-bottom: 30px;
+}
+
+.meeting-selection label {
+  font-size: 1.4rem; /* Increased font size */
+  color: #3b0650; /* Darker shade for better visibility */
+  font-weight: bold; /* Added bold for emphasis */
+  display: block;
+  margin-bottom: 10px;
+}
+
+.meeting-selection select {
+  width: 100%;
+  padding: 12px; /* Increased padding for better spacing */
+  font-size: 1.1rem; /* Slightly larger font size */
+  border: 1px solid #8c00ff; /* Highlighted border color */
+  border-radius: 8px; /* More rounded corners */
+  background: #f9f9f9; /* Light background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meeting-selection select:focus {
+  border-color: #5d00b3; /* Highlight on focus */
+  box-shadow: 0 0 8px rgba(93, 0, 179, 0.5); /* Glow effect */
+  outline: none;
+}
+
+/* Generate Link Section */
+.generate-link-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.generate-link-button {
+  background-color: #8c00ff;
+  color: white;
+  padding: 12px 25px; /* Adjusted padding for balance */
+  font-size: 1.1rem; /* Slightly larger font */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.generate-link-button:hover {
+  background-color: #5d00b3;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.generate-link-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.generated-link {
+  margin-top: 20px;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.generated-link a {
+  color: #3b0650;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.generated-link a:hover {
+  text-decoration: underline;
+}

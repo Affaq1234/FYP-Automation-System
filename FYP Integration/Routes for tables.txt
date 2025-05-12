@@ -1,0 +1,256 @@
+baseurl="localhost:5000"
+
+Then there are these
+app.use('/api/user',userRoutes);
+app.use('/api/task',taskRoutes);
+app.use('/api/student',studentRoutes);
+app.use('/api/proposal',proposalRoutes);
+app.use('/api/project',projectRoutes);
+app.use('/api/milestone',milestoneRoutes);
+app.use('/api/meeting',meetingRoutes);
+app.use('/api/group',groupRoutes);
+app.use('/api/feedback',feedbackRoutes);
+app.use('/api/facultyAdvisor',facultyAdvisorRoutes);
+app.use('/api/document',documentRoutes);
+app.use('/api/admin',adminRoutes);
+app.use('/api/notification',notificationRoutes);
+app.use('/api/log',logRoutes);
+app.use('/api/error',errorRoutes);
+app.use('/api/evaluator',evaluatorRoutes);
+app.use('/api/evaluation',evaluationRoutes);
+
+Then 
+Admin:
+router.delete('/clear-all',adminController.clearDatabase);
+router.get('/', adminController.getAllAdmins);
+router.post('/', adminController.createAdmin);
+router.get('/user/:userId',adminController.getAdminByUserId);
+router.delete('/:id',adminController.deleteAdmin);
+router.patch('/:id',adminController.updateAdmin);
+router.get('/:id',adminController.findOneAdmin);
+
+module.exports=router;
+
+Document:
+router.get('/', documentController.getAllDocuments);
+router.post('/', documentController.createDocument);
+router.get('/project/:projectID',documentController.getDocumentsByProjectId);
+router.delete('/:id',documentController.deleteDocument);
+router.patch('/:id',documentController.updateDocument);
+router.get('/:id',documentController.findOneDocument);
+
+module.exports=router;
+
+Error:
+
+router.post('/', errorController.createError);
+router.get('/', errorController.getAllErrors);
+router.get('/:id', errorController.getErrorById);
+router.delete('/:id', errorController.deleteError);
+
+Evaluation:
+const express = require('express');
+const router = express.Router();
+const evaluationController = require('../Evaluation/EvaluationController');
+
+router.post('/', evaluationController.createEvaluation);
+router.get('/', evaluationController.getAllEvaluations);
+router.get('/evaluator/:evaluatorId',evaluationController.getEvaluationsByEvaluatorId);
+router.get('/group/:groupId',evaluationController.getEvaluationsByGroupId);
+router.get('/:id', evaluationController.getEvaluationById);
+router.put('/:id', evaluationController.updateEvaluation);
+router.delete('/:id', evaluationController.deleteEvaluation);
+
+module.exports = router;
+
+Evaluator:
+
+const express = require('express');
+const router = express.Router();
+const evaluatorController = require('../Evaluator/EvaluatorController');
+const Evaluator = require('./Evaluator');
+
+router.post('/', evaluatorController.createEvaluator);
+router.get('/', evaluatorController.getAllEvaluators);
+router.get('/user/:userId',evaluatorController.getEvaluatorsByUserId);
+router.get('/:id', evaluatorController.getEvaluatorById);
+router.patch('/:id', evaluatorController.updateEvaluator);
+router.delete('/:id', evaluatorController.deleteEvaluator);
+
+module.exports = router;
+
+FacultyAdvisor(Supervisor):
+const express = require('express');
+const router = express.Router();
+const facultyAdvisorController = require('./FacultyAdvisorController'); 
+
+router.get('/', facultyAdvisorController.getAllFacultyAdvisors);
+router.post('/', facultyAdvisorController.createFacultyAdvisor);
+router.get('/user/:userId',facultyAdvisorController.getFacultyAdvisorByUserId);
+router.delete('/:id',facultyAdvisorController.deleteFacultyAdvisor);
+router.patch('/:id',facultyAdvisorController.updateFacultyAdvisor);
+router.get('/:id',facultyAdvisorController.findOneFacultyAdvisor);
+
+module.exports=router;
+
+Feedback:
+const express = require('express');
+const router = express.Router();
+const feedbackController = require('./FeedbackController'); 
+
+router.get('/', feedbackController.getAllFeedbacks);
+router.get('/facultyAdvisor/:facultyId', feedbackController.getFeedbackByFacultyId);
+router.get('/group/:groupId', feedbackController.getFeedbackByGroupId);
+router.post('/', feedbackController.createFeedback);
+router.delete('/:id',feedbackController.deleteFeedback);
+router.patch('/:id',feedbackController.updateFeedback);
+router.get('/:id',feedbackController.findOneFeedback);
+
+module.exports=router;
+
+
+Group:
+const express = require('express');
+const router = express.Router();
+const groupController = require('./GroupController'); 
+
+router.get('/', groupController.getAllGroups);
+router.post('/', groupController.createGroup);
+router.post('/student',groupController.findGroupByStudentRegNo);
+router.get('/facultyAdvisor/:supervisorID',groupController.getGroupsBySupervisorID);
+router.get('/project/:projectID',groupController.getGroupsByProjectID);
+router.get('/evaluator/:evaluatorID',groupController.getGroupsByEvaluatorID);
+router.get('/group/:groupNo',groupController.getGroupByGroupNo);
+router.delete('/:id',groupController.deleteGroup);
+router.patch('/:id',groupController.updateGroup);
+router.get('/:id',groupController.findOneGroup);
+
+module.exports=router;
+
+Log:
+const express = require('express');
+const router = express.Router();
+const logController = require('../Log/LogController');
+
+router.post('/', logController.createLog);
+router.get('/', logController.getAllLogs);
+router.get('/:id', logController.getLogById);
+router.delete('/:id', logController.deleteLog);
+
+module.exports = router;
+
+Meeting:
+const express = require('express');
+const router = express.Router();
+const meetingController = require('./MeetingController'); 
+
+router.get('/', meetingController.getAllMeetings);
+router.post('/', meetingController.createMeeting);
+router.get('/facultyAdvisor/:facultyId',meetingController.getMeetingsByFacultyId);
+router.delete('/:id',meetingController.deleteMeeting);
+router.patch('/:id',meetingController.updateMeeting);
+router.get('/:id',meetingController.findOneMeeting);
+
+module.exports=router;
+
+Milestone:
+const express = require('express');
+const router = express.Router();
+const milestoneController = require('./MilestoneController'); 
+
+router.get('/', milestoneController.getAllMilestones);
+router.post('/', milestoneController.createMilestone);
+router.get('/group/:groupNo',milestoneController.getMilestonesByGroupNo);
+router.get('/project/:projectID',milestoneController.getMilestonesByProjectId);
+router.delete('/:id',milestoneController.deleteMilestone);
+router.patch('/:id',milestoneController.updateMilestone);
+router.get('/:id',milestoneController.findOneMilestone);
+
+module.exports=router;
+
+Notification:
+const express = require('express');
+const router = express.Router();
+const NotificationController = require('./NotificationController'); 
+
+router.get('/', NotificationController.getAllNotifications);
+router.post('/', NotificationController.createNotification);
+router.delete('/:id',NotificationController.deleteNotification);
+router.patch('/:id',NotificationController.updateNotification);
+router.get('/:id',NotificationController.findOneNotification);
+
+module.exports=router;
+
+Project:
+const express = require('express');
+const router = express.Router();
+const projectController = require('./ProjectController'); 
+
+router.get('/', projectController.getAllProjects);
+router.post('/', projectController.createProject);
+router.delete('/:id',projectController.deleteProject);
+router.patch('/:id',projectController.updateProject);
+router.get('/:id',projectController.findOneProject);
+
+module.exports=router;
+
+Proposal:
+
+const express = require('express');
+const router = express.Router();
+const proposalController = require('./ProposalController'); 
+
+router.get('/', proposalController.getAllProposals);
+router.post('/', proposalController.createProposal);
+router.get('/group/:id',proposalController.findByGroupId);
+router.get('/supervisor/:id',proposalController.findBySupervisorId);
+router.delete('/:id',proposalController.deleteProposal);
+router.patch('/:id',proposalController.updateProposal);
+router.get('/:id',proposalController.findOneProposal);
+
+module.exports=router;
+
+Student:
+const express = require('express');
+const router = express.Router();
+const studentController = require('./StudentController'); 
+
+router.get('/', studentController.getAllStudents);
+router.post('/', studentController.createStudent);
+router.get('/regNo',studentController.findOneStudentRegNo);
+router.get('/user/:id',studentController.findOneStudentUserId);
+router.delete('/:id',studentController.deleteStudent);
+router.patch('/:id',studentController.updateStudent);
+router.get('/:id',studentController.findOneStudent);
+
+module.exports=router;
+
+Task:
+const express = require('express');
+const router = express.Router();
+const taskController = require('./TaskController'); 
+
+router.get('/', taskController.getAllTasks);
+router.get('/milestone/:milestoneId', taskController.findTasksByMilestoneId);
+router.post('/', taskController.createTask);
+router.delete('/:id',taskController.deleteTask);
+router.patch('/:id',taskController.updateTask);
+router.get('/:id',taskController.findOneTask);
+
+module.exports=router;
+
+const express = require('express');
+const router = express.Router();
+const userController = require('./UserController'); 
+
+router.post('/signup',userController.signup);
+router.get('/', userController.getAllUsers);
+router.post('/', userController.createUser);
+router.delete('/:id',userController.deleteUser);
+router.patch('/:id',userController.updateUser);
+router.get('/:id',userController.findOneUser);
+router.post('/login',userController.login);
+
+module.exports=router;
+
+Now, i will give you an example. IF you want to create student, you will have to use api localhost:5000/api/student.

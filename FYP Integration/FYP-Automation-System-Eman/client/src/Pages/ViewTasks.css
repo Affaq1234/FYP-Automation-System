@@ -1,0 +1,72 @@
+/* Tasks Table */
+.tasks-table {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.tasks-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tasks-table th,
+.tasks-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tasks-table th {
+  background-color: #3b0650;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tasks-table tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.tasks-table tr:hover {
+  background-color: #e6e6e6;
+}
+
+.tasks-table td {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Button Styles */
+.mark-completed-button {
+  padding: 8px 12px;
+  background-color: #8c00ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mark-completed-button:hover {
+  background-color: #5d00b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tasks-table table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .tasks-table th,
+  .tasks-table td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}

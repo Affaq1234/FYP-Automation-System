@@ -1,0 +1,2 @@
+student by userID api:localhost:5000/api/student/user/:id
+get group by regNo api:localhost:5000/api/group/student (you have to send regNo in body)

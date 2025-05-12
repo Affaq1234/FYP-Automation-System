@@ -1,0 +1,179 @@
+Heres the schema:
+Document:
+const mongoose = require("mongoose");
+const documentSchema = new mongoose.Schema({
+    projectID: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type:String,
+        required:true
+    },
+    documentType:{
+        type:String,
+        required:true
+    },
+    attachmentName:{
+        type:String,
+        required:true
+    },
+    attachment:{
+        type:Buffer,
+        required:true,
+    },
+    uploadedBy:{
+        type: String,
+        required: true
+    }
+},{ timestamps: true });
+module.exports = mongoose.model("Document", documentSchema);[api=localhost:5000/api/document]
+
+Feedback:
+const mongoose = require("mongoose");
+
+const feedbackSchema = new mongoose.Schema({
+  facultyId: {
+    type: String,
+    required: true,
+  },
+  groupId: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
+  type:{
+    type:String,
+    enum:["document","milestone"],
+    required:true
+  },
+  documentId:{
+    type:String
+  },
+  milestoneId:{
+    type:String
+  }
+},{ timestamps: true });
+
+module.exports = mongoose.model("Feedback", feedbackSchema);[api=localhost:5000/api/feedback]
+
+Milestone:
+const mongoose = require("mongoose");
+const milestoneSchema = new mongoose.Schema({
+    projectID: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    title: {
+        type:String,
+        required:true
+    },
+    dueDate:{
+        type:Date,
+        required:true
+    },
+    status:{
+        type:String,
+        required:true
+    }
+},{ timestamps: true });
+module.exports = mongoose.model("Milestone", milestoneSchema);[api=localhost:5000/api/milestone]
+
+This is the frontend code:
+import React, { useState } from "react";
+import Navbar from "../components/navbar"; // Top navigation bar
+import Footer from "../components/footer"; // Footer
+import SupervisorSidebar from "../components/SupervisorSidebar"; // Sidebar for navigation
+import "./ProvideFeedback.css"; // CSS for styling
+
+const ProvideFeedback = () => {
+  // State to hold feedback input
+  const [feedback, setFeedback] = useState("");
+  
+  // State to track selected task for feedback
+  const [selectedTask, setSelectedTask] = useState(null);
+
+  // List of submitted tasks for evaluation
+  const tasks = [
+    { id: 1, title: "Project Proposal", student: "abc", description: "Proposal for AI-powered chatbot." },
+    { id: 2, title: "Documentation Milestone 1", student: "xyz", description: "Initial project documentation." },
+    { id: 3, title: "Final Report Draft", student: "Team 1", description: "Draft for the final report." },
+  ];
+
+  // Handles submission of feedback
+  const handleFeedbackSubmit = (e) => {
+    e.preventDefault();
+    console.log(`Feedback for task "${selectedTask.title}":`, feedback);
+    
+    // Clear input fields after submission
+    setFeedback("");
+    setSelectedTask(null);
+
+    // Show confirmation message
+    alert("Feedback submitted successfully!");
+  };
+
+  return (
+    <div className="feedback-container">
+      <Navbar />
+
+      <div className="dashboard-layout">
+        <SupervisorSidebar />
+
+        <main className="feedback-main">
+          {/* Page Heading */}
+          <h1>Provide Feedback</h1>
+
+          {/* Task Selection Section */}
+          <div className="task-section">
+            <h2>Submitted Tasks</h2>
+            <div className="task-list">
+              {tasks.map((task) => (
+                <div
+                  key={task.id}
+                  className={`task-card ${selectedTask?.id === task.id ? "selected" : ""}`} // Highlights selected task
+                  onClick={() => setSelectedTask(task)}
+                >
+                  <h3>{task.title}</h3>
+                  <p><strong>Student:</strong> {task.student}</p>
+                  <p>{task.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Feedback Form - Visible only when a task is selected */}
+          {selectedTask && (
+            <div className="feedback-form-section">
+              <h2>Provide Feedback for: {selectedTask.title}</h2>
+              <form onSubmit={handleFeedbackSubmit} className="feedback-form">
+                <textarea
+                  placeholder="Write your feedback here..."
+                  value={feedback}
+                  onChange={(e) => setFeedback(e.target.value)}
+                  required
+                />
+                <button type="submit">Submit Feedback</button>
+              </form>
+            </div>
+          )}
+        </main>
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default ProvideFeedback;
+
+I want you to integrate backend with frontend and use PATCH for upading purposes instead of put. If you need schema of any other related table just ask me. Only those documents will appear here whose status is either approved or rejected. And Instead of Students Their Group no should appear

@@ -1,0 +1,82 @@
+.navbar {
+  background-color: white;
+  color: #260244;
+  padding: 10px30px;
+  display: flex;
+  justify-content: center; /* Center the nav links */
+  align-items: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between; /* Space between logo and links */
+  align-items: center;
+  width: 90%;
+}
+
+.navbar-logo {
+  margin-right: 50px; /* Push the logo to the left-most corner */
+  padding-right: 10px; /* Add space between logo and border */
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block; /* Ensures logo behaves as an inline element */
+}
+
+
+.navbar-logo a {
+  color: #260244;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Space between links */
+  justify-content: center; /* Center the links horizontally */
+  flex: 1; /* Take available space for centering */
+}
+
+.nav-links li {
+  font-size: 18px;
+}
+
+.nav-links a {
+  color: #260244;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; /* Show hamburger menu on smaller screens */
+  }
+
+  .nav-links {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #260244;
+    padding: 10px;
+    width: 200px;
+    transform: translateX(100%);
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,19 @@
+EVALUATIONS TABLE:
+1)Evaluator ID
+2)Group ID
+3)Evalutaion Type
+4)Status
+5)Total Score
+6)Obtained score
+7)Feedback
+
+Evaluator Table:
+1)UserId 
+2)Name
+
+Add Notification bar in all the users
+
+Make a log \and errors table
+
+Add created at updat at in tables.
+

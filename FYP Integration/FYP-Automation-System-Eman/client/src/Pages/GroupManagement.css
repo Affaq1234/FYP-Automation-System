@@ -1,0 +1,158 @@
+.group-management-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-wrapper {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  color: #3b0650;
+  margin-bottom: 20px;
+}
+
+.group-details {
+  margin-bottom: 30px;
+}
+
+.group-details h2 {
+  font-size: 1.5rem;
+  color: #3b0650;
+  margin-bottom: 10px;
+}
+
+.group-info p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.profiles-section ul,
+.logs-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-info p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.member-info label {
+  display: block;
+  margin-top: 10px;
+}
+
+.member-info select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.remove-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #cc0000;
+}
+
+.add-member-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #8c00ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-member-button:hover {
+  background-color: #5d00b3;
+}
+
+.communication-section {
+  margin-bottom: 30px;
+}
+
+.communication-section h2 {
+  font-size: 1.5rem;
+  color: #3b0650;
+  margin-bottom: 10px;
+}
+
+.communication-buttons button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #8c00ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.communication-buttons button:hover {
+  background-color: #5d00b3;
+}
+
+.logs-section h2 {
+  font-size: 1.5rem;
+  color: #3b0650;
+  margin-bottom: 10px;
+}
+
+.log-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.log-timestamp {
+  font-weight: bold;
+  color: #8c00ff;
+}

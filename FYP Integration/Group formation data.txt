@@ -1,0 +1,337 @@
+These are the tables:
+
+const mongoose = require("mongoose");
+
+const groupSchema = new mongoose.Schema({
+    groupNo:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    studentsRegno: {
+        type: [],
+        required: true
+    },
+    projectID: {
+        type: String,
+        required: true
+    },
+    supervisorID:{
+        type: String,
+        required:true
+    },
+    evaluatorID:{
+        type:String,
+        required:true
+    }
+},{ timestamps: true });
+
+module.exports = mongoose.model("Group", groupSchema); [api=localhost:5000/api/group]
+
+
+const mongoose = require("mongoose");
+
+const projectSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    status:{
+        type:String,
+        require:true
+    }
+},{ timestamps: true });
+
+module.exports = mongoose.model("Project", projectSchema); [api=localhost:5000/api/project]
+
+const mongoose = require("mongoose");
+const facultyAdvisorSchema = new mongoose.Schema({
+    userId:{
+        type:String,
+        required:true,
+        unique:true
+      },
+    Name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    Meetings: {
+        type:[]
+    }
+},{ timestamps: true });
+module.exports = mongoose.model("FacultyAdvisor", facultyAdvisorSchema);[api=localhost:5000/api/facultyAdvisor][This is basically the supervisor]
+
+const mongoose = require("mongoose");
+const studentSchema = new mongoose.Schema({
+  userId:{
+    type:String,
+    required:true,
+    unique:true
+  },
+  studentName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  regNo: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  isGrouped:{
+    type:Boolean,
+    required: true,
+  },
+},{ timestamps: true });
+module.exports = mongoose.model("Student", studentSchema);[api=localhost:5000/api/student and locahost:5000/api/student/regNo (to Access student information by registration no)]
+
+const mongoose=require("mongoose");
+const evaluatorSchema=mongoose.Schema({
+    userId:{
+        type:String,
+        required:true
+    },
+    name:{
+        type:String,
+        required:true
+    }
+},{ timestamps: true });
+module.exports=mongoose.model("Evaluator",evaluatorSchema);[api=localhost:5000/api/evaluator]
+
+This is the frontend code for group formation and assigning of supervisor adn evaluator:
+
+import React, { useState } from "react";
+import "./CreateGroupPage.css";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
+import AdminSidebar from "../components/AdminSideBar";
+
+function CreateGroupPage() {
+  const [groupNumber, setGroupNumber] = useState("");
+  const [projectName, setProjectName] = useState("");
+  const [selectedMembers, setSelectedMembers] = useState([]);
+  const [supervisor, setSupervisor] = useState("");
+  const [evaluator, setEvaluator] = useState("");
+  const [allGroups, setAllGroups] = useState([]);
+
+  const students = [
+    { id: 1, name: "Affaq", registrationNumber: "2021-CS-101" },
+    { id: 2, name: "Asad", registrationNumber: "2021-CS-102" },
+    { id: 3, name: "Eman", registrationNumber: "2021-CS-103" },
+    { id: 4, name: "Ayesha", registrationNumber: "2021-CS-104" },
+    { id: 5, name: "Ali", registrationNumber: "2021-CS-105" },
+    { id: 6, name: "Sara", registrationNumber: "2021-CS-106" },
+  ];
+
+  const handleGroupCreation = (e) => {
+    e.preventDefault();
+    const sup = students.find(s => s.id === parseInt(supervisor));
+    const evalr = students.find(s => s.id === parseInt(evaluator));
+    if (
+        groupNumber.trim() &&
+        projectName.trim() &&
+        selectedMembers.length > 0 &&
+        sup &&
+        evalr
+    ) {
+      const newGroup = {
+        groupNumber,
+        projectName,
+        members: selectedMembers,
+        supervisor: sup,
+        evaluator: evalr,
+      };
+      setAllGroups([...allGroups, newGroup]);
+      setGroupNumber("");
+      setProjectName("");
+      setSelectedMembers([]);
+      setSupervisor("");
+      setEvaluator("");
+    } else {
+      alert("Please fill all fields, select members, supervisor, and evaluator.");
+    }
+  };
+
+  const handleMemberSelection = (student) => {
+    if (selectedMembers.some((m) => m.id === student.id)) {
+      setSelectedMembers(selectedMembers.filter((m) => m.id !== student.id));
+    } else if (selectedMembers.length < 4) {
+      setSelectedMembers([...selectedMembers, student]);
+    } else {
+      alert("You can select up to 4 members only.");
+    }
+  };
+
+  return (
+      <div className="create-group-container">
+        <Navbar />
+        <div className="content-wrapper">
+          <AdminSidebar />
+          <div className="main-content">
+            <div className="create-group-section">
+
+              {/* Group Form */}
+              <div className="form-container">
+                <h2>Create a New Group</h2>
+                <form onSubmit={handleGroupCreation}>
+                  <div className="input-group">
+                    <label htmlFor="group-number">Group Number</label>
+                    <input
+                        type="text"
+                        id="group-number"
+                        value={groupNumber}
+                        onChange={(e) => setGroupNumber(e.target.value)}
+                        placeholder="Enter group number"
+                        required
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="project-name">Project Name</label>
+                    <input
+                        type="text"
+                        id="project-name"
+                        value={projectName}
+                        onChange={(e) => setProjectName(e.target.value)}
+                        placeholder="Enter project name"
+                        required
+                    />
+                  </div>
+                  <button type="submit" className="submit-button">
+                    Create Group
+                  </button>
+                </form>
+              </div>
+
+              {/* Student Table */}
+              <div className="student-selection">
+                <h3>All Students</h3>
+                <table>
+                  <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Reg. No</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {students.map((student) => (
+                      <tr key={student.id}>
+                        <td>
+                          <input
+                              type="checkbox"
+                              checked={selectedMembers.some((m) => m.id === student.id)}
+                              onChange={() => handleMemberSelection(student)}
+                          />
+                        </td>
+                        <td>{student.name}</td>
+                        <td>{student.registrationNumber}</td>
+                      </tr>
+                  ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Supervisor & Evaluator Dropdowns */}
+              <div className="supervisor-evaluator-selection">
+                <h3>Select Supervisor and Evaluator</h3>
+                <table>
+                  <thead>
+                  <tr>
+                    <th>Role</th>
+                    <th>Name</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Supervisor</td>
+                    <td>
+                      <select
+                          value={supervisor}
+                          onChange={(e) => setSupervisor(e.target.value)}
+                          className="select-dropdown"
+                          required
+                      >
+                        <option value="">-- Select Supervisor --</option>
+                        {students.map((s) => (
+                            <option key={s.id} value={s.id}>
+                              {s.name}
+                            </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Evaluator</td>
+                    <td>
+                      <select
+                          value={evaluator}
+                          onChange={(e) => setEvaluator(e.target.value)}
+                          className="select-dropdown"
+                          required
+                      >
+                        <option value="">-- Select Evaluator --</option>
+                        {students.map((s) => (
+                            <option key={s.id} value={s.id}>
+                              {s.name}
+                            </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Created Groups */}
+              <div className="groups-list">
+                <h3>Created Groups</h3>
+                {allGroups.length > 0 ? (
+                    <table>
+                      <thead>
+                      <tr>
+                        <th>Group No</th>
+                        <th>Project</th>
+                        <th>Supervisor</th>
+                        <th>Evaluator</th>
+                        <th>Members</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {allGroups.map((group, index) => (
+                          <tr key={index}>
+                            <td>{group.groupNumber}</td>
+                            <td>{group.projectName}</td>
+                            <td>{group.supervisor.name}</td>
+                            <td>{group.evaluator.name}</td>
+                            <td>
+                              <ul>
+                                {group.members.map((m, idx) => (
+                                    <li key={idx}>
+                                      {m.name} ({m.registrationNumber})
+                                    </li>
+                                ))}
+                              </ul>
+                            </td>
+                          </tr>
+                      ))}
+                      </tbody>
+                    </table>
+                ) : (
+                    <p>No groups have been created yet.</p>
+                )}
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+  );
+}
+
+export default CreateGroupPage;
+
+
+I want to integrate frontend and backend. Also i want to add Disband group option as well.

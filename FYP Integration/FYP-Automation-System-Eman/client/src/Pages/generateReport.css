@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+select {
+  height: 40px; /* Adjust this value as needed */
+  font-size: 16px; /* Adjust font size */
+  padding: 10px;
+}
+.view-group-btn{
+  margin-bottom: 10px;
+}
+
+/* Optionally, for larger options when they open */
+select option {
+  padding: 10px; /* Adds space inside each option */
+}
+  
+  .App {
+    text-align: center;
+    padding: 20px;
+    width: 1200px;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .report-form {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  textarea {
+    height: 150px;
+  }
+  
+  .generate-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+  
+  .generate-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .report-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .report-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .report-card h3 {
+    margin-top: 0;
+  }
+  
+  .report-card p {
+    font-size: 1em;
+    margin: 10px 0;
+  }
+  

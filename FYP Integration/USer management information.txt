@@ -1,0 +1,406 @@
+These are the tables:
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    role:{
+        type: String,
+        required:true
+    },   
+},{ timestamps: true });  [api=localhost:5000/api/user]
+
+module.exports = mongoose.model("User", userSchema);
+
+const mongoose = require("mongoose");
+const studentSchema = new mongoose.Schema({
+  userId:{
+    type:String,
+    required:true,
+    unique:true
+  },
+  studentName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  regNo: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  isGrouped:{
+    type:Boolean,
+    required: true,
+  },
+},{ timestamps: true });
+module.exports = mongoose.model("Student", studentSchema); [api=localhost:5000/api/student]
+
+const mongoose = require("mongoose");
+const facultyAdvisorSchema = new mongoose.Schema({
+    userId:{
+        type:String,
+        required:true,
+        unique:true
+      },
+    Name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    Meetings: {
+        type:[]
+    }
+},{ timestamps: true });
+module.exports = mongoose.model("FacultyAdvisor", facultyAdvisorSchema); [api=localhost:5000/api/facultyadvisor] "Basically it is the supervisor"
+
+
+const mongoose=require("mongoose");
+const evaluatorSchema=mongoose.Schema({
+    userId:{
+        type:String,
+        required:true
+    },
+    name:{
+        type:String,
+        required:true
+    }
+},{ timestamps: true });
+module.exports=mongoose.model("Evaluator",evaluatorSchema); [API=localhost:5000/api/evaluator]
+
+
+
+This is the frontend code for use management is:
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./manageUserAccounts.css";
+import AdminSidebar from "../components/AdminSideBar";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
+
+function ManageUserAccounts() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+  const [registrationNumber, setRegistrationNumber] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [students, setStudents] = useState([]);
+  const [supervisors, setSupervisors] = useState([]);
+  const [evaluators, setEvaluators] = useState([]);
+
+  const [viewStudents, setViewStudents] = useState(false);
+  const [viewSupervisors, setViewSupervisors] = useState(false);
+  const [viewEvaluators, setViewEvaluators] = useState(false);
+
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editingType, setEditingType] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newUser = { name, email, role, registrationNumber, password };
+
+    if (editingIndex !== null) {
+      if (editingType === "student") {
+        const updated = [...students];
+        updated[editingIndex] = newUser;
+        setStudents(updated);
+      } else if (editingType === "supervisor") {
+        const updated = [...supervisors];
+        updated[editingIndex] = newUser;
+        setSupervisors(updated);
+      } else if (editingType === "evaluator") {
+        const updated = [...evaluators];
+        updated[editingIndex] = newUser;
+        setEvaluators(updated);
+      }
+      setEditingIndex(null);
+      setEditingType("");
+    } else {
+      if (role === "Student") {
+        setStudents([...students, newUser]);
+        setViewStudents(true);
+      } else if (role === "Supervisor") {
+        setSupervisors([...supervisors, newUser]);
+        setViewSupervisors(true);
+      } else if (role === "Evaluator") {
+        setEvaluators([...evaluators, newUser]);
+        setViewEvaluators(true);
+      }
+    }
+
+    setName("");
+    setEmail("");
+    setRole("");
+    setRegistrationNumber("");
+    setPassword("");
+  };
+
+  const handleEdit = (index, type) => {
+    setEditingIndex(index);
+    setEditingType(type);
+    const user =
+        type === "student"
+            ? students[index]
+            : type === "supervisor"
+                ? supervisors[index]
+                : evaluators[index];
+    setName(user.name);
+    setEmail(user.email);
+    setRole(user.role);
+    setRegistrationNumber(user.registrationNumber || "");
+    setPassword(user.password || "");
+  };
+
+  const handleResetPassword = (index, type) => {
+    const updatedPassword = prompt("Enter new password:");
+    if (updatedPassword) {
+      if (type === "student") {
+        const updated = [...students];
+        updated[index].password = updatedPassword;
+        setStudents(updated);
+        alert("Password reset successfully for student.");
+      } else if (type === "supervisor") {
+        const updated = [...supervisors];
+        updated[index].password = updatedPassword;
+        setSupervisors(updated);
+        alert("Password reset successfully for supervisor.");
+      } else if (type === "evaluator") {
+        const updated = [...evaluators];
+        updated[index].password = updatedPassword;
+        setEvaluators(updated);
+        alert("Password reset successfully for evaluator.");
+      }
+    }
+  };
+
+  return (
+      <div className="manage-user-accounts">
+        <Navbar />
+        <div className="content-wrapper">
+          <AdminSidebar />
+          <div className="main-content">
+            <h1>Manage User Accounts</h1>
+            <p>Add or edit accounts for students, supervisors, and evaluators</p>
+
+            <div className="user-form-container">
+              <h2>{editingIndex !== null ? "Edit User" : "Add / Edit User"}</h2>
+              <form onSubmit={handleSubmit} className="user-form">
+                <label htmlFor="name">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+
+                <label htmlFor="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+
+                <label htmlFor="role">Role</label>
+                <select
+                    id="role"
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    required
+                >
+                  <option value="">Select Role</option>
+                  <option value="Student">Student</option>
+                  <option value="Supervisor">Supervisor</option>
+                  <option value="Evaluator">Evaluator</option>
+                </select>
+
+                {role === "Student" && (
+                    <>
+                      <label htmlFor="registrationNumber">
+                        Registration Number
+                      </label>
+                      <input
+                          type="text"
+                          id="registrationNumber"
+                          value={registrationNumber}
+                          onChange={(e) =>
+                              setRegistrationNumber(e.target.value)
+                          }
+                          required
+                      />
+                    </>
+                )}
+
+                {role === "Evaluator" && (
+                    <>
+                      <label htmlFor="registrationNumber">
+                        Registration Number
+                      </label>
+                      <input
+                          type="text"
+                          id="registrationNumber"
+                          disabled
+                          placeholder="Not applicable"
+                      />
+                    </>
+                )}
+
+                <button type="submit" className="submit-btn">
+                  {editingIndex !== null ? "Update" : "Submit"}
+                </button>
+              </form>
+            </div>
+
+            {/* Student Table */}
+            {viewStudents && students.length > 0 && (
+                <div className="student-table">
+                  <h2>Student List</h2>
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Registration Number</th>
+                      <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {students.map((student, index) => (
+                        <tr key={index}>
+                          <td>{student.name}</td>
+                          <td>{student.email}</td>
+                          <td>{student.role}</td>
+                          <td>{student.registrationNumber}</td>
+                          <td>
+                            <button onClick={() => handleEdit(index, "student")}>
+                              Edit
+                            </button>
+                            <button
+                                onClick={() => handleResetPassword(index, "student")}
+                            >
+                              Reset Password
+                            </button>
+                          </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                  </table>
+                </div>
+            )}
+
+            {/* Supervisor Table */}
+            {viewSupervisors && supervisors.length > 0 && (
+                <div className="supervisor-table">
+                  <h2>Supervisor List</h2>
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {supervisors.map((supervisor, index) => (
+                        <tr key={index}>
+                          <td>{supervisor.name}</td>
+                          <td>{supervisor.email}</td>
+                          <td>{supervisor.role}</td>
+                          <td>
+                            <button
+                                onClick={() => handleEdit(index, "supervisor")}
+                            >
+                              Edit
+                            </button>
+                            <button
+                                onClick={() =>
+                                    handleResetPassword(index, "supervisor")
+                                }
+                            >
+                              Reset Password
+                            </button>
+                          </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                  </table>
+                </div>
+            )}
+
+            {/* Evaluator Table */}
+            {viewEvaluators && evaluators.length > 0 && (
+                <div className="supervisor-table">
+                  <h2>Evaluator List</h2>
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {evaluators.map((evaluator, index) => (
+                        <tr key={index}>
+                          <td>{evaluator.name}</td>
+                          <td>{evaluator.email}</td>
+                          <td>{evaluator.role}</td>
+                          <td>
+                            <button
+                                onClick={() => handleEdit(index, "evaluator")}
+                            >
+                              Edit
+                            </button>
+                            <button
+                                onClick={() =>
+                                    handleResetPassword(index, "evaluator")
+                                }
+                            >
+                              Reset Password
+                            </button>
+                          </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                  </table>
+                </div>
+            )}
+          </div>
+        </div>
+        <Footer />
+      </div>
+  );
+}
+
+export default ManageUserAccounts;
+
+I want you to integrate frontend with backend. ALos add a delete button along with edit and reset password.There is no explicit api for password xha nge so you have to durectly access the user api and change the password

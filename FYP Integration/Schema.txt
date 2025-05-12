@@ -1,0 +1,417 @@
+Admin:
+const mongoose = require("mongoose");
+const AdminSchema = new mongoose.Schema({
+  userId:{
+    type:String,
+    required:true,
+    unique:true
+  },
+  name: {
+    type: String,
+    required: true,
+  }
+},{ timestamps: true });
+module.exports = mongoose.model("Admin", AdminSchema);
+
+Document:
+const mongoose = require("mongoose");
+const documentSchema = new mongoose.Schema({
+    projectID: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type:String,
+        required:true
+    },
+    documentType:{
+        type:String,
+        required:true
+    },
+    attachmentName:{
+        type:String,
+        required:true
+    },
+    attachment:{
+        type:Buffer,
+        required:true,
+    },
+    uploadedBy:{
+        type: String,
+        required: true
+    }
+},{ timestamps: true });
+module.exports = mongoose.model("Document", documentSchema);
+
+Error:
+const mongoose=require("mongoose");
+const errorSchema=mongoose.Schema({
+errorCode:{
+    type:String,
+    required:true
+},
+errorMessage:{
+    type:String,
+    required:true
+},
+userId:{
+    type:String,
+    required:true
+}
+},{ timestamps: true });
+module.exports=mongoose.model("Error",errorSchema);
+
+Evaluation:
+const mongoose=require("mongoose");
+const evaluationSchema=new mongoose.Schema({
+evaluatorId:{
+    type:String,
+    required:true
+},
+groupId:{
+    type:String,
+    required:true
+},
+evaluationType:{
+    type:String,
+    required:true
+},
+status:{
+    type:String,
+    required:true
+},
+totalScore:{
+    type:Number,
+    required:true
+},
+obtainedScore:{
+    type:Number,
+    required:true
+},
+feedback:{
+    type:String,
+    required:true
+}
+},{ timestamps: true });
+module.exports=mongoose.model("Evaluation",evaluationSchema);
+
+Evaluator:
+const mongoose=require("mongoose");
+const evaluatorSchema=mongoose.Schema({
+    userId:{
+        type:String,
+        required:true
+    },
+    name:{
+        type:String,
+        required:true
+    }
+},{ timestamps: true });
+module.exports=mongoose.model("Evaluator",evaluatorSchema);
+
+Supervisor(FacultyAdvisor):
+const mongoose = require("mongoose");
+const facultyAdvisorSchema = new mongoose.Schema({
+    userId:{
+        type:String,
+        required:true,
+        unique:true
+      },
+    Name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    Meetings: {
+        type:[]
+    }
+},{ timestamps: true });
+module.exports = mongoose.model("FacultyAdvisor", facultyAdvisorSchema);
+
+Feedback:
+const mongoose = require("mongoose");
+
+const feedbackSchema = new mongoose.Schema({
+  facultyId: {
+    type: String,
+    required: true,
+  },
+  groupId: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
+  documentId:{
+    type:String,
+    required:true
+  }
+},{ timestamps: true });
+
+module.exports = mongoose.model("Feedback", feedbackSchema);
+
+
+Group:
+const mongoose = require("mongoose");
+
+const groupSchema = new mongoose.Schema({
+    groupNo:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    studentsRegno: {
+        type: [],
+        required: true
+    },
+    projectID: {
+        type: String,
+        required: true
+    },
+    supervisorID:{
+        type: String,
+        required:true
+    },
+    evaluatorID:{
+        type:String,
+        required:true
+    }
+},{ timestamps: true });
+
+module.exports = mongoose.model("Group", groupSchema);
+
+Log:
+const mongoose=require("mongoose");
+const logSchema=mongoose.Schema({
+userId:{
+    type:String,
+    required:true
+},
+action:{
+    type:String,
+    requied:true
+},
+message:{
+    type:String,
+    required:true
+}
+},{ timestamps: true });
+module.exports=mongoose.model("Log",logSchema);
+
+Meeting:
+
+const mongoose = require("mongoose");
+const meetingSchema = new mongoose.Schema({
+  facultyId: {
+    type: String,
+    required: true,
+  },
+  scheduledTime: {
+    type: Date,
+    required: true,
+  },
+  groupId:{
+    type:String,
+    required:true
+  },
+  agenda: {
+    type: String,
+    required: true,
+    trim: true,
+  }
+},{ timestamps: true });
+module.exports = mongoose.model("Meeting", meetingSchema);
+
+Milestone:
+const mongoose = require("mongoose");
+const milestoneSchema = new mongoose.Schema({
+    projectID: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    title: {
+        type:String,
+        required:true
+    },
+    dueDate:{
+        type:Date,
+        required:true
+    },
+    status:{
+        type:String,
+        required:true
+    }
+},{ timestamps: true });
+module.exports = mongoose.model("Milestone", milestoneSchema);
+
+Notification:
+const mongoose = require("mongoose");
+
+const notificationSchema = new mongoose.Schema({
+    message: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
+    },
+    time:{
+        type: String,
+        required:true
+    },
+    isRead:{
+        type:Boolean,
+    }
+},{ timestamps: true });
+
+module.exports = mongoose.model("Notification",notificationSchema);
+
+Project:
+const mongoose = require("mongoose");
+
+const projectSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    status:{
+        type:String,
+        require:true
+    }
+},{ timestamps: true });
+
+module.exports = mongoose.model("Project", projectSchema);
+
+Proposal:
+const mongoose = require("mongoose");
+
+const proposalSchema = new mongoose.Schema({
+    groupID: {
+        type: String,
+        required: true
+    },
+    supervisorID: {
+        type: String,
+        required: true
+    },
+    status:{
+        type: String,
+        required:true
+    },
+    attachmentName:{
+        type:String,
+        required:true
+    },
+    attachment:{
+        type:Buffer,
+        require:true
+    },
+    evaluatorId:{
+        type:String,
+        required:true
+    }
+},{ timestamps: true });
+
+module.exports = mongoose.model("Proposal", proposalSchema);
+
+Student:
+const mongoose = require("mongoose");
+const studentSchema = new mongoose.Schema({
+  userId:{
+    type:String,
+    required:true,
+    unique:true
+  },
+  studentName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  regNo: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  isGrouped:{
+    type:Boolean,
+    required: true,
+  },
+},{ timestamps: true });
+module.exports = mongoose.model("Student", studentSchema);
+
+Task:
+const mongoose = require("mongoose");
+const taskSchema = new mongoose.Schema({
+  milestoneId: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  status: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  uploadedBy:{
+    type: String,
+    required:true
+  }
+},{ timestamps: true });
+module.exports = mongoose.model("Task", taskSchema);
+
+User:
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    role:{
+        type: String,
+        required:true
+    },   
+},{ timestamps: true });
+
+module.exports = mongoose.model("User", userSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
