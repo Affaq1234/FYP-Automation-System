@@ -1,4 +1,7 @@
 const Task=require('./Task')
+const Group=require('../Group/Group')
+const Milestone=require('../Milestone/Milestone')
+
 const createTask =async (req,res)=>{
     try{
         const newTask=new Task(req.body);
@@ -67,5 +70,32 @@ const findTasksByMilestoneId = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
+  const getTasksByGroupNo = async (req, res) => {
+    try {
+      const { groupNo } = req.params;
+  
+      const group = await Group.findOne({ groupNo });
+      if (!group) {
+        return res.status(404).json({ message: "Group not found" });
+      }
+  
+      const { projectID } = group;
+  
+      const milestones = await Milestone.find({ projectID });
+      if (!milestones.length) {
+        return res.status(404).json({ message: "No milestones found for this project" });
+      }
+  
+      const milestoneIds = milestones.map(m => m._id.toString());
+  
+      const tasks = await Task.find({ milestoneId: { $in: milestoneIds } });
+  
+      return res.status(200).json({ tasks });
+  
+    } catch (error) {
+      console.error("Error fetching tasks by groupNo:", error);
+      return res.status(500).json({ message: "Server error", error });
+    }
+  };
 
-module.exports={createTask,updateTask,deleteTask,findOneTask,getAllTasks,findTasksByMilestoneId};
+module.exports={createTask,updateTask,deleteTask,findOneTask,getAllTasks,findTasksByMilestoneId,getTasksByGroupNo};

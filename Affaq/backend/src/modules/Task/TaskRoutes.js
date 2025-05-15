@@ -4,6 +4,7 @@ const taskController = require('./TaskController');
 
 router.get('/', taskController.getAllTasks);
 router.get('/milestone/:milestoneId', taskController.findTasksByMilestoneId);
+router.get('/group/:groupNo',taskController.getTasksByGroupNo);
 router.post('/', taskController.createTask);
 router.delete('/:id',taskController.deleteTask);
 router.patch('/:id',taskController.updateTask);
