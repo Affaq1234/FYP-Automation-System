@@ -12,10 +12,6 @@ const milestoneSchema = new mongoose.Schema({
     dueDate:{
         type:Date,
         required:true
-    },
-    status:{
-        type:String,
-        required:true
     }
 },{ timestamps: true });
 module.exports = mongoose.model("Milestone", milestoneSchema);

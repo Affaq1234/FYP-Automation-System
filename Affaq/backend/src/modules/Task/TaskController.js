@@ -33,16 +33,21 @@ const deleteTask =async(req,res)=>{
         res.status(500).json({ message: error.message });
     }
 };
-const updateTask =async(req,res)=>{
-    try{
-        const {id}=req.params;
-        const updatedTask= await Task.findByIdAndUpdate(id,req.body,{new: true});
-        res.status(204).send(updateTask);
-    }catch(error)
-    {
-        res.status(500).json({ message: error.message });
+const updateTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedTask = await Task.findByIdAndUpdate(id, req.body, { new: true });
+
+    if (!updatedTask) {
+      return res.status(404).json({ message: "Task not found" });
     }
+
+    res.status(200).json(updatedTask); // Changed from 204 to 200 and sending the updated task
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
+
 const findOneTask = async (req, res) => {
     try {
         const { id } = req.params;
