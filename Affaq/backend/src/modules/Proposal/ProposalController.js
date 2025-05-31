@@ -4,11 +4,27 @@ const path = require("path");
 
 const createProposal = async (req, res) => {
   try {
-    const newProposal = new Proposal(req.body);
+    const { title, groupNo, supervisorID, description, status, attachmentName, evaluatorId } = req.body;
+    
+    // Convert base64 to Buffer
+    const buffer = Buffer.from(req.body.attachment, 'base64');
+    
+    const newProposal = new Proposal({
+      title,
+      groupNo,
+      supervisorID,
+      description,
+      status,
+      attachmentName,
+      attachment: buffer, // Store as Buffer
+      evaluatorId
+    });
+
     await newProposal.save();
-    res.status(201).json(newProposal);
+    const { attachment, ...newProposal1 } = newProposal;
+    res.status(201).json(newProposal1);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -99,16 +115,36 @@ async function saveBufferToFile(bufferData, outputPath) {
 
 const findByGroupId = async (req, res) => {
   try {
-    const { id } = req.params;
-    const prop = await Proposal.findOne({groupID: id });
+      const { groupNo } = req.params;
 
-    if (!prop) {
-      return res.status(404).json({ message: "Proposal not found" });
-    }
+      if (!groupNo) {
+          return res.status(400).json({ message: 'groupNo parameter is required' });
+      }
 
-    res.status(200).json(prop);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+      // Find proposals by groupNo, excluding the file buffer
+      const proposals = await Proposal.find({ groupNo }).select('-attachment');
+
+      if (proposals.length === 0) {
+          return res.status(404).json({ message: 'No proposals found for this groupNo' });
+      }
+
+      const metadataList = proposals.map(proposal => ({
+          id: proposal._id,
+          title:proposal.title,
+          groupNo: proposal.groupNo,
+          supervisorID: proposal.supervisorID,
+          description: proposal.description,
+          status: proposal.status,
+          attachmentName: proposal.attachmentName,
+          evaluatorId: proposal.evaluatorId,
+          createdAt: proposal.createdAt,
+          updatedAt: proposal.updatedAt
+      }));
+
+      res.status(200).json({ metadata: metadataList });
+  } catch (error) {
+      console.error('Error fetching proposals by groupNo:', error);
+      res.status(500).json({ message: 'Server error' });
   }
 };
 
@@ -126,7 +162,53 @@ const findBySupervisorId = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+const getProposalAttachment = async (req, res) => {
+  try {
+    const proposal = await Proposal.findById(req.params.id);
 
+    if (!proposal || !proposal.attachment) {
+      return res.status(404).json({ message: "Proposal or attachment not found" });
+    }
+
+    // Get the file buffer directly from MongoDB
+    const fileBuffer = proposal.attachment;
+
+    // Determine content type based on file extension
+    const ext = proposal.attachmentName.split('.').pop().toLowerCase();
+    const contentType = getContentType(ext);
+
+    // Set headers
+    res.set({
+      'Content-Type': contentType,
+      'Content-Disposition': `attachment; filename="${encodeURIComponent(proposal.attachmentName)}"`,
+      'Content-Length': fileBuffer.length
+    });
+
+    // Send the raw buffer
+    res.send(fileBuffer);
+  } catch (error) {
+    console.error("Error fetching proposal attachment:", error);
+    res.status(500).json({ message: "Server error while fetching attachment" });
+  }
+};
+
+// Helper function to determine content type
+function getContentType(ext) {
+  const types = {
+    pdf: 'application/pdf',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    png: 'image/png',
+    doc: 'application/msword',
+    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    xls: 'application/vnd.ms-excel',
+    xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  };
+  return types[ext] || 'application/octet-stream';
+}
+
+
+module.exports = { getProposalAttachment };
 module.exports = {
   createProposal,
   deleteProposal,
@@ -134,5 +216,6 @@ module.exports = {
   getAllProposals,
   findOneProposal,
   findByGroupId,
-  findBySupervisorId
+  findBySupervisorId,
+  getProposalAttachment
 };

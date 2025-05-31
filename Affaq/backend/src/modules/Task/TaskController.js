@@ -103,4 +103,23 @@ const findTasksByMilestoneId = async (req, res) => {
     }
   };
 
-module.exports={createTask,updateTask,deleteTask,findOneTask,getAllTasks,findTasksByMilestoneId,getTasksByGroupNo};
+  const deleteTasksByMilestoneId = async (req, res) => {
+    const { milestoneId } = req.params;
+  
+    if (!milestoneId) {
+      return res.status(400).json({ message: "Milestone ID is required." });
+    }
+  
+    try {
+      const result = await Task.deleteMany({ milestoneId });
+  
+      return res.status(200).json({
+        message: `Deleted ${result.deletedCount} task(s) related to milestoneId: ${milestoneId}`,
+      });
+    } catch (error) {
+      console.error("Error deleting tasks by milestoneId:", error);
+      return res.status(500).json({ message: "Server error while deleting tasks." });
+    }
+  };
+
+module.exports={createTask,updateTask,deleteTask,findOneTask,getAllTasks,findTasksByMilestoneId,getTasksByGroupNo,deleteTasksByMilestoneId};

@@ -1,13 +1,22 @@
 const mongoose = require("mongoose");
 
 const proposalSchema = new mongoose.Schema({
-    groupID: {
+    groupNo: {
         type: String,
         required: true
     },
+    title:{
+        type:String,
+        required:true
+    }
+    ,
     supervisorID: {
         type: String,
         required: true
+    },
+    description:{
+        type:String,
+        required:true
     },
     status:{
         type: String,
@@ -19,7 +28,7 @@ const proposalSchema = new mongoose.Schema({
     },
     attachment:{
         type:Buffer,
-        require:true
+        required:true
     },
     evaluatorId:{
         type:String,
