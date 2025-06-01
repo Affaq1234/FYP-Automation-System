@@ -1,14 +1,19 @@
 const mongoose = require("mongoose");
 const documentSchema = new mongoose.Schema({
-    projectID: {
+    groupNo: {
         type: String,
         required: true,
     },
+    supervisorID:{
+        type:String,
+        required:true
+    }
+    ,
     title: {
         type:String,
         required:true
     },
-    documentType:{
+    description:{
         type:String,
         required:true
     },
@@ -19,10 +24,6 @@ const documentSchema = new mongoose.Schema({
     attachment:{
         type:Buffer,
         required:true,
-    },
-    uploadedBy:{
-        type: String,
-        required: true
     }
 },{ timestamps: true });
 module.exports = mongoose.model("Document", documentSchema);
