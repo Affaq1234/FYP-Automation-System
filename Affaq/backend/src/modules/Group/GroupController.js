@@ -1,4 +1,6 @@
 const Group=require('./Group');
+const User = require("../User/User"); 
+const Student= require('../Student/Student')
 const createGroup = async (req, res) => {
     try {
         const newGroup = new Group(req.body);
@@ -116,5 +118,49 @@ const getGroupsByEvaluatorID = async (req, res) => {
   }
 };
 
+async function getGroupMembersDetails(req, res) {
+  try {
+      const { groupNo } = req.params; // or req.body depending on how you're sending the data
 
-module.exports={createGroup,deleteGroup,updateGroup,getAllGroups,findOneGroup,findGroupByStudentRegNo,getGroupByGroupNo,getGroupsByEvaluatorID,getGroupsBySupervisorID,getGroupsByProjectID};
+      // Find the group by groupNo
+      const group = await Group.findOne({ groupNo });
+      
+      if (!group) {
+          return res.status(404).json({ message: "Group not found" });
+      }
+
+      // Get all students in the group
+      const students = await Student.find({ regNo: { $in: group.studentsRegno } });
+
+      // Get user IDs for these students
+      const studentUserIds = students.map(student => student.userId);
+
+      // Get user details (email and username)
+      const users = await User.find({ _id: { $in: studentUserIds } });
+
+      // Map the data to return name and email
+      const membersDetails = students.map(student => {
+          const user = users.find(u => u._id.toString() === student.userId);
+          return {
+              name: student.studentName,
+              email: user ? user.email : "Email not found"
+          };
+      });
+
+      res.status(200).json({
+          groupNo: group.groupNo,
+          members: membersDetails
+      });
+
+  } catch (error) {
+      console.error("Error fetching group members:", error);
+      res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+module.exports = {
+  getGroupMembersDetails
+};
+
+
+module.exports={createGroup,deleteGroup,updateGroup,getAllGroups,findOneGroup,findGroupByStudentRegNo,getGroupByGroupNo,getGroupsByEvaluatorID,getGroupsBySupervisorID,getGroupsByProjectID,getGroupMembersDetails};

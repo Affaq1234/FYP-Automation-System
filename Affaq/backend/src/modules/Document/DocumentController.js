@@ -12,8 +12,7 @@ const createDocument = async (req, res) => {
       supervisorID,
       description,
       attachmentName,
-      attachment: buffer,
-      uploadedBy
+      attachment: buffer
     });
 
     await newDocument.save();
@@ -140,9 +139,7 @@ const updateDocument = async (req, res) => {
             groupNo: document.groupNo,
             supervisorID: document.supervisorID,
             description: document.description,
-            status: document.status,
             attachmentName: document.attachmentName,
-            evaluatorId: document.evaluatorId,
             createdAt: document.createdAt,
             updatedAt: document.updatedAt
         }));
@@ -174,9 +171,7 @@ const updateDocument = async (req, res) => {
           groupNo: document.groupNo,
           supervisorID: document.supervisorID,
           description: document.description,
-          status: document.status,
           attachmentName: document.attachmentName,
-          evaluatorId: document.evaluatorId,
           createdAt: document.createdAt,
           updatedAt: document.updatedAt
       }));

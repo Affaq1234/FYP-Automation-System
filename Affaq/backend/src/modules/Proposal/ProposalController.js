@@ -151,7 +151,7 @@ const findByGroupId = async (req, res) => {
 const findBySupervisorId = async (req, res) => {
   try {
     const { id } = req.params;
-    const prop = await Proposal.findOne({supervisorID: id });
+    const prop = await Proposal.find({supervisorID: id });
 
     if (!prop) {
       return res.status(404).json({ message: "Proposal not found" });
